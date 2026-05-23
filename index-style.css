@@ -1,0 +1,30 @@
+.first-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;       
+    text-align: center;
+    margin: 30px 0 50px;
+}
+
+.first-container p{
+    color: rgb(150, 0, 66);
+}
+
+.first-button{
+    margin: 20px 15px 0 0;
+}
+
+.first-button a{
+    text-decoration: none;
+    color: #FCE4EC;
+    border: 3px solid rgb(150, 0, 66);
+    padding: 6px 16px;
+    border-radius: 20px;
+    width: auto;
+    background-color: rgb(150, 0, 66, 0.7);
+    
+}
+
+.first-button a:hover{
+    background-color: rgb(150, 0, 66);
+}
