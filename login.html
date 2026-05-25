@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Form</title>
+    <link rel="stylesheet" href="login-style.css">
+
+    <style>@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');</style>
+
+</head>
+
+<body id="backgroundColor">
+
+    <header>
+    <div class="imgLogo"><img src="images/logo.svg" alt="Hustle Logo"></div>
+    </header>
+
+    <div id="formGroup">
+
+        <div class="imgIcon">
+            <img src="images/iconuser.png" alt="User Icon"> 
+        </div>
+
+        <h1>Log in Hustle</h1>
+
+        <form onsubmit="event.preventDefault(); showData();">
+
+            <div class="formSection">
+                <label>Username</label>
+                <input type="text" id="nameInput" required placeholder="Username">
+            </div>
+
+            <div class="formSection">
+                <label>Password</label>
+                <input type="password" id="passwordInput" required placeholder="Password">
+            </div>
+
+            <button type="submit">Log In</button>
+            <h2>Don't have an account? <a href="signup.html">Sign Up</a></h2>
+
+        </form>
+
+    </div>
+
+    <div id="main" class="hidden">
+
+        <p id="username"></p>
+        <p id="password"></p>
+
+    </div>
+    
+    <script>
+
+        function showData() 
+        {
+            let username = document.getElementById("nameInput").value;
+            let password = document.getElementById("passwordInput").value;
+      
+            // document.getElementById("username").innerHTML = "Username: " + username;
+            // document.getElementById("password").innerHTML = "Password: " + password;
+
+            document.getElementById("main").classList.remove("hidden");
+        }
+
+    </script>
+    
+</body>
+</html>
