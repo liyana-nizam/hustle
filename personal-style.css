@@ -1,6 +1,6 @@
 body
 {
-    background-color: rgb(150, 0, 66);;
+    background-color: rgb(150, 0, 66);
     font-family: Arial;
 }
 
@@ -23,13 +23,11 @@ header
     height: 115px;
     display:flex;
     margin: auto;
-    
 }
 
 #formGroup
 {
-    width: 450px;
-    height: auto;
+    width: 600px;
     margin: auto;
     margin-top: 30px;
     background-color: white;
@@ -47,32 +45,27 @@ input
 {
     display: block;
     margin: 10px 0;
-    width: 100%;
+    width: 500px;
     height: 20px;
     border-radius: 10px;
-    padding: 5px;
+    padding: 10px;
     margin-bottom: 5%;
     font-size: 17px;    
 }
 
 button
 {
-    width: 70px;
+    width: 100px;
     padding: 10px;
     border: none;
     border-radius: 20px;
     background-color: lightgray;
-    font-size: 15px;
+    font-size: 16px;
     text-align: center;
     display:flex;
     margin: auto;
     display: block;
 }
-
-/* .hidden 
-{
-    display: none;
-}*/
 
 h1
 {
@@ -90,18 +83,31 @@ h2
     color: gray;
 }
 
-.dropdown
+.formGender span 
 {
-    display:block;
-    flex-direction: column;
-    margin-bottom: 7%;
+    display: inline-block;
+    text-align: center;
+    margin-right: 20px;
+    font-size: 17px;
 }
 
-.dropdown select
+.formGender input 
 {
-    border-radius: 10px;
-    padding: 5px;
-    border: 1px solid black;
-    margin-left: 10px;
-    margin-top: 5px;
+    display: inline-block; 
+    width: auto;           
+    height: auto;
+    margin: 0;
+    margin-bottom: 5%;
+}
+
+.formGender label
+{
+    display: block;
+    margin-bottom: 10px;
+}
+
+.radioGroup
+{
+    display: flex;
+    gap: 15px;
 }

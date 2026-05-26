@@ -4,7 +4,7 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign Up Form</title>
+    <title>Signup Form</title>
     <link rel="stylesheet" href="signup-style.css"> 
 
     <style>@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');</style>
@@ -28,41 +28,30 @@
         <form onsubmit="event.preventDefault(); showData();">
 
             <div class="formSection">
-                <label>Full name</label>
-                <input type="text" id="nameInput" required placeholder="e.g. Amelia Henderson">
+                <label>Create username</label>
+                <input type="text" id="usernameInput" required placeholder="e.g. amelia123">
             </div>
 
             <div class="formSection">
-                <label>Phone number</label>
-                <input type="number" id="numberInput" required>
+                <label>Password</label>
+                <input type="password" id="passwordInput" required>
             </div>
 
             <div class="formSection">
-                <label>Address</label>
-                <input type="text" id="addressInput" required>
+                <label>Confirm Password</label>
+                <input type="password" id="confirmPasswordInput" required>
             </div>
 
-            <div class="formSection">
-                <label>City</label>
-                <input type="text" id="cityInput" required>
+            <div class="dropdown">
+                <label for="userType">Role</label>
+                <select id="userType" name="userType" required>
+                    <option value=" " disabled selected></option>
+                    <option value="Gig Worker">Gig Worker</option>
+                    <option value="Service Provider">Service Provider</option>
+                </select>
             </div>
 
-            <div class="formSection">
-                <label>Postcode</label>
-                <input type="number" id="postcodeInput" required>
-            </div>
-
-            <div class="formSection">
-                <label>State</label>
-                <input type="text" id="stateInput" required>
-            </div>
-
-            <div class="formSection">
-                <label>Describe yourself</label>
-                <input type="text" id="describeInput" required >
-            </div>
-
-            <button type="submit">Sign Up</button>
+            <button type="submit">Next</button>
             <h2>Already have an account? <a href="login.html">Log In</a></h2>
 
         </form>
@@ -71,13 +60,10 @@
 
     <div id="main" class="hidden">
 
-        <p id="fullName"></p>
-        <p id="phoneNo"></p>
-        <p id="address"></p>
-        <p id="city"></p>   
-        <p id="postcode"></p>
-        <p id="state"></p>
-        <p id="describe"></p>
+        <p id="Username"></p>
+        <p id="password"></p>
+        <p id="confirmPassword"></p>
+        <p id="role"></p>   
 
     </div>
     
@@ -85,23 +71,18 @@
 
         function showData() 
         {
-            let fullName = document.getElementById("nameInput").value;
-            let phoneNo = document.getElementById("numberInput").value;
-            let address = document.getElementById("addressInput").value;
-            let city = document.getElementById("cityInput").value;
-            let postcode = document.getElementById("postcodeInput").value;
-            let state = document.getElementById("stateInput").value;
-            let describe = document.getElementById("describeInput").value;
+            let username = document.getElementById("usernameInput").value;
+            let password = document.getElementById("passwordInput").value;
+            let confirmPassword = document.getElementById("confirmPasswordInput").value;
+            let role = document.getElementById("userType").value;
 
-            /*document.getElementById("fullName").innerHTML = "Full Name: " + fullName;
-            document.getElementById("phoneNo").innerHTML = "Phone Number: " + phoneNo;
-            document.getElementById("address").innerHTML = "Address: " + address;
-            document.getElementById("city").innerHTML = "City: " + city;
-            document.getElementById("postcode").innerHTML = "Postcode: " + postcode;
-            document.getElementById("state").innerHTML = "State: " + state;
-            document.getElementById("describe").innerHTML = "Describe Yourself: " + describe;*/
+            /*document.getElementById("Username").innerHTML = "Username: " + username;
+            document.getElementById("password").innerHTML = "Password: " + password;
+            document.getElementById("confirmPassword").innerHTML = "Confirm Password: " + confirmPassword;
+            document.getElementById("role").innerHTML = "Role: " + role;*/
 
             document.getElementById("main").classList.remove("hidden");
+            window.location.href = "personal.html";
         }
 
     </script>
