@@ -5,27 +5,103 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hustle</title>
     <link rel="stylesheet" href="base.css" type="text/css">
-    <link rel="stylesheet" href="list.css" type="text/css">
+    <link rel="stylesheet" href="list-style.css" type="text/css">
 </head>
 <body>
     <header>
         <div class="imgLogo"><img src="images/logo.svg" alt="Hustle Logo"></div>
         <nav>
-            <ul>
-                <div class="hLeft-container">
-                    <li><a href="">List Users</a></li>
-                    <li><a href="">List Gigs</a></li>
-                    <li><a href="">Gig Progress</a></li>
-                </div>
-                <div class="hRight-container">
-                    <li><a href=""><img src="images/notification.png" alt="Notification"></a></li>
-                    <li><a href="">Admin</a></li>
-                </div>
+            <ul class="hLeft-container">
+                <li><a href="">Gig Progress</a></li>
+                <li><a href="admin-list-users.html">List Users</a></li>
+                <li><a href="admin-list-gigs.html">List Gigs</a></li>
+            </ul>
+            <ul class="hRight-container">
+                <li><a href=""><img src="images/notification.png" alt="Notification"></a></li>
+                <li><a href="">Admin</a></li>
             </ul>
         </nav>
     </header>
     <div class="content-container">
+        <!-- Search Bar & Filter -->        
+        <div class="search-filter-container">
+            <form onsubmit="event.preventDefault();">
+                <div class="search-section">
+                    <label for="searchUser" class="accessibility">Username</label>
+                    <input type="search" id="searchUser" placeholder="Search by username...">
+                </div>
+                <div class="filter-section">
+                    <label for="filterRole" class="accessibility">Role</label>
+                    <select id="filterRole" name="filterRole">
+                        <option value="" disabled selected>Role</option>
+                        <option value="Gig Worker">Gig Worker</option>
+                        <option value="Gig Owner">Gig Owner</option>
+                    </select>
+                </div>
+                <button type="submit">Search</button>
+            </form>
+        </div>
+        <!-- List of User -->
+        <div class="list-container">
+            <ul class="user-list">
+                <li class="item-container">
+                    <a href="">
+                    <div class="user-left">
+                        <div class="user-img"><img src="" alt="Icon User"></div>
+                        <div class="user-info">
+                            <p class="user-name">Username</p>                           
+                        </div>
+                    </div>
+                    <div class="user-right">
+                        <p class="user-filter">Role</p>
+                    </div>
+                    </a>
+                </li>
 
+                <!-- List Bawah Akan Dibuang Kemudian -->
+                <li class="item-container">
+                    <a href="">
+                    <div class="user-left">
+                        <div class="user-img"><img src="" alt="Icon User"></div>
+                        <div class="user-info">
+                            <p class="user-name">Username</p>                           
+                        </div>
+                    </div>
+                    <div class="user-right">
+                        <p class="user-filter">Role</p>
+                    </div>
+                    </a>
+                </li>
+                <li class="item-container">
+                    <a href="">
+                    <div class="user-left">
+                        <div class="user-img"><img src="" alt="Icon User"></div>
+                        <div class="user-info">
+                            <p class="user-name">Username</p>                           
+                        </div>
+                    </div>
+                    <div class="user-right">
+                        <p class="user-filter">Role</p>
+                    </div>
+                    </a>
+                </li>
+                <li class="item-container">
+                    <a href="">
+                    <div class="user-left">
+                        <div class="user-img"><img src="" alt="Icon User"></div>
+                        <div class="user-info">
+                            <p class="user-name">Username</p>                           
+                        </div>
+                    </div>
+                    <div class="user-right">
+                        <p class="user-filter">Role</p>
+                    </div>
+                    </a>
+                </li>
+                <!-- Sampai Sini -->
+
+            </ul>
+        </div>
     </div>
     <footer>
         <div class="footer-container">
@@ -35,9 +111,9 @@
             <div class="right-footer">
                 <p class="first-line">Navigation</p>
                 <ul>
+                    <li><a href="">Gig Progress</a></li>
                     <li><a href="">List Users</a></li>
                     <li><a href="">List Gigs</a></li>
-                    <li><a href="">Gig Progress</a></li>
                 </ul>
             </div>
         </div>

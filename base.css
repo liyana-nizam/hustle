@@ -20,7 +20,7 @@ header{
 .imgLogo img{
     width: 120px;
     height: auto;
- }
+}
 
 nav {
     display: flex;             
@@ -54,12 +54,12 @@ nav a:hover{
 
 .hLeft-container, .hRight-container {
     display: flex;
-    gap: 15px;
+    gap: 12px;
     align-items: center;
 }
 
 .hLeft-container {
-    margin-right: 30px;
+    margin-right: 40px;
 }
 
 .hRight-container img {
@@ -138,11 +138,11 @@ footer{
         margin-bottom: 6%;
     }
 
-    nav ul {
+    nav{
         justify-content: center;
         flex-wrap: wrap;
         gap: 20px 10px;
-        margin-bottom: 5px;            
+        margin-bottom: 5px;        
     }
 
     .hLeft-container, .hRight-container {
