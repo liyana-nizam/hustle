@@ -3,28 +3,90 @@
     flex-direction: column;
     align-items: center;       
     text-align: center;
-    margin: 30px 0 50px;
+    margin: 30px 0 40px;
 }
 
-.first-container p{
+.highlightText{
     color: rgb(150, 0, 66);
 }
 
 .first-button{
-    margin: 20px 15px 0 0;
+    margin: 20px 0 0;
 }
 
 .first-button a{
     text-decoration: none;
-    color: #FCE4EC;
-    border: 3px solid rgb(150, 0, 66);
+    color: white;
+    border: none;
     padding: 6px 16px;
     border-radius: 20px;
-    width: auto;
     background-color: rgb(150, 0, 66, 0.7);
-    
 }
 
 .first-button a:hover{
     background-color: rgb(150, 0, 66);
+}
+
+.first-container h1, .first-container p{
+    margin-bottom: 3px;
+}
+
+.second-container{
+    border-top: solid 1px rgb(150, 0, 66);
+    padding-top: 35px;
+    margin: 0 8%;
+}
+
+.second-container h2{
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.role-container {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin: 0 auto 40px;
+  padding: 0 9%;
+}
+
+.role-container h3{
+    margin-bottom: 20px;
+    border-bottom: 2px solid rgb(150, 0, 66);
+    padding-bottom: 10px;
+}
+
+.role-section{
+    flex: 1;
+}
+
+.role-step{
+    display: flex;
+    gap: 20px;
+}
+
+.role-number{
+    border: none;
+    border-radius: 50%;
+    background-color: rgb(150, 0, 66);
+    color: white;
+    height: 26px;
+    width: 26px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 13px;
+    font-weight: bold;
+}
+
+.role-content{
+    margin-bottom: 20px;
+}
+
+.role-content h4{
+    font-size: 17px;
+}
+
+.role-content p{
+    color: rgb(150, 0, 66);
 }
