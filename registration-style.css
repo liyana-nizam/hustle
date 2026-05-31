@@ -1,0 +1,51 @@
+body
+{
+    background-color:  rgb(150, 0, 66);
+    font-family: Arial;
+}
+
+.imgLogo img
+{
+    width: 120px;
+    height: auto;
+    margin-left: 2%;
+    margin-top: 30px;
+}
+
+.imgIcon img
+{
+    width: 115px;
+    height: 115px;
+    display:flex;
+    margin: auto;
+}
+
+h1
+{
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
+
+h2
+{
+    text-align: center;
+    color: white;
+    margin-top: 20px;
+}
+
+label
+{
+    font-size: 17px;
+}
+
+.formSection
+{
+    width: 300px;
+    margin: auto;
+    margin-top: 30px;
+    background-color: rgb(234, 185, 205);
+    padding: 40px;
+    border-radius: 20px;
+    border: 2px solid black;
+}

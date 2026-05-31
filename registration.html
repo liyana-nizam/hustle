@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Page</title>
+    <link rel="stylesheet" href="registration-style.css">  
+    <style>@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');</style>
+
+</head>
+
+<body id="backgroundColor">
+    
+    <header>
+        <div class="imgLogo"><img src="images/logo.svg" alt="Hustle Logo"></div>
+    </header>
+
+    <div class="imgIcon">
+        <img src="images/iconuser.png" alt="User Icon">  
+    </div>
+
+    <!-- <p id="registrationMessage">Registration successful! Please proceed to fill in your personal information.</p> -->
+    <h1>Join Hustle as a Gig Workers</h1>
+    <h1>or Service Providers</h1>
+
+    <div id="formGroup">
+
+        <form onsubmit="event.preventDefault(); showData();">
+
+            <div class="formSection">
+                <!-- <button type="submit">I am a Gig Worker</button> -->
+                <label for="userType">I am a Gig Worker</label>
+            </div>
+
+            <div class="formSection">
+                <label for="serviceProvider">I am a Service Provider</label>
+            </div>
+
+            <button type="submit">Create Account</button>
+            <h2>Already have an account? <a href="login.html">Log In</a></h2>
+
+        </form>
+
+    </div>
+
+    
+</body>
+</html>

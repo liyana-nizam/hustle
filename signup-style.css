@@ -2,19 +2,25 @@ body
 {
     background-color: rgb(150, 0, 66);;
     font-family: Arial;
+    margin: 0;
+    padding: 20px;
 }
 
 header
 {
-    text-align: center;
     margin-top: 30px;
+}
+
+.imgLogo
+{
+    display: flex;
+    justify-content: flex-start;
 }
 
 .imgLogo img
 {
     width: 120px;
     height: auto;
-    margin-right: 85%;
 }
 
 .imgIcon img
@@ -23,19 +29,18 @@ header
     height: 115px;
     display:flex;
     margin: auto;
-    
 }
 
 #formGroup
 {
-    width: 450px;
-    height: auto;
-    margin: auto;
-    margin-top: 30px;
+    width: 90%;
+    max-width: 400px;
+    margin: 30px auto;
     background-color: white;
     padding: 40px;
     border-radius: 20px;
     border: 2px solid black;
+    box-sizing: border-box;
 }
 
 label
@@ -45,14 +50,14 @@ label
 
 input
 {
-    display: block;
-    margin: 10px 0;
     width: 100%;
     height: 20px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     border-radius: 10px;
-    padding: 5px;
-    margin-bottom: 5%;
-    font-size: 17px;    
+    font-size: 17px;
+    box-sizing: border-box;
 }
 
 button
@@ -105,3 +110,53 @@ h2
     margin-left: 10px;
     margin-top: 5px;
 }
+
+@media screen and (max-width: 768px)
+{
+    #formGroup
+    {
+        padding: 30px;
+    }
+
+    h1
+    {
+        font-size: 28px;
+    }
+}
+
+
+@media screen and (max-width: 480px)
+{
+    #formGroup
+    {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .imgLogo img
+    {
+        width: 90px;
+    }
+
+    .imgIcon img
+    {
+        width: 90px;
+        height: 90px;
+    }
+
+    h1
+    {
+        font-size: 22px;
+    }
+
+    input
+    {
+        font-size: 15px;
+    }
+
+    button
+    {
+        width: 100%;
+    }
+}
+

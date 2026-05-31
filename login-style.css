@@ -1,58 +1,81 @@
 body
 {
-    background-color: rgb(150, 0, 66);;
+    background-color: rgb(150, 0, 66);
     font-family: Arial;
+    margin: 0;
+    padding: 20px;
 }
 
 header
 {
-    text-align: center;
-    margin-top: 30px;
+    margin-top: 20px;
+}
+
+.imgLogo
+{
+    display: flex;
+    justify-content: flex-start;
 }
 
 .imgLogo img
 {
     width: 120px;
     height: auto;
-    margin-right: 85%;
+}
+
+
+#formGroup
+{
+    width: 90%;
+    max-width: 400px;
+    margin: 30px auto;
+    background-color: white;
+    padding: 40px;
+    border-radius: 30px;
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+
+
+.imgIcon
+{
+    display: flex;
+    justify-content: center;
 }
 
 .imgIcon img
 {
     width: 115px;
     height: 115px;
-    display:flex;
-    margin: auto;
 }
 
-#formGroup
+
+h1
 {
-    width: 400px;
-    margin: auto;
-    margin-top: 30px;
-    background-color: white;
-    padding: 40px;
-    border-radius: 20px;
-    border: 2px solid black;
+    font-family: "Archivo Black", sans-serif;
+    text-align: center;
+    margin-bottom: 30px;
 }
+
 
 label
 {
     font-size: 17px;
 }
 
+
 input
 {
-    display: block;
-    margin: 10px 0;
-    width: 95%;
+    width: 100%;
     height: 20px;
+    padding: 20px;
+    margin-top: 10px;
+    margin-bottom: 20px;
     border-radius: 10px;
-    padding: 10px;
-    margin-bottom: 5%;
     font-size: 17px;
-    
+    box-sizing: border-box;
 }
+
 
 button
 {
@@ -62,24 +85,10 @@ button
     border-radius: 20px;
     background-color: lightgray;
     font-size: 16px;
-    text-align: center;
-    display:flex;
-    margin: auto;
     display: block;
-}
-
-/* .hidden 
-{
-    display: none;
-}*/
-
-h1
-{
-    font-family: "Archivo Black", sans-serif;
-    text-align: center;
     margin: auto;
-    margin-bottom: 8%;
 }
+
 
 h2
 {
@@ -87,4 +96,54 @@ h2
     margin-top: 20px;
     font-size: 14px;
     color: gray;
+}
+
+
+@media screen and (max-width: 768px)
+{
+    #formGroup
+    {
+        padding: 30px;
+    }
+
+    h1
+    {
+        font-size: 28px;
+    }
+}
+
+
+@media screen and (max-width: 480px)
+{
+    #formGroup
+    {
+        width: 95%;
+        padding: 20px;
+    }
+
+    .imgLogo img
+    {
+        width: 90px;
+    }
+
+    .imgIcon img
+    {
+        width: 90px;
+        height: 90px;
+    }
+
+    h1
+    {
+        font-size: 22px;
+    }
+
+    input
+    {
+        font-size: 15px;
+    }
+
+    button
+    {
+        width: 100%;
+    }
 }
