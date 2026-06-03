@@ -17,7 +17,7 @@
                 <ul>
                     <li><a href="">Gig Progress</a></li>
                     <li><a href="">Find Gigs</a></li>
-                    <li><a href="">Gig Worker Profile</a></li>
+                    <li><a href="">Profile</a></li>
                 </ul>
             </div>
         </div>

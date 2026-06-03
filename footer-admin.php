@@ -18,7 +18,7 @@
                     <li><a href="">Gig Progress</a></li>
                     <li><a href="">List Users</a></li>
                     <li><a href="">List Gigs</a></li>
-                    <li><a href="">Admin Profile</a></li>
+                    <li><a href="">Profile</a></li>
                 </ul>
             </div>
         </div>

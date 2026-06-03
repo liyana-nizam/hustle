@@ -17,7 +17,7 @@
                 <ul>
                     <li><a href="">Gig Progress</a></li>
                     <li><a href="">Post a Gig</a></li>
-                    <li><a href="">Gig Owner Profile</a></li>
+                    <li><a href="">Profile</a></li>
                 </ul>
             </div>
         </div>
