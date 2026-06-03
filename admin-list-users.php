@@ -8,20 +8,7 @@
     <link rel="stylesheet" href="list-style.css" type="text/css">
 </head>
 <body>
-    <header>
-        <div class="imgLogo"><img src="images/logo.svg" alt="Hustle Logo"></div>
-        <nav>
-            <ul class="hLeft-container">
-                <li><a href="">Gig Progress</a></li>
-                <li><a href="admin-list-users.html">List Users</a></li>
-                <li><a href="admin-list-gigs.html">List Gigs</a></li>
-            </ul>
-            <ul class="hRight-container">
-                <li><a href=""><img src="images/notification.png" alt="Notification"></a></li>
-                <li><a href="">Admin</a></li>
-            </ul>
-        </nav>
-    </header>
+    <?php include('header-admin.php') ?>
     <div class="content-container">
         <!-- Search Bar & Filter -->        
         <div class="search-filter-container">
@@ -103,24 +90,6 @@
             </ul>
         </div>
     </div>
-    <footer>
-        <div class="footer-container">
-            <div class="left-footer">
-                <img src="images/logo.svg" alt="Hustle Logo">
-            </div>
-            <div class="right-footer">
-                <p class="first-line">Navigation</p>
-                <ul>
-                    <li><a href="">Gig Progress</a></li>
-                    <li><a href="">List Users</a></li>
-                    <li><a href="">List Gigs</a></li>
-                    <li><a href="">Admin Profile</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="copyright-container">
-            <p>&copy; 2026 Hustle. All rights reserved.</p>
-        </div>
-    </footer>
+    <?php include('footer-admin.php') ?>
 </body>
 </html>
