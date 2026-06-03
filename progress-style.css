@@ -1,0 +1,125 @@
+
+/* ==========================================================================
+   GIG PROGRESS BOARD STYLES (UPDATED)
+   ========================================================================== */
+
+/* Outer Layout Container */
+.admin-container {
+    max-width: 1200px;
+    margin: 40px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+/* --- New Action Buttons Layout --- */
+.title-action-section {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 30px;
+    flex-wrap: wrap; /* Keeps it clean on mobile layout */
+}
+
+.main-title {
+    color: #6b1d3d; /* Elegant deep maroon/wine tone */
+    font-size: 32px;
+    font-weight: 700;
+    margin-bottom: 0; /* Keeps it perfectly level with the buttons next to it */
+    font-family: sans-serif;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.action-btn {
+    background-color: #8c254e; /* Lighter wine tone for action pills */
+    color: #ffffff;
+    border: none;
+    padding: 8px 20px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: #6b1d3d;
+}
+
+/* --- Column Grid Structure --- */
+.column-title {
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    font-family: sans-serif;
+}
+
+.gig-board {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    align-items: start;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+/* --- Card Design Styles --- */
+.gig-card {
+    border: 2px solid #6b1d3d;
+    border-radius: 12px;
+    padding: 20px;
+    background-color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.avatar {
+    width: 55px;
+    height: 55px;
+    background-color: #e3c4d0; /* Dusty pink profile accent */
+    border-radius: 50%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    flex-shrink: 0;
+}
+
+.job-details h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 2px 0;
+    font-family: sans-serif;
+}
+
+.salary {
+    font-size: 16px;
+    color: #555555;
+    margin: 0;
+}
+
+.card-tags {
+    display: flex;
+    gap: 10px;
+}
+
+.tag {
+    border: 1.5px solid #000000;
+    padding: 5px 16px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 500;
+    background-color: transparent;
+}
