@@ -23,23 +23,23 @@ input[type="search"], select{
   width: 100%;
   padding: 12px 16px;
   border-radius: 25px;
-  background-color: rgb(150, 0, 66, 0.7);
-  border: none;
+  border: 3px solid rgb(150, 0, 66);;
   outline: none;
   font-size: 16px;
-  color: #FCE4EC; 
+  color: rgb(150, 0, 66);
+  background-color: rgba(254, 234, 243, 0.666);;
 }
 
 button[type="submit"]{
   padding: 12px 16px;
   border-radius: 25px;
   border: none;
-  background-color: rgb(243, 163, 188);
-  color: rgb(150, 0, 66);
+  background-color: rgb(150, 0, 66);
+  color: white;
 }
 
 ::placeholder{
-  color: #FCE4EC; 
+  color: rgb(150, 0, 66);
 }
 
 .list-container{
@@ -76,12 +76,12 @@ button[type="submit"]{
 }
 
 .gig-filter, .user-filter{
-  background-color: rgb(243, 163, 188);
   padding: 12px 16px;
   border-radius: 25px;
   color: rgb(150, 0, 66);
   width: 160px;
   text-align: center;
+  border: 3px solid rgb(150, 0, 66);
 }
 
 .gig-name, .user-name{
@@ -96,5 +96,15 @@ button[type="submit"]{
 @media (max-width: 480px) {
   form{
     flex-direction: column;
+  }
+
+  .item-container a {
+    flex-direction: column;
+    padding: 16px;
+  }
+
+  .gig-right, .user-right {
+    justify-content: center;
+    margin-top: 20px;
   }
 }
