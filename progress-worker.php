@@ -5,13 +5,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Progress Worker - Hustle</title>
-    <link rel="stylesheet" href="base.css" type="text/css">
     <link rel="stylesheet" href="progress-style.css" type="text/css">
 
 </head>
 
 <body>
-    <?php include('header-admin.php') ?>
+    <?php include('header-worker.php') ?>
 
     <div class="admin-container">
         <h1 class="main-title">Gig Progress</h1>
@@ -100,7 +99,7 @@
 
         </div>
     </div>
-    <?php include('footer-admin.php'); ?>
+    <?php include('footer-worker.php'); ?>  
 </body>
 
 </html>

@@ -1,8 +1,7 @@
 /* ==========================================================================
-   GIG PROGRESS BOARD STYLES (TIGHT SPACING - OPTIMIZED)
+   GIG PROGRESS BOARD STYLES
    ========================================================================== */
 
-/* Outer Layout Wrapper */
 .admin-container {
     max-width: 1200px;
     margin: 40px auto;
@@ -10,7 +9,6 @@
     box-sizing: border-box;
 }
 
-/* --- Action Buttons Layout --- */
 .title-action-section {
     display: flex;
     align-items: center;
@@ -23,7 +21,7 @@
     color: #6b1d3d; 
     font-size: 32px;
     font-weight: 700;
-    margin-bottom: 0px; /* Fixed: Cleared gap to sit flush next to top actions */
+    margin-bottom: 0px; 
     font-family: sans-serif;
 }
 
@@ -48,11 +46,10 @@
     background-color: #6b1d3d;
 }
 
-/* --- Column Grid Structure --- */
 .column-title {
     font-size: 24px;
     font-weight: 700;
-    margin-bottom: 0px; /* Pulls the card directly beneath the heading text */
+    margin-bottom: 0px; 
     font-family: sans-serif;
 }
 
@@ -67,10 +64,9 @@
 .column {
     display: flex;
     flex-direction: column;
-    gap: 20px; /* Standard vertical spacing between stackable cards */
+    gap: 20px; 
 }
 
-/* --- Card Design Styles --- */
 .gig-card {
     border: 2px solid #6b1d3d;
     border-radius: 12px;
@@ -124,29 +120,26 @@
     background-color: transparent;
 }
 
-/* --- Card Action Layout Formats --- */
 .card-actions {
     display: flex;
     margin-top: 5px;
 }
 
-/* Handles Pending column: places Edit and Delete cleanly side-by-side */
 .card-actions.split-actions {
     justify-content: flex-start;
     gap: 12px;
 }
 
-/* Handles Completed column: shoves the single Rate button to the right */
 .card-actions.single-action-right {
     justify-content: flex-end;
 }
 
-/* --- Unified Card Buttons Styling Rule --- */
+/* --- Warnakan Butang Di Sini --- */
 .edit-btn, 
 .delete-btn, 
 .rate-btn {
-    background-color: #6b1d3d; /* Uniform maroon aesthetic theme */
-    color: #ffffff;
+    background-color: #6b1d3d !important; /* !important memaksa warna maroon keluar jika ditindih base.css */
+    color: #ffffff !important;
     border: none;
     padding: 7px 22px;
     border-radius: 20px;
@@ -155,17 +148,14 @@
     cursor: pointer;
     transition: background-color 0.2s ease;
     display: inline-block;
-    text-decoration: none;
 }
 
-/* Smooth transition hover state */
 .edit-btn:hover, 
 .delete-btn:hover, 
 .rate-btn:hover {
-    background-color: #4a1229;
+    background-color: #4a1229 !important;
 }
 
-/* Slightly deeper block setting for wide tracking text button */
 .rate-btn {
     padding: 8px 24px;
 }

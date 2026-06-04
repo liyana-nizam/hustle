@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Progress Admin - Hustle</title>
-    <link rel="stylesheet" href="base.css" type="text/css">
     <link rel="stylesheet" href="progress-style.css" type="text/css">
 </head>
 <body>
