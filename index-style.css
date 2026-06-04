@@ -6,7 +6,7 @@
     margin: 30px 0 40px;
 }
 
-.highlightText{
+.highlightText, .role-content p, p.right a{
     color: rgb(150, 0, 66);
 }
 
@@ -14,7 +14,7 @@
     margin: 20px 0 0;
 }
 
-.first-button a{
+.first-button a, .second-button a{
     text-decoration: none;
     color: white;
     border: none;
@@ -23,7 +23,7 @@
     background-color: rgb(150, 0, 66, 0.7);
 }
 
-.first-button a:hover{
+.first-button a:hover, .second-button a:hover{
     background-color: rgb(150, 0, 66);
 }
 
@@ -88,8 +88,34 @@
     font-size: 17px;
 }
 
-.role-content p{
-    color: rgb(150, 0, 66);
+.right{
+    margin: 15px 0 40px;
+    text-align: right;
+}
+
+.category-container{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 25px;
+}
+
+.category-list{
+    border: 2px solid rgb(150, 0, 66);
+    padding: 35px 20px;
+    text-align: center;
+    width: 15%;
+    border-radius: 25px;
+}
+
+.category-list p{
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.second-button{
+    text-align: center;
+    margin: 40px 0 30px;
 }
 
 @media (max-width: 480px) {
@@ -102,5 +128,14 @@
 
   .second-container {
     margin: 0 6%;
+  }
+
+  .category-container{
+    gap: 18px;
+  }
+
+  .category-list{
+    padding: 20px;
+    width: 30%;
   }
 }
