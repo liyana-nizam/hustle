@@ -1,0 +1,146 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#f0f0f0;
+}
+
+.details-container{
+    width:90%;
+    max-width:1200px;
+    margin:20px auto;
+    background:white;
+    padding:20px;
+}
+
+.back-btn{
+    margin-bottom:20px;
+}
+
+.back-btn a{
+    text-decoration:none;
+    color:black;
+    font-size:25px;
+}
+
+.details-tab{
+    background:#9c004d;
+    color:white;
+    width:120px;
+    text-align:center;
+    padding:10px;
+    border-radius:10px;
+    margin-bottom:15px;
+}
+
+.gig-card{
+    border:1px solid #444;
+    border-radius:5px;
+    padding:10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.gig-left{
+    display:flex;
+    align-items:center;
+}
+
+.profile-circle{
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    background:#c98ca8;
+}
+
+.gig-info{
+    margin-left:10px;
+}
+
+.gig-info h3{
+    font-size:18px;
+}
+
+.gig-info p{
+    color:#777;
+    font-size:14px;
+}
+
+.gig-tags{
+    display:flex;
+    gap:10px;
+}
+
+.gig-tags span{
+    border:1px solid black;
+    border-radius:20px;
+    padding:5px 15px;
+    font-size:14px;
+}
+
+.view-title{
+    margin-top:15px;
+    margin-bottom:10px;
+    font-weight:normal;
+}
+
+.description-box{
+    border:1px solid black;
+    border-radius:5px;
+    min-height:250px;
+    padding:15px;
+}
+
+.apply-section{
+    text-align:center;
+    margin-top:20px;
+    margin-bottom:20px;
+}
+
+.apply-section button{
+    background:#9c004d;
+    color:white;
+    border:none;
+    border-radius:10px;
+    padding:10px 40px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.comment-section{
+    margin-top:20px;
+    border:1px solid #9c004d;
+    border-radius:5px;
+    padding:12px;
+    display:flex;
+    align-items:center;
+}
+
+.comment-section i{
+    color:#9c004d;
+    margin-right:10px;
+    font-size:18px;
+}
+
+.comment-section input{
+    width:100%;
+    border:none;
+    outline:none;
+    font-size:15px;
+}
+
+#applyBtn:disabled{
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.icon{
+    width:25px;
+    height:25px;
+    cursor:pointer;
+}

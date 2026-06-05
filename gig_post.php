@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hustle - Post a Gig</title>
+    <title>Hustle</title>
     <link rel="stylesheet" href="gigpost-style.css">
 </head>
 <body>
@@ -108,5 +108,6 @@
  
         });
     </script>
+    <?php include('footer-owner.php'); ?>
 </body>
 </html>
