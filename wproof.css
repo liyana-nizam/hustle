@@ -1,0 +1,136 @@
+h1 
+{
+    color: #a00046;
+    margin: 20px 0 10px 20px;  
+}
+
+/*untuk gig job section*/
+.item-container 
+{
+    background-color: #fff;
+    border: 2px solid #a00046;
+    border-radius: 10px;
+    padding: 15px 15px;
+    margin: 0 25px 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Untuk Gig Name & Salary */
+.gig-left 
+{
+    display: flex;
+    align-items: center;
+}
+
+.gig-img img 
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #d48ca8; 
+    margin-right: 10px;
+}
+
+.gig-salary 
+{
+    color: #a00046;
+}
+
+/* gap antara category dengan district */
+.gig-right 
+{
+    display: flex;
+    gap: 10px;
+}
+
+.gig-filter 
+{
+    background-color: transparent;
+    color: #a00046;
+    border: 3px solid #a00046;
+    border-radius: 25px;
+    padding: 8px 25px;
+    font-size: 0.95em;
+}
+
+/* untuk upload section */
+.file-upload-container 
+{
+    background-color: #fff;
+    border: 2px solid #a00046;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 0 25px 10px 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    label {
+        font-size: 0.9em;
+        color: #918f8f;
+    }
+}
+
+.choose-btn 
+{
+    background-color: #d48ca8;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 0.95em;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
+.upload-btn, .delete-btn 
+{
+    background-color: #a00046;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 0.95em;
+
+}
+
+.upload-btn 
+{
+    display: block;
+    margin: 15px auto;
+}
+
+#fileList 
+{
+    list-style: none;
+    padding: 0;
+    margin: 0 25px;
+}
+
+#fileList li 
+{
+    background-color: #fff;
+    border: 2px solid #a00046;
+    border-radius: 10px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer 
+{
+    margin-top: 40px;
+}
+
+h2 
+{
+    margin-top: 30px;
+    color: #000000;
+    margin-left: 25px;
+    margin-bottom: 10px;
+}

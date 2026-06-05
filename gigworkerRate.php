@@ -4,13 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Worker Proof Page</title>
-    <link rel="stylesheet" href="wproof.css">
+    <link rel="stylesheet" href="gigworkerRate.css">
 </head>
 
 <body>
     <?php include('header-worker.php') ?>
 
-    <h1>Completed</h1>
+    <h1>Rate Gig Owner</h1>
 
     <div class="item-container">
         <div class="gig-left">
@@ -27,19 +27,26 @@
         </div>
     </div>
 
-    <h2>Proof: Upload Files</h2>
-    <div class="file-upload-container">
-        <button class="choose-btn">Choose Files</button>
-        <label>Only .jpg and .png files. 500kb max file size</label>
+    <h2>Gig Owner Proof</h2>
+    <ul id="fileList">
+        <li> Job Title.jpg <button class="view-btn">View</button></li>
+    </ul>
+
+    <hr class="divider">
+
+    <div class="rating-container">
+        <h3>Rate your Gig Worker</h3>
+        <div class="formSection">
+            <input type="number" id="rateInput" required placeholder="1 -5">
+        </div>
     </div>
 
-
-    <button class="upload-btn">Upload</button>
-
-    <h2>Proof: Uploaded Files</h2>
-    <ul id="fileList">
-        <li> Job Title.jpg <button class="delete-btn">Delete</button></li>
-    </ul>
+    <h2>Proof: Upload Payment Receipt</h2>
+    <div class="file-upload-container">
+        <button class="choose-btn">Choose Files</button>  
+    </div>
+    
+    <button class="submit-btn">Submit</button>
 
     <footer>
         <?php include('footer-worker.php') ?>

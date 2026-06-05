@@ -42,13 +42,12 @@
                 <input type="password" id="confirmPasswordInput" required>
             </div>
 
-            <div class="dropdown">
+            <div class="formRole">
                 <label for="userType">Role</label>
-                <select id="userType" name="userType" required>
-                    <option value=" " disabled selected></option>
-                    <option value="Gig Worker">Gig Worker</option>
-                    <option value="Service Provider">Service Provider</option>
-                </select>
+                <div class="roleOptions">
+                    <label><input type="radio" name="role" id="role" value="gigworker">Gig Worker</label>
+                    <label><input type="radio" name="role" id="role" value="serviceprovider">Service Provider</label>
+                </div> 
             </div>
 
             <button type="submit">Next</button>

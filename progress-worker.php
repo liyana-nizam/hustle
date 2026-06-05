@@ -33,7 +33,7 @@
                         <span class="tag">District</span>
                     </div>
                     <div class="card-actions single-action-right">
-                         <button class="delete-btn">Delete</button>
+                        <button class="delete-btn">Delete</button>
                     </div>
                 </div>
 
@@ -50,7 +50,7 @@
                         <span class="tag">District</span>
                     </div>
                     <div class="card-actions single-action-right">
-                         <button class="delete-btn">Delete</button>
+                        <button class="delete-btn">Delete</button>
                     </div>
                 </div>
             </div>
@@ -71,7 +71,7 @@
                         <span class="tag">District</span>
                     </div>
                     <div class="card-actions single-action-right">
-                         <button class="delete-btn">Delete</button>
+                        <button class="delete-btn">Complete</button>
                     </div>
                 </div>
             </div>
@@ -92,14 +92,15 @@
                         <span class="tag">District</span>
                     </div>
                     <div class="card-actions single-action-right">
-                         <button class="delete-btn">Delete</button>
+                        <a href="ViewPayment-worker.php">
+                            <button class="delete-btn">View Payment</button></a>
                     </div>
                 </div>
             </div>
 
         </div>
     </div>
-    <?php include('footer-worker.php'); ?>  
+    <?php include('footer-worker.php'); ?>
 </body>
 
 </html>

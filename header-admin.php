@@ -19,7 +19,7 @@
             <ul class="hRight-container">
                 <li><a href="noti-admin.php"><img src="images/notification.png" alt="Notification"></a></li>
                 <li><a href="profile-admin.php" class="<?php if ($currentPage === 'profile-admin.php') echo "current"; ?>">Admin</a></li>
-                <li><a href="logout.php">Log Out</a></li>
+                <li><a href="index.html">Log Out</a></li>
             </ul>
         </nav>
     </header>

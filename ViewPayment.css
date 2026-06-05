@@ -1,0 +1,150 @@
+/* ==========================================================================
+   VIEW PAYMENT INTERFACE STYLES
+   ========================================================================== */
+
+.payment-container {
+    max-width: 1100px;
+    margin: 50px auto 100px auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    font-family: sans-serif;
+}
+
+/* Gaya Butang Kembali */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: #6b1d3d;
+    font-size: 28px;
+    font-weight: 700;
+    text-decoration: none;
+    margin-bottom: 35px;
+    transition: color 0.2s ease;
+}
+
+.back-link:hover {
+    color: #4a1229;
+}
+
+.back-icon {
+    width: 24px;
+    height: 24px;
+}
+
+/* Kad Maklumat Kerja Panjang */
+.payment-job-card {
+    border: 1.5px solid #000000;
+    border-radius: 12px;
+    padding: 15px 25px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    margin-bottom: 45px;
+}
+
+.job-card-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.job-avatar {
+    width: 50px;
+    height: 50px;
+    background-color: #e3c4d0; /* Warna pink pastel lembut */
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.job-details h3 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #000000;
+}
+
+.salary {
+    margin: 2px 0 0 0;
+    font-size: 15px;
+    color: #666666;
+}
+
+/* Kumpulan Tag Kanan */
+.job-card-tags {
+    display: flex;
+    gap: 12px;
+}
+
+.payment-tag {
+    background-color: #6b1d3d;
+    color: #ffffff;
+    padding: 6px 24px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+/* Bahagian Bukti Fail */
+.payment-proof-section {
+    width: 100%;
+}
+
+.section-title {
+    font-size: 24px;
+    font-weight: 700;
+    color: #000000;
+    margin: 0 0 15px 0;
+}
+
+/* Kotak Barisan Fail */
+.proof-file-row {
+    border: 1.5px solid #6b1d3d; /* Garisan sempadan maroon lembut */
+    border-radius: 12px;
+    padding: 20px 25px;
+    background-color: #ffffff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+}
+
+.file-name {
+    font-size: 18px;
+    color: #333333;
+}
+
+/* Butang View */
+.view-proof-btn {
+    background-color: #6b1d3d;
+    color: #ffffff;
+    text-decoration: none;
+    padding: 8px 35px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+    text-align: center;
+}
+
+.view-proof-btn:hover {
+    background-color: #4a1229;
+}
+
+/* Responsif Skrin Mudah Alih */
+@media (max-width: 768px) {
+    .payment-job-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 15px;
+        padding: 20px;
+    }
+    
+    .job-card-tags {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}

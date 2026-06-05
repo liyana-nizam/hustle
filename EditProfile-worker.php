@@ -1,15 +1,15 @@
-
 <?php
 // Mesti diletakkan di baris pertama untuk mengaktifkan memori session
 session_start(); 
 
 // Proses simpan data apabila butang "Save Changes" ditekan
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['worker_name']    = $_POST['nameInput'];
-    $_SESSION['worker_birthday']= $_POST['birthdayInput'];
-    $_SESSION['worker_gender']  = isset($_POST['gender']) ? $_POST['gender'] : '';
-    $_SESSION['worker_address'] = $_POST['addressInput'];
-    $_SESSION['worker_phone']   = $_POST['phoneInput'];
+    $_SESSION['worker_name']     = $_POST['nameInput'];
+    $_SESSION['worker_birthday'] = $_POST['birthdayInput'];
+    $_SESSION['worker_gender']   = isset($_POST['gender']) ? $_POST['gender'] : '';
+    $_SESSION['worker_address']  = $_POST['addressInput'];
+    $_SESSION['worker_phone']    = $_POST['phoneInput'];
+    $_SESSION['worker_bank']     = $_POST['bankInput']; // <-- TAMBAH INI
     
     // Auto-redirect balik ke halaman profil
     header("Location: profile-worker.php");
@@ -39,7 +39,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <h1>Personal Information</h1>
 
-        <!-- Menukar onsubmit JavaScript kepada kaedah POST PHP -->
         <form method="POST" action="">
 
             <div class="formSection">
@@ -77,6 +76,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <label>Phone number</label>
                 <input type="text" id="phoneInput" name="phoneInput" required placeholder="e.g. +0123456789" 
                        value="<?php echo isset($_SESSION['worker_phone']) ? htmlspecialchars($_SESSION['worker_phone']) : ''; ?>">
+            </div>
+
+            <div class="formSection">
+                <label>Bank Account</label>
+                <input type="text" id="bankInput" name="bankInput" required placeholder="e.g. Maybank 164123456789" 
+                       value="<?php echo isset($_SESSION['worker_bank']) ? htmlspecialchars($_SESSION['worker_bank']) : ''; ?>">
             </div>
 
             <button type="submit" class="save-changes-btn">Save Changes</button>
