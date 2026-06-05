@@ -1,4 +1,3 @@
-
 <?php 
 // Mesti diletakkan di baris pertama untuk membaca data session
 session_start(); 
@@ -9,6 +8,7 @@ $birthday = isset($_SESSION['worker_birthday']) ? $_SESSION['worker_birthday'] :
 $gender   = isset($_SESSION['worker_gender']) ? $_SESSION['worker_gender'] : "-";
 $address  = isset($_SESSION['worker_address']) ? $_SESSION['worker_address'] : "-";
 $phone    = isset($_SESSION['worker_phone']) ? $_SESSION['worker_phone'] : "-";
+$bank     = isset($_SESSION['worker_bank']) ? $_SESSION['worker_bank'] : "-"; // <-- TAMBAH INI
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -40,12 +40,12 @@ $phone    = isset($_SESSION['worker_phone']) ? $_SESSION['worker_phone'] : "-";
             <div class="profile-info-column">
 
                 <div class="profile-details-box">
-                    <!-- Semua data di bawah kini dipaparkan secara dinamik -->
                     <p><strong>Name:</strong> <?php echo htmlspecialchars($name); ?></p>
                     <p><strong>Birthday:</strong> <?php echo htmlspecialchars($birthday); ?></p>
                     <p><strong>Gender:</strong> <?php echo htmlspecialchars($gender); ?></p>
                     <p><strong>Address:</strong> <?php echo htmlspecialchars($address); ?></p>
                     <p><strong>Phone:</strong> <?php echo htmlspecialchars($phone); ?></p>
+                    <p><strong>Bank Account:</strong> <?php echo htmlspecialchars($bank); ?></p>
                     <p><strong>Role:</strong> Gig Worker</p>
                 </div>
 
