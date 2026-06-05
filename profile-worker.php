@@ -50,6 +50,13 @@ $bank     = isset($_SESSION['worker_bank']) ? $_SESSION['worker_bank'] : "-"; //
                 </div>
 
                 <div class="profile-footer-row">
+                    <div class="rating-stars-box">
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                        <span class="star">&#9733;</span>
+                    </div>
                     <a href="EditProfile-worker.php" class="profile-edit-btn">Edit</a>
                 </div>
 

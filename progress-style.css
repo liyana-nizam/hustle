@@ -1,8 +1,5 @@
-/* ==========================================================================
-   GIG PROGRESS BOARD STYLES
-   ========================================================================== */
 
-.admin-container {
+.content-container {
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
@@ -84,13 +81,13 @@
     gap: 15px;
 }
 
-.avatar {
-    width: 55px;
-    height: 55px;
-    background-color: #e3c4d0; 
-    border-radius: 50%;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    flex-shrink: 0;
+.gig-img img{
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  border: 2px solid rgb(150, 0, 66);
+  background-color: rgba(150, 0, 65, 0.141);
+  padding: 4px;
 }
 
 .job-details h3 {
@@ -134,12 +131,22 @@
     justify-content: flex-end;
 }
 
-/* --- Warnakan Butang Di Sini --- */
+.gig-card .card-actions.split-actions {
+    justify-content: space-between !important;
+    width: 100% !important;
+}
+
+.gig-card .card-actions.split-actions a {
+    display: inline-block;
+    text-decoration: none;
+}
+
+/* --- Warnakan Button dia tapi nama takleh btn je,kene letak nama depan btn --- */
 .edit-btn, 
-.delete-btn, 
+.action-btn, 
 .rate-btn {
-    background-color: #6b1d3d !important; /* !important memaksa warna maroon keluar jika ditindih base.css */
-    color: #ffffff !important;
+    background-color: #6b1d3d ;
+    color: #ffffff ;
     border: none;
     padding: 7px 22px;
     border-radius: 20px;
@@ -151,9 +158,9 @@
 }
 
 .edit-btn:hover, 
-.delete-btn:hover, 
+.action-btn:hover, 
 .rate-btn:hover {
-    background-color: #4a1229 !important;
+    background-color: #4a1229;
 }
 
 .rate-btn {

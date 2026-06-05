@@ -9,9 +9,9 @@
 </head>
 
 <body>
-    <?php include('header-owner.php'); ?> 
+    <?php include('header-owner.php'); ?>
 
-    <div class="admin-container">
+    <div class="content-container">
 
         <div class="title-action-section">
             <h1 class="main-title">Gig Progress</h1>
@@ -24,19 +24,22 @@
 
                 <div class="gig-card">
                     <div class="card-header">
-                        <div class="avatar"></div>
+                        <div class="gig-img"><img src="" alt="Gig Photo"></div>
                         <div class="job-details">
-                            <h3>Job Title</h3>
-                            <p class="salary">Salary</p>
+                            <h3>Need Help with Laundry</h3>
+                            <p class="salary">RM 20</p>
                         </div>
                     </div>
                     <div class="card-tags">
-                        <span class="tag">Category</span>
-                        <span class="tag">District</span>
+                        <span class="tag">Cleaning</span>
+                        <span class="tag">Melaka Tengah</span>
                     </div>
+
                     <div class="card-actions split-actions">
-                        <button class="edit-btn">Edit</button>
-                        <button class="delete-btn">Delete</button>
+                        <a href="job-details-owner.php">
+                            <button class="action-btn">View Details</button>
+                        </a>
+                        <button class="action-btn">Delete</button>
                     </div>
                 </div>
             </div>
@@ -46,15 +49,15 @@
 
                 <div class="gig-card">
                     <div class="card-header">
-                        <div class="avatar"></div>
+                        <div class="gig-img"><img src="" alt="Gig Photo "></div>
                         <div class="job-details">
-                            <h3>Job Title</h3>
-                            <p class="salary">Salary</p>
+                            <h3>Need Help with Laundry</h3>
+                            <p class="salary">RM 20</p>
                         </div>
                     </div>
                     <div class="card-tags">
-                        <span class="tag">Category</span>
-                        <span class="tag">District</span>
+                        <span class="tag">Cleaning </span>
+                        <span class="tag">Melaka Tengah</span>
                     </div>
                 </div>
             </div>
@@ -64,23 +67,27 @@
 
                 <div class="gig-card">
                     <div class="card-header">
-                        <div class="avatar"></div>
+                        <div class="gig-img"><img src="" alt="Gig Photo "></div>
                         <div class="job-details">
-                            <h3>Job Title</h3>
-                            <p class="salary">Salary</p>
+                            <h3>Need Help with Laundry</h3>
+                            <p class="salary">RM 20</p>
                         </div>
                     </div>
                     <div class="card-tags">
-                        <span class="tag">Category</span>
-                        <span class="tag">District</span>
+                        <span class="tag">Cleaning </span>
+                        <span class="tag">Melaka Tengah</span>
                     </div>
                     <div class="card-actions single-action-right">
-                        <button class="rate-btn">Rate Gig Worker</button>
+                        <a href="gigworkerRate.php">
+                            <button class="rate-btn">Rate Gig Worker</button>
+                        </a>
                     </div>
+                    
                 </div>
             </div>
 
-        </div> </div> <?php include('footer-owner.php'); ?> 
+        </div>
+    </div> <?php include('footer-owner.php'); ?>
 </body>
 
 </html>

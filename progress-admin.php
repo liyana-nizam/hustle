@@ -9,7 +9,7 @@
 <body>
     <?php include('header-admin.php'); ?>
     
-    <div class="admin-container">
+    <div class="content-container">
         
         <div class="title-action-section">
             <h1 class="main-title">Gig Progress</h1>
@@ -26,29 +26,29 @@
                 
                 <div class="gig-card">
                     <div class="card-header">
-                        <div class="avatar"></div>
+                        <div class="gig-img"><img src="" alt="Gig Photo"></div>
                         <div class="job-details">
-                            <h3>Job Title</h3>
-                            <p class="salary">Salary</p>
+                            <h3>Need Help with Laundry</h3>
+                            <p class="salary">RM 20</p>
                         </div>
                     </div>
                     <div class="card-tags">
-                        <span class="tag">Category</span>
-                        <span class="tag">District</span>
+                        <span class="tag">Cleaning</span>
+                        <span class="tag">Melaka Tengah</span>
                     </div>
                 </div>
 
                 <div class="gig-card">
                     <div class="card-header">
-                        <div class="avatar"></div>
+                        <div class="gig-img"><img src="" alt="Gig Photo"></div>
                         <div class="job-details">
-                            <h3>Job Title</h3>
-                            <p class="salary">Salary</p>
+                            <h3>Need a Groceries Runner</h3>
+                            <p class="salary">RM 40</p>
                         </div>
                     </div>
                     <div class="card-tags">
-                        <span class="tag">Category</span>
-                        <span class="tag">District</span>
+                        <span class="tag">Running Errands</span>
+                        <span class="tag">Alor Gajah</span>
                     </div>
                 </div>
             </div>
@@ -58,15 +58,15 @@
                 
                 <div class="gig-card">
                     <div class="card-header">
-                        <div class="avatar"></div>
+                        <div class="gig-img"><img src="" alt="Gig Photo"></div>
                         <div class="job-details">
-                            <h3>Job Title</h3>
-                            <p class="salary">Salary</p>
+                            <h3>Need Help with Laundry</h3>
+                            <p class="salary">RM 20</p>
                         </div>
                     </div>
                     <div class="card-tags">
-                        <span class="tag">Category</span>
-                        <span class="tag">District</span>
+                        <span class="tag">Cleaning</span>
+                        <span class="tag">Melaka Tengah</span>
                     </div>
                 </div>
             </div>
@@ -76,15 +76,15 @@
                 
                 <div class="gig-card">
                     <div class="card-header">
-                        <div class="avatar"></div>
+                        <div class="gig-img"><img src="" alt="Gig Photo"></div>
                         <div class="job-details">
-                            <h3>Job Title</h3>
-                            <p class="salary">Salary</p>
+                            <h3>Need Help with Laundry</h3>
+                            <p class="salary">RM 20</p>
                         </div>
                     </div>
                     <div class="card-tags">
-                        <span class="tag">Category</span>
-                        <span class="tag">District</span>
+                        <span class="tag">Cleaning</span>
+                        <span class="tag">Melaka Tengah</span>
                     </div>
                 </div>
             </div>

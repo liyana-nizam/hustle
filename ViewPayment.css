@@ -10,15 +10,15 @@
     font-family: sans-serif;
 }
 
-/* Gaya Butang Kembali */
+/* --- DIBAIKI: Gaya Butang Kembali Utama --- */
 .back-link {
     display: inline-flex;
     align-items: center;
-    gap: 10px;
-    color: #6b1d3d;
-    font-size: 28px;
-    font-weight: 700;
+    gap: 12px;              /* Jarak antara ikon gambar dan teks */
     text-decoration: none;
+    color: #6b1d3d;         /* Warna Maroon tulen Hustle */
+    font-size: 28px;        /* Saiz fon tajuk besar seperti dalam imej */
+    font-weight: 700;       /* Tulisan tebal (Bold) */
     margin-bottom: 35px;
     transition: color 0.2s ease;
 }
@@ -27,9 +27,11 @@
     color: #4a1229;
 }
 
+/* Saiz ikon anak panah kiri */
 .back-icon {
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
 }
 
 /* Kad Maklumat Kerja Panjang */

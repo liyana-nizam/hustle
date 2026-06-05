@@ -5,21 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>View Payment - Hustle</title>
-    <link rel="stylesheet" href="ViewPayment.css?v=1" type="text/css">
+    <link rel="stylesheet" href="ViewPayment.css?v=2" type="text/css">
 </head>
 
 <body>
     <?php include('header-worker.php'); ?>
 
     <div class="payment-container">
-        
+
         <a href="progress-worker.php" class="back-link">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="back-icon">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />
-            </svg>
+            <img src="images/back.png" alt="Back" class="back-icon">
             View Payment
         </a>
-        
 
         <div class="payment-job-card">
             <div class="job-card-left">
@@ -37,7 +34,7 @@
 
         <div class="payment-proof-section">
             <h2 class="section-title">Payment Proof</h2>
-            
+
             <div class="proof-file-row">
                 <span class="file-name">Job Title.jpg</span>
                 <a href="uploads/payment-proof-sample.jpg" target="_blank" class="view-proof-btn">View</a>
