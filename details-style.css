@@ -7,14 +7,18 @@
 
 body{
     background:#f0f0f0;
+    margin: 0; 
+    padding: 0;
 }
 
+
 .details-container{
-    width:90%;
-    max-width:1200px;
-    margin:20px auto;
-    background:white;
-    padding:20px;
+    width: 100%;
+    max-width: 100%;
+    min-height: 100vh;
+    margin: 0;
+    background: white;
+    padding: 40px;
 }
 
 .back-btn{
@@ -28,7 +32,7 @@ body{
 }
 
 .details-tab{
-    background:#9c004d;
+    background:rgb(150, 0, 66);
     color:white;
     width:120px;
     text-align:center;
@@ -54,8 +58,11 @@ body{
 .profile-circle{
     width:40px;
     height:40px;
+    min-width:40px;
+    min-height:40px;
     border-radius:50%;
     background:#c98ca8;
+    flex-shrink:0; 
 }
 
 .gig-info{
@@ -103,18 +110,18 @@ body{
 }
 
 .apply-section button{
-    background:#9c004d;
+    background:rgb(150, 0, 66);
     color:white;
     border:none;
-    border-radius:10px;
-    padding:10px 40px;
+    border-radius:25px;
+    padding:14px 40px;
     cursor:pointer;
     font-size:16px;
 }
 
 .comment-section{
     margin-top:20px;
-    border:1px solid #9c004d;
+    border:1px solid rgb(150, 0, 66);
     border-radius:5px;
     padding:12px;
     display:flex;
@@ -122,7 +129,7 @@ body{
 }
 
 .comment-section i{
-    color:#9c004d;
+    color:rgb(150, 0, 66);
     margin-right:10px;
     font-size:18px;
 }
@@ -143,4 +150,74 @@ body{
     width:25px;
     height:25px;
     cursor:pointer;
+}
+
+
+@media (max-width: 768px) {
+
+    .details-container{
+        width:100%;
+        padding:20px;
+    }
+
+    
+    .gig-card{
+        flex-direction: column;
+        align-items: flex-start; 
+        gap: 15px;
+    }
+
+    .gig-left {
+        display: flex;
+        align-items: center; 
+        align-self: flex-start; 
+    }
+
+    .gig-info h3{
+        font-size:16px;
+    }
+
+    .gig-info p{
+        font-size:13px;
+    }
+
+    .gig-tags{
+        flex-wrap:wrap;
+        gap:8px;
+    }
+
+    .gig-tags span{
+        font-size:12px;
+        padding:4px 12px;
+    }
+
+    .description-box{
+        min-height:180px;
+        font-size:14px;
+    }
+
+    .apply-section button{
+        width:100%;
+        padding:12px;
+        font-size:15px;
+    }
+
+    .comment-section{
+        flex-direction:row;
+        padding:10px;
+    }
+
+    .comment-section input{
+        font-size:14px;
+    }
+
+    .back-btn a{
+        font-size:20px;
+    }
+
+    .details-tab{
+        width:100px;
+        font-size:14px;
+        padding:8px;
+    }
 }
