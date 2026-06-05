@@ -8,9 +8,9 @@
 </head>
 
 <body>
-    <?php include('header-worker.php') ?>
+    <?php include('header-owner.php') ?>
 
-    <h1>Rate Gig Owner</h1>
+    <h1>Rate Gig Worker</h1>
 
     <div class="item-container">
         <div class="gig-left">
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <h2>Gig Owner Proof</h2>
+    <h2>Gig Completion Proof</h2>
     <ul id="fileList">
         <li> Job Title.jpg <button class="view-btn">View</button></li>
     </ul>
@@ -37,7 +37,14 @@
     <div class="rating-container">
         <h3>Rate your Gig Worker</h3>
         <div class="formSection">
-            <input type="number" id="rateInput" required placeholder="1 -5">
+            <input type="number" id="rateInput" required placeholder="1 - 5" min="1" max="5">
+        </div>
+    </div>
+
+    <div class="rating-container">
+        <h3>Give a Feedback Message</h3>
+        <div class="formSection">
+            <textarea name="feedbackMessage" id="feedbackMessage" rows="4" placeholder="Type your message here..."></textarea>
         </div>
     </div>
 
@@ -49,7 +56,7 @@
     <button class="submit-btn">Submit</button>
 
     <footer>
-        <?php include('footer-worker.php') ?>
+        <?php include('footer-owner.php') ?>
     </footer>
 </body>
 </html>
