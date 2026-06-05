@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hustle</title>
+    <title>Footer Admin Hustle</title>
     <link rel="stylesheet" href="base.css" type="text/css">
 </head>
 <body>
@@ -15,10 +15,10 @@
             <div class="right-footer">
                 <p class="first-line">Navigation</p>
                 <ul>
-                    <li><a href="">Gig Progress</a></li>
-                    <li><a href="">List Users</a></li>
-                    <li><a href="">List Gigs</a></li>
-                    <li><a href="">Profile</a></li>
+                    <li><a href="progress-admin.php">Gig Progress</a></li>
+                    <li><a href="admin-list-users.php">List Users</a></li>
+                    <li><a href="admin-list-gigs.php">List Gigs</a></li>
+                    <li><a href="profile-admin.php">Profile</a></li>
                 </ul>
             </div>
         </div>

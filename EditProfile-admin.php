@@ -5,14 +5,14 @@ session_start();
 
 // Proses simpan data apabila butang "Save Changes" ditekan
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $_SESSION['worker_name']    = $_POST['nameInput'];
-    $_SESSION['worker_birthday']= $_POST['birthdayInput'];
-    $_SESSION['worker_gender']  = isset($_POST['gender']) ? $_POST['gender'] : '';
-    $_SESSION['worker_address'] = $_POST['addressInput'];
-    $_SESSION['worker_phone']   = $_POST['phoneInput'];
+    $_SESSION['admin_name']    = $_POST['nameInput'];
+    $_SESSION['admin_birthday']= $_POST['birthdayInput'];
+    $_SESSION['admin_gender']  = isset($_POST['gender']) ? $_POST['gender'] : '';
+    $_SESSION['admin_address'] = $_POST['addressInput'];
+    $_SESSION['admin_phone']   = $_POST['phoneInput'];
     
     // Auto-redirect balik ke halaman profil
-    header("Location: profile-worker.php");
+    header("Location: profile-admin.php");
     exit();
 }
 ?>
@@ -22,7 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Worker Profile - Hustle</title>
+    <title>Edit Admin Profile - Hustle</title>
     <link rel="stylesheet" href="personal-style.css?v=2" type="text/css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
@@ -45,24 +45,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="formSection">
                 <label>Full name</label>
                 <input type="text" id="nameInput" name="nameInput" required placeholder="e.g. Amelia Henderson" 
-                       value="<?php echo isset($_SESSION['worker_name']) ? htmlspecialchars($_SESSION['worker_name']) : ''; ?>">
+                       value="<?php echo isset($_SESSION['admin_name']) ? htmlspecialchars($_SESSION['admin_name']) : ''; ?>">
             </div>
 
             <div class="formSection">
                 <label>Birthday</label>
                 <input type="date" id="birthdayInput" name="birthdayInput" required 
-                       value="<?php echo isset($_SESSION['worker_birthday']) ? htmlspecialchars($_SESSION['worker_birthday']) : ''; ?>">
+                       value="<?php echo isset($_SESSION['admin_birthday']) ? htmlspecialchars($_SESSION['admin_birthday']) : ''; ?>">
             </div>
 
             <div class="formGender">
                 <label>Gender</label>
                 <div class="radioGroup">
                     <input type="radio" name="gender" id="male" value="Male" 
-                           <?php echo (isset($_SESSION['worker_gender']) && $_SESSION['worker_gender'] == 'Male') ? 'checked' : ''; ?>> 
+                           <?php echo (isset($_SESSION['admin_gender']) && $_SESSION['admin_gender'] == 'Male') ? 'checked' : ''; ?>> 
                     <span class="radio-text">Male</span>
                     
                     <input type="radio" name="gender" id="female" value="Female" 
-                           <?php echo (isset($_SESSION['worker_gender']) && $_SESSION['worker_gender'] == 'Female') ? 'checked' : ''; ?>> 
+                           <?php echo (isset($_SESSION['admin_gender']) && $_SESSION['admin_gender'] == 'Female') ? 'checked' : ''; ?>> 
                     <span class="radio-text">Female</span>
                 </div>
             </div>
@@ -70,13 +70,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="formSection">
                 <label>Full address</label>
                 <input type="text" id="addressInput" name="addressInput" required 
-                       value="<?php echo isset($_SESSION['worker_address']) ? htmlspecialchars($_SESSION['worker_address']) : ''; ?>">
+                       value="<?php echo isset($_SESSION['admin_address']) ? htmlspecialchars($_SESSION['admin_address']) : ''; ?>">
             </div>
 
             <div class="formSection">
                 <label>Phone number</label>
                 <input type="text" id="phoneInput" name="phoneInput" required placeholder="e.g. +0123456789" 
-                       value="<?php echo isset($_SESSION['worker_phone']) ? htmlspecialchars($_SESSION['worker_phone']) : ''; ?>">
+                       value="<?php echo isset($_SESSION['admin_phone']) ? htmlspecialchars($_SESSION['admin_phone']) : ''; ?>">
             </div>
 
             <button type="submit" class="save-changes-btn">Save Changes</button>

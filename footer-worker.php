@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hustle</title>
+    <title>Footer Worker Hustle</title>
     <link rel="stylesheet" href="base.css" type="text/css">
 </head>
 <body>
@@ -15,9 +15,9 @@
             <div class="right-footer">
                 <p class="first-line">Navigation</p>
                 <ul>
-                    <li><a href="">Gig Progress</a></li>
-                    <li><a href="">Find Gigs</a></li>
-                    <li><a href="">Profile</a></li>
+                    <li><a href="progress-worker.php">Gig Progress</a></li>
+                    <li><a href="worker-find-gigs.php">Find Gigs</a></li>
+                    <li><a href="profile-worker.php">Profile</a></li>
                 </ul>
             </div>
         </div>

@@ -32,8 +32,8 @@
                         <span class="tag">Category</span>
                         <span class="tag">District</span>
                     </div>
-                    <div class="card-actions">
-                        <button class="delete-btn">Delete</button>
+                    <div class="card-actions single-action-right">
+                         <button class="delete-btn">Delete</button>
                     </div>
                 </div>
 
@@ -49,8 +49,8 @@
                         <span class="tag">Category</span>
                         <span class="tag">District</span>
                     </div>
-                    <div class="card-actions">
-                        <button class="delete-btn">Delete</button>
+                    <div class="card-actions single-action-right">
+                         <button class="delete-btn">Delete</button>
                     </div>
                 </div>
             </div>
@@ -70,8 +70,8 @@
                         <span class="tag">Category</span>
                         <span class="tag">District</span>
                     </div>
-                    <div class="card-actions">
-                        <button class="delete-btn">Delete</button>
+                    <div class="card-actions single-action-right">
+                         <button class="delete-btn">Delete</button>
                     </div>
                 </div>
             </div>
@@ -91,8 +91,8 @@
                         <span class="tag">Category</span>
                         <span class="tag">District</span>
                     </div>
-                    <div class="card-actions">
-                        <button class="delete-btn">Delete</button>
+                    <div class="card-actions single-action-right">
+                         <button class="delete-btn">Delete</button>
                     </div>
                 </div>
             </div>

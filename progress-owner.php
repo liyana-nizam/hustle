@@ -15,10 +15,6 @@
 
         <div class="title-action-section">
             <h1 class="main-title">Gig Progress</h1>
-            <div class="action-buttons">
-                <button class="action-btn">Download Report</button>
-                <button class="action-btn">Display Graph</button>
-            </div>
         </div>
 
         <div class="gig-board">

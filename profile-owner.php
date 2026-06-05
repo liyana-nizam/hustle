@@ -1,3 +1,15 @@
+
+<?php 
+// Mesti diletakkan di baris pertama untuk membaca data session
+session_start(); 
+
+// Semak data, jika belum diisi, letakkan nilai default / kosong
+$name     = isset($_SESSION['owner_name']) ? $_SESSION['owner_name'] : "-";
+$birthday = isset($_SESSION['owner_birthday']) ? $_SESSION['owner_birthday'] : "-";
+$gender   = isset($_SESSION['owner_gender']) ? $_SESSION['owner_gender'] : "-";
+$address  = isset($_SESSION['owner_address']) ? $_SESSION['owner_address'] : "-";
+$phone    = isset($_SESSION['owner_phone']) ? $_SESSION['owner_phone'] : "-";
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,14 +21,14 @@
 </head>
 
 <body>
-    <?php include('header-owner.php'); ?> 
+    <?php include('header-owner.php'); ?>
 
     <div class="profile-main-container">
-        
+
         <h1 class="profile-page-title">User's Profile</h1>
 
         <div class="profile-content-layout">
-            
+
             <div class="profile-avatar-column">
                 <div class="profile-icon-circle">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
@@ -26,19 +38,19 @@
             </div>
 
             <div class="profile-info-column">
-                
+
                 <div class="profile-details-box">
-                    <p><strong>Name:</strong> </p>
-                    <p><strong>Email:</strong> </p>
+                    <!-- Semua data di bawah kini dipaparkan secara dinamik -->
+                    <p><strong>Name:</strong> <?php echo htmlspecialchars($name); ?></p>
+                    <p><strong>Birthday:</strong> <?php echo htmlspecialchars($birthday); ?></p>
+                    <p><strong>Gender:</strong> <?php echo htmlspecialchars($gender); ?></p>
+                    <p><strong>Address:</strong> <?php echo htmlspecialchars($address); ?></p>
+                    <p><strong>Phone:</strong> <?php echo htmlspecialchars($phone); ?></p>
                     <p><strong>Role:</strong> Gig Worker / Owner</p>
                 </div>
 
                 <div class="profile-footer-row">
-                    
-                    
-
-                    <button class="profile-edit-btn">Edit</button>
-
+                    <a href="EditProfile-owner.php" class="profile-edit-btn">Edit</a>
                 </div>
 
             </div>
@@ -47,7 +59,7 @@
 
     </div>
 
-    <?php include('footer-owner.php'); ?> 
+    <?php include('footer-owner.php'); ?>
 </body>
 
 </html>
