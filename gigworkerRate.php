@@ -37,7 +37,14 @@
     <div class="rating-container">
         <h3>Rate your Gig Worker</h3>
         <div class="formSection">
-            <input type="number" id="rateInput" required placeholder="1 -5">
+            <input type="number" id="rateInput" required placeholder="1 - 5" min="1" max="5">
+        </div>
+    </div>
+
+    <div class="rating-container">
+        <h3>Give a Feedback Message</h3>
+        <div class="formSection">
+            <textarea name="feedbackMessage" id="feedbackMessage" rows="4" placeholder="Type your message here..."></textarea>
         </div>
     </div>
 
