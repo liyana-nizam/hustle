@@ -46,7 +46,7 @@ $phone    = isset($_SESSION['owner_phone']) ? $_SESSION['owner_phone'] : "-";
                     <p><strong>Gender:</strong> <?php echo htmlspecialchars($gender); ?></p>
                     <p><strong>Address:</strong> <?php echo htmlspecialchars($address); ?></p>
                     <p><strong>Phone:</strong> <?php echo htmlspecialchars($phone); ?></p>
-                    <p><strong>Role:</strong> Gig Worker / Owner</p>
+                    <p><strong>Role:</strong> Owner</p>
                 </div>
 
                 <div class="profile-footer-row">
