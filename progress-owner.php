@@ -24,7 +24,7 @@
 
                 <div class="gig-card">
                     <div class="card-header">
-                        <div class="gig-img"><img src="" alt="Gig Photo"></div>
+                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
                         <div class="job-details">
                             <h3>Need Help with Laundry</h3>
                             <p class="salary">RM 20</p>
@@ -49,7 +49,7 @@
 
                 <div class="gig-card">
                     <div class="card-header">
-                        <div class="gig-img"><img src="" alt="Gig Photo "></div>
+                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo "></div>
                         <div class="job-details">
                             <h3>Need Help with Laundry</h3>
                             <p class="salary">RM 20</p>
@@ -67,7 +67,7 @@
 
                 <div class="gig-card">
                     <div class="card-header">
-                        <div class="gig-img"><img src="" alt="Gig Photo "></div>
+                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo "></div>
                         <div class="job-details">
                             <h3>Need Help with Laundry</h3>
                             <p class="salary">RM 20</p>

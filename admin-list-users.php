@@ -36,11 +36,11 @@
                     <div class="user-left">
                         <div class="user-img"><img src="" alt="Icon User"></div>
                         <div class="user-info">
-                            <p class="user-name">Username</p>                           
+                            <p class="user-name">Liyana </p>                           
                         </div>
                     </div>
                     <div class="user-right">
-                        <p class="user-filter">Role</p>
+                        <p class="user-filter">Gig Owner</p>
                     </div>
                     </a>
                 </li>
@@ -51,11 +51,11 @@
                     <div class="user-left">
                         <div class="user-img"><img src="" alt="Icon User"></div>
                         <div class="user-info">
-                            <p class="user-name">Username</p>                           
+                            <p class="user-name">Miza</p>                           
                         </div>
                     </div>
                     <div class="user-right">
-                        <p class="user-filter">Role</p>
+                        <p class="user-filter">Gig Worker</p>
                     </div>
                     </a>
                 </li>
@@ -64,11 +64,11 @@
                     <div class="user-left">
                         <div class="user-img"><img src="" alt="Icon User"></div>
                         <div class="user-info">
-                            <p class="user-name">Username</p>                           
+                            <p class="user-name">Zafreen</p>                           
                         </div>
                     </div>
                     <div class="user-right">
-                        <p class="user-filter">Role</p>
+                        <p class="user-filter">Gig Worker</p>
                     </div>
                     </a>
                 </li>
@@ -77,11 +77,11 @@
                     <div class="user-left">
                         <div class="user-img"><img src="" alt="Icon User"></div>
                         <div class="user-info">
-                            <p class="user-name">Username</p>                           
+                            <p class="user-name">Syu</p>                           
                         </div>
                     </div>
                     <div class="user-right">
-                        <p class="user-filter">Role</p>
+                        <p class="user-filter">Gig Worker</p>
                     </div>
                     </a>
                 </li>
