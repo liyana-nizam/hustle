@@ -71,7 +71,7 @@
                         <span class="tag">District</span>
                     </div>
                     <div class="card-actions single-action-right">
-                        <button class="delete-btn">Complete</button>
+                        <a href="workerProof.php"><button class="delete-btn">Complete</button></a>
                     </div>
                 </div>
             </div>
