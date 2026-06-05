@@ -18,7 +18,7 @@
             <ul class="hRight-container">
                 <li><a href="noti-worker.php"><img src="images/notification.png" alt="Notification"></a></li>
                 <li><a href="profile-worker.php" class="<?php if ($currentPage === 'profile-worker.php') echo "current"; ?>">Gig Worker</a></li>
-                <li><a href="">Log Out</a></li>
+                <li><a href="index.html">Log Out</a></li>
             </ul>
         </nav>
     </header>
