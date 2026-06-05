@@ -8,9 +8,9 @@
 </head>
 
 <body>
-    <?php include('header-worker.php') ?>
+    <?php include('header-owner.php') ?>
 
-    <h1>Rate Gig Owner</h1>
+    <h1>View Gig Completion</h1>
 
     <div class="item-container">
         <div class="gig-left">
@@ -27,7 +27,7 @@
         </div>
     </div>
 
-    <h2>Gig Owner Proof</h2>
+    <h2>Gig Completion Proof</h2>
     <ul id="fileList">
         <li> Job Title.jpg <button class="view-btn">View</button></li>
     </ul>
@@ -56,7 +56,7 @@
     <button class="submit-btn">Submit</button>
 
     <footer>
-        <?php include('footer-worker.php') ?>
+        <?php include('footer-owner.php') ?>
     </footer>
 </body>
 </html>
