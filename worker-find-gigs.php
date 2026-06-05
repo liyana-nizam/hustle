@@ -48,15 +48,15 @@
                 <li class="item-container">
                     <a href="">
                     <div class="gig-left">
-                        <div class="gig-img"><img src="" alt="Gig Photo"></div>
+                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
                         <div class="gig-info">
-                            <p class="gig-name">Gig Name</p>
-                            <p class="gig-salary">Salary</p>                            
+                            <p class="gig-name">Need Help with Laundry</p>
+                            <p class="gig-salary">RM 20</p>                            
                         </div>
                     </div>
                     <div class="gig-right">
-                        <p class="gig-filter">Category</p>
-                        <p class="gig-filter">District</p>
+                        <p class="gig-filter">Cleaning</p>
+                        <p class="gig-filter">Melaka Tengah</p>
                     </div>
                     </a>
                 </li>
@@ -65,45 +65,45 @@
                 <li class="item-container">
                     <a href="">
                     <div class="gig-left">
-                        <div class="gig-img"><img src="" alt="Gig Photo"></div>
+                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
                         <div class="gig-info">
-                            <p class="gig-name">Gig Name</p>
-                            <p class="gig-salary">Salary</p>                            
+                            <p class="gig-name">Need Help with Mopping and Sweeping inside the House</p>
+                            <p class="gig-salary">RM 30</p>                            
                         </div>
                     </div>
                     <div class="gig-right">
-                        <p class="gig-filter">Category</p>
-                        <p class="gig-filter">District</p>
+                        <p class="gig-filter">Cleaning</p>
+                        <p class="gig-filter">Melaka Tengah</p>
                     </div>
                     </a>
                 </li>
                 <li class="item-container">
                     <a href="">
                     <div class="gig-left">
-                        <div class="gig-img"><img src="" alt="Gig Photo"></div>
+                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
                         <div class="gig-info">
-                            <p class="gig-name">Gig Name</p>
-                            <p class="gig-salary">Salary</p>                            
+                            <p class="gig-name">Need Help with Dry Cleaning</p>
+                            <p class="gig-salary">RM 40</p>                            
                         </div>
                     </div>
                     <div class="gig-right">
-                        <p class="gig-filter">Category</p>
-                        <p class="gig-filter">District</p>
+                        <p class="gig-filter">Cleaning</p>
+                        <p class="gig-filter">Melaka Tengah</p>
                     </div>
                     </a>
                 </li>
                 <li class="item-container">
                     <a href="">
                     <div class="gig-left">
-                        <div class="gig-img"><img src="" alt="Gig Photo"></div>
+                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
                         <div class="gig-info">
-                            <p class="gig-name">Gig Name</p>
-                            <p class="gig-salary">Salary</p>                            
+                            <p class="gig-name">Sweeping the Floor</p>
+                            <p class="gig-salary">RM 50</p>                            
                         </div>
                     </div>
                     <div class="gig-right">
-                        <p class="gig-filter">Category</p>
-                        <p class="gig-filter">District</p>
+                        <p class="gig-filter">Cleaning</p>
+                        <p class="gig-filter">Melaka Tengah</p>
                     </div>
                     </a>
                 </li>   

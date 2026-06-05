@@ -40,7 +40,7 @@ $phone    = isset($_SESSION['owner_phone']) ? $_SESSION['owner_phone'] : "-";
             <div class="profile-info-column">
 
                 <div class="profile-details-box">
-                    <!-- Semua data di bawah kini dipaparkan secara dinamik -->
+                    <!-- Semua data kat bawah shown secara dinamik -->
                     <p><strong>Name:</strong> <?php echo htmlspecialchars($name); ?></p>
                     <p><strong>Birthday:</strong> <?php echo htmlspecialchars($birthday); ?></p>
                     <p><strong>Gender:</strong> <?php echo htmlspecialchars($gender); ?></p>

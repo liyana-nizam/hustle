@@ -38,7 +38,7 @@ $bank     = isset($_SESSION['worker_bank']) ? $_SESSION['worker_bank'] : "-"; //
             </div>
 
             <div class="profile-info-column">
-
+                <!-- Semua data kat bawah shown secara dinamik -->
                 <div class="profile-details-box">
                     <p><strong>Name:</strong> <?php echo htmlspecialchars($name); ?></p>
                     <p><strong>Birthday:</strong> <?php echo htmlspecialchars($birthday); ?></p>
