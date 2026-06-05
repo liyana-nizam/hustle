@@ -6,9 +6,16 @@ body
     padding: 20px;
 }
 
+input
+{
+    width: 100%;
+    height: 20px;
+    padding: 20px;
+}
+
 header
 {
-    margin-top: 30px;
+    margin-top: 20px;
 }
 
 .imgLogo
@@ -21,6 +28,7 @@ header
 {
     width: 120px;
     height: auto;
+    margin-left: 10%;
 }
 
 .imgIcon img
@@ -29,6 +37,7 @@ header
     height: 115px;
     display:flex;
     margin: auto;
+    margin-top: 0px;
 }
 
 #formGroup
@@ -36,16 +45,18 @@ header
     width: 90%;
     max-width: 400px;
     margin: 30px auto;
-    background-color: white;
-    padding: 40px;
-    border-radius: 20px;
-    border: 2px solid black;
+    background-color: rgb(255, 255, 255);
+    padding: 30px;
+    border-radius: 30px;
+    border: 2px solid rgb(0, 0, 0);
     box-sizing: border-box;
+    
 }
 
 label
 {
     font-size: 17px;
+    margin-top: 10px;
 }
 
 input
@@ -72,6 +83,7 @@ button
     display:flex;
     margin: auto;
     display: block;
+    margin-top: 25px;
 }
 
 /* .hidden 
@@ -81,10 +93,11 @@ button
 
 h1
 {
-    font-family: "Archivo Black", sans-serif;
+    font-family: Arial;
     text-align: center;
     margin: auto;
     margin-bottom: 8%;
+    font-size: 32px;
 }
 
 h2
@@ -95,21 +108,32 @@ h2
     color: gray;
 }
 
-.dropdown
+.roleOptions
 {
-    display:block;
-    flex-direction: column;
-    margin-bottom: 7%;
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-top: 10px;
+    
 }
 
-.dropdown select
+.roleOptions label
 {
-    border-radius: 10px;
-    padding: 5px;
-    border: 1px solid black;
-    margin-left: 10px;
-    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
 }
+
+.roleOptions input[type="radio"]
+{
+    width: auto;
+    height: auto;
+    padding: 0;
+    margin: 0;
+}
+
+
 
 @media screen and (max-width: 768px)
 {
