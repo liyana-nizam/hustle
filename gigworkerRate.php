@@ -10,7 +10,7 @@
 <body>
     <?php include('header-owner.php') ?>
 
-    <h1>View Gig Completion</h1>
+    <h1>Rate Gig Worker</h1>
 
     <div class="item-container">
         <div class="gig-left">

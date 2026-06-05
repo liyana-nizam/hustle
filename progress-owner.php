@@ -75,7 +75,7 @@
                         <span class="tag">District</span>
                     </div>
                     <div class="card-actions single-action-right">
-                        <a href="gigworkerRate.php"><button class="rate-btn">View & Rate</button></a>
+                        <a href="gigworkerRate.php"><button class="rate-btn">Rate Gig Worker</button></a>
                     </div>
                 </div>
             </div>
