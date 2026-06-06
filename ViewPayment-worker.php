@@ -11,12 +11,14 @@
 <body>
     <?php include('header-worker.php'); ?>
 
-    <div class="payment-container">
-
-        <a href="progress-worker.php" class="back-link">
-            <img src="images/back.png" alt="Back" class="back-icon">
+    <div class="payment-container"><!-- Container besar untuk page tu -->
+    
+        <div class="back-btn">
+        <a href="progress-worker.php">
+            <img src="images/back.png" alt="Back" class="icon">
             View Payment
         </a>
+    </div>
 
         <div class="payment-job-card">
             <div class="job-card-left">
@@ -38,6 +40,24 @@
             <div class="proof-file-row">
                 <span class="file-name">Job Title.jpg</span>
                 <a href="uploads/payment-proof-sample.jpg" target="_blank" class="view-proof-btn">View</a>
+            </div>
+        </div>
+
+
+        <h2 class="section-title">Rating</h2>
+        <div class="rating-box">
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+            <span class="star">&#9733;</span>
+        </div>
+
+
+        <div class="feedback-section">
+            <h2 class="section-title">Feedback</h2>
+            <div class="rating-box">
+                <p class="feedback-message">Feedback message from the owner...</p>
             </div>
         </div>
 

@@ -33,14 +33,14 @@ session_start();
 
             <div class="profile-circle"></div>
             <div class="gig-info">
-                <h3><?php echo $_SESSION['job_name'] ?? 'Maid'; ?></h3>
-                <p>RM <?php echo $_SESSION['salary'] ?? '40'; ?></p>
+                <h3><?php echo $_SESSION['job_name'] ?? 'Need Help with Laundry'; ?></h3>
+                <p>RM <?php echo $_SESSION['salary'] ?? '20'; ?></p>
             </div>
 
         </div>
         <div class="gig-tags">
             <span><?php echo $_SESSION['category'] ?? 'Cleaning'; ?></span>
-            <span><?php echo $_SESSION['district'] ?? 'Jasin'; ?></span>
+            <span><?php echo $_SESSION['district'] ?? 'Melaka Tengah'; ?></span>
         </div>
 
     </div>
@@ -49,7 +49,7 @@ session_start();
     <div class="description-box">
 
         <h4>Job Description</h4>
-        <p><?php echo $_SESSION['description'] ?? 'Need a maid to help clean a house and organize household items.'; ?></p>
+        <p><?php echo $_SESSION['description'] ?? 'Need a maid to help clean a laundry'; ?></p>
 
         <br>
 

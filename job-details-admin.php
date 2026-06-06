@@ -1,9 +1,5 @@
 <?php
 session_start();
-if(isset($_SESSION['posted'])){
-    echo "<script>alert('Gig Posted Successfully!');</script>";
-    unset($_SESSION['posted']);
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -17,12 +13,12 @@ if(isset($_SESSION['posted'])){
 </head>
 <body>
 
-<?php include('header-owner.php'); ?>
+<?php include('header-worker.php'); ?>
 
 <div class="details-container">
 
     <div class="back-btn">
-        <a href="progress-owner.php">
+        <a href="progress-admin.php">
             <img src="images/back.png" alt="Back" class="icon">
         </a>
     </div>
@@ -53,7 +49,7 @@ if(isset($_SESSION['posted'])){
     <div class="description-box">
 
         <h4>Job Description</h4>
-        <p><?php echo $_SESSION['description'] ?? 'Need a maid to help clean a laundry.'; ?></p>
+        <p><?php echo $_SESSION['description'] ?? 'Need a maid to help clean a laundry'; ?></p>
 
         <br>
 
@@ -71,7 +67,7 @@ if(isset($_SESSION['posted'])){
         <p><?php echo $_SESSION['frequency'] ?? 'One-time'; ?></p>
     </div>
     <div class="apply-section">
-        <button id="editBtn" onclick="editGig()">Edit Details</button>
+        <button id="applyBtn">Apply</button>
     </div>
 
     <hr> <!--separate content-->
@@ -82,11 +78,13 @@ if(isset($_SESSION['posted'])){
     </div>
 </div>
 <script>
+document.getElementById("applyBtn").addEventListener("click", function () {
+    alert("Applied for this gig successfully!");
+    this.innerHTML = "Applied";
+    this.disabled = true;
+});
 
-function editGig() {
-    window.location.href = "edit-details.php";
-}
 </script>
-<?php include('footer-owner.php'); ?>
+<?php include('footer-worker.php'); ?>
 </body>
 </html>

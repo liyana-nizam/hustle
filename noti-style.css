@@ -49,6 +49,40 @@
     flex-direction: column;
     gap: 20px;
 }
+/* Container to align text and buttons side-by-side */
+/* Container to align text and buttons side-by-side */
+.notification-content-wrapper {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    gap: 20px !important;
+    width: 100% !important;
+}
+
+/* Container for the two buttons */
+.action-buttons {
+    display: flex !important;
+    gap: 15px !important;
+    flex-shrink: 0 !important;
+}
+
+/* The style fixing the color and dimensions */
+.btn-approve, .btn-disapprove {
+    width: 100px !important;
+    height: 120px !important;
+    border-radius: 15px !important;
+    border: none !important;
+    background-color: #9d0042 !important; /* This is the deep red color */
+    color: #ffffff !important;            /* White text */
+    font-weight: bold !important;
+    font-size: 14px !important;
+    cursor: pointer !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 10px !important;
+    text-align: center !important;
+}
 
 /* Menyusun kedudukan badge ke tengah kad */
 .badge-row {

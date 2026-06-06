@@ -26,11 +26,16 @@
                     <div class="badge-row">
                         <span class="status-badge">Notification</span>
                     </div>
-                    <p class="notification-text">
-                        This is a sample notification for workers. Workers can view their notifications here, including updates on job applications, messages from employers, and system announcements .
-                    </p>    
 
-    
+                    <!-- New wrapper to separate text from buttons -->
+                    <div class="notification-content-wrapper">
+                        <p class="notification-text">
+                            Congratulations, your submission for Need Help with Laundry job application has been approved, you can communicate with your service provider through comment section in the job advertisement
+                        </p>
+
+                    </div>
+                </div>
+
 
             </div>
 

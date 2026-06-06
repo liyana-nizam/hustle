@@ -24,14 +24,25 @@
 
                 <div class="notification-card">
                     <div class="badge-row">
-                        <span class="status-badge">Your application has been approved</span>
+                        <span class="status-badge">Notification</span>
                     </div>
-                    <p class="notification-text">
-                        Congratulations, your submission for Maid job application has been approved, you can communicate with your service provider through comment section in the job advertisement
-                    </p>
+
+                    <!-- New wrapper to separate text from buttons -->
+                    <div class="notification-content-wrapper">
+                        <p class="notification-text">
+                            Need Help with Laundry job application has been submitted by a worker, you can view the application details and approve or disapprove the application.
+                        </p>
+
+                        <!-- New Action Buttons Container -->
+                        <div class="action-buttons">
+                            <button class="btn-approve">Approve</button>
+                            <button class="btn-disapprove">Disapprove</button>
+                        </div>
+                    </div>
                 </div>
 
-    
+
+
 
             </div>
 

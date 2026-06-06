@@ -1,14 +1,27 @@
-/* ==========================================================================
-   VIEW PAYMENT INTERFACE STYLES
-   ========================================================================== */
 
 .payment-container {
-    max-width: 1100px;
-    margin: 50px auto 100px auto;
-    padding: 0 20px;
-    box-sizing: border-box;
+    max-width: 1100px;/* besarkan drpd 900px supaya layout luas */
+    margin: 30px auto 100px auto;/* Tambah jarak atas daan bawah untuk ruang header footer */
+    padding: 20px;/* Padding sisi kiri kanan untuk space pada skrin kecil mcm phone */
     font-family: sans-serif;
 }
+
+.back-btn{
+    margin-bottom:20px;
+}
+
+.back-btn a{
+    text-decoration:none;
+    color:black;
+    font-size:25px;
+}
+
+.icon{
+    width:25px;
+    height:25px;
+    cursor:pointer;
+}
+
 
 /* --- DIBAIKI: Gaya Butang Kembali Utama --- */
 .back-link {
@@ -89,16 +102,12 @@
     font-weight: 500;
 }
 
-/* Bahagian Bukti Fail */
-.payment-proof-section {
-    width: 100%;
-}
 
 .section-title {
     font-size: 24px;
     font-weight: 700;
     color: #000000;
-    margin: 0 0 15px 0;
+    margin: 20px 0 15px 0;
 }
 
 /* Kotak Barisan Fail */
@@ -134,6 +143,22 @@
 
 .view-proof-btn:hover {
     background-color: #4a1229;
+}
+
+.rating-box {
+    border: 1.5px solid #000000 ;
+    border-radius: 12px ;
+    padding: 8px 30px ; /* Lebarkan sikit kotak bintang */
+    background-color: #ffffff ;
+    display: flex;
+    gap: 6px;
+}
+
+/* Saiz Bintang */
+.star {
+    color: #f1c40f; 
+    font-size: 24px; /* Dibesarkan sikit */
+    line-height: 1;
 }
 
 /* Responsif Skrin Mudah Alih */

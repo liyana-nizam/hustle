@@ -27,7 +27,7 @@
                         <span class="status-badge">Notification</span>
                     </div>
                     <p class="notification-text">
-                        This is a sample notification for admin. Admin can manage all notifications here, including those related to job applications, user reports, and system updates.
+                        This is a sample notification for admin. Admin can see system messages.
                     </p>    
 
     
