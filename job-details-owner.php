@@ -1,5 +1,9 @@
 <?php
 session_start();
+if(isset($_SESSION['posted'])){
+    echo "<script>alert('Gig Posted Successfully!');</script>";
+    unset($_SESSION['posted']);
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -13,12 +17,12 @@ session_start();
 </head>
 <body>
 
-<?php include('header-worker.php'); ?>
+<?php include('header-owner.php'); ?>
 
 <div class="details-container">
 
     <div class="back-btn">
-        <a href="progress-worker.php">
+        <a href="progress-owner.php">
             <img src="images/back.png" alt="Back" class="icon">
         </a>
     </div>
@@ -67,7 +71,7 @@ session_start();
         <p><?php echo $_SESSION['frequency'] ?? 'One-time'; ?></p>
     </div>
     <div class="apply-section">
-        <button id="applyBtn">Apply</button>
+        <button id="editBtn" onclick="editGig()">Edit Details</button>
     </div>
 
     <hr> <!--separate content-->
@@ -78,13 +82,11 @@ session_start();
     </div>
 </div>
 <script>
-document.getElementById("applyBtn").addEventListener("click", function () {
-    alert("Applied for this gig successfully!");
-    this.innerHTML = "Applied";
-    this.disabled = true;
-});
 
+function editGig() {
+    window.location.href = "edit-details.php";
+}
 </script>
-<?php include('footer-worker.php'); ?>
+<?php include('footer-owner.php'); ?>
 </body>
 </html>
