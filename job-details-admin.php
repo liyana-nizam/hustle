@@ -13,7 +13,7 @@ session_start();
 </head>
 <body>
 
-<?php include('header-worker.php'); ?>
+<?php include('header-admin.php'); ?>
 
 <div class="details-container">
 
@@ -66,9 +66,7 @@ session_start();
         <h4>Frequency</h4>
         <p><?php echo $_SESSION['frequency'] ?? 'One-time'; ?></p>
     </div>
-    <div class="apply-section">
-        <button id="applyBtn">Apply</button>
-    </div>
+
 
     <hr> <!--separate content-->
 
@@ -77,14 +75,7 @@ session_start();
         <input type="text" placeholder="  Write a Comment.....">
     </div>
 </div>
-<script>
-document.getElementById("applyBtn").addEventListener("click", function () {
-    alert("Applied for this gig successfully!");
-    this.innerHTML = "Applied";
-    this.disabled = true;
-});
 
-</script>
-<?php include('footer-worker.php'); ?>
+<?php include('footer-admin.php'); ?>
 </body>
 </html>
