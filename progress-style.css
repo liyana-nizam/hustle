@@ -1,6 +1,4 @@
-/* ==========================================================================
-   1. LAYOUT & CONTAINER UTAMA
-   ========================================================================== */
+
 .content-container {
     max-width: 1200px;
     margin: 40px auto;
@@ -17,7 +15,7 @@
 }
 
 .main-title {
-    color: #6b1d3d; 
+    color: rgb(150, 0, 66); 
     font-size: 32px;
     font-weight: 700;
     margin-bottom: 0px; 
@@ -46,12 +44,9 @@
     gap: 20px; 
 }
 
-/* ==========================================================================
-   2. GIG CARD STYLING & OVERLAY LAYER
-   ========================================================================== */
 .gig-card {
     position: relative; /* WAJIB: Untuk mengawal saiz overlay di bawah */
-    border: 2px solid #6b1d3d;
+    border: 2px solid rgb(150, 0, 66);
     border-radius: 12px;
     padding: 20px;
     background-color: #ffffff;
@@ -61,14 +56,11 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-
-/* Efek angkat lembut apabila tetikus lalu di atas kad */
 .gig-card:hover {
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(107, 29, 61, 0.15);
 }
 
-/* Lapisan link lutsinar yang memenuhi seluruh kad */
 .card-clickable-overlay {
     position: absolute;
     top: 0;
@@ -78,9 +70,6 @@
     z-index: 1; /* Duduk di atas teks biasa, di bawah butang */
 }
 
-/* ==========================================================================
-   3. ELEMEN DI DALAM KAD (HEADER, GAMBAR, TAGS)
-   ========================================================================== */
 .card-header {
     display: flex;
     align-items: center;
@@ -123,9 +112,7 @@
     background-color: transparent;
 }
 
-/* ==========================================================================
-   4. SUSUNAN & GAYA BUTANG TINDAKAN (ACTIONS)
-   ========================================================================== */
+
 .card-actions {
     display: flex;
     margin-top: 5px;
@@ -151,7 +138,7 @@
     display: inline-block;
     text-decoration: none;
     position: relative;
-    z-index: 2; /* Pastikan tag <a> butang menembusi overlay */
+    z-index: 2; 
 }
 
 .action-buttons {
@@ -159,11 +146,10 @@
     gap: 12px;
 }
 
-/* Tetapan Warna & Rupa Bentuk Semua Butang */
 .edit-btn, 
 .action-btn, 
 .rate-btn {
-    background-color: #6b1d3d;
+    background-color: rgb(150, 0, 66);
     color: #ffffff;
     border: none;
     padding: 7px 22px;

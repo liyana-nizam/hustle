@@ -29,7 +29,7 @@
     align-items: center;
     gap: 12px;              /* Jarak antara ikon gambar dan teks */
     text-decoration: none;
-    color: #6b1d3d;         /* Warna Maroon tulen Hustle */
+    color: rgb(150, 0, 66);         /* Warna Maroon tulen Hustle */
     font-size: 28px;        /* Saiz fon tajuk besar seperti dalam imej */
     font-weight: 700;       /* Tulisan tebal (Bold) */
     margin-bottom: 35px;
@@ -94,7 +94,7 @@
 }
 
 .payment-tag {
-    background-color: #6b1d3d;
+    background-color: rgb(150, 0, 66);
     color: #ffffff;
     padding: 6px 24px;
     border-radius: 20px;
@@ -129,7 +129,7 @@
 
 /* Butang View */
 .view-proof-btn {
-    background-color: #6b1d3d;
+    background-color: rgb(150, 0, 66);
     color: #ffffff;
     text-decoration: none;
     padding: 8px 35px;
