@@ -25,7 +25,7 @@
 /* Garisan pembahagi atas dan bawah */
 .title-divider, .list-divider {
     border: none;
-    border-top: 2px solid #000000 !important; 
+    border-top: 2px solid rgb(150, 0, 66) !important; 
     margin: 20px 0;
     width: 100%;
 }
@@ -39,7 +39,7 @@
 
 /* KOTAK KAD UTAMA - Ditambah !important untuk mengatasi sekatan base.css */
 .notification-card {
-    border: 2px solid #000000 !important; 
+    border: 2px solid rgb(150, 0, 66) !important; 
     border-radius: 12px !important;
     padding: 25px 30px !important;
     background-color: #ffffff !important;

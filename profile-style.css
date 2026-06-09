@@ -54,7 +54,7 @@
 
 /* Kotak Maklumat Besar - Diperluaskan & Font Dibesarkan */
 .profile-details-box {
-    border: 1.5px solid #000000 ;
+    border: 1.5px solid rgb(150, 0, 66) ;
     border-radius: 12px ;
     padding: 35px 40px ; /* Tambah padding dalam kotak supaya nampak luas */
     background-color: #ffffff ;
@@ -83,7 +83,7 @@
 
 /* Kotak Sempadan Bintang Rating */
 .rating-stars-box {
-    border: 1.5px solid #000000 ;
+    border: 1.5px solid rgb(150, 0, 66) ;
     border-radius: 12px ;
     padding: 8px 30px ; /* Lebarkan sikit kotak bintang */
     background-color: #ffffff ;
