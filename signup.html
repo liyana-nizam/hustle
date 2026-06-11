@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup Form</title>
-    <link rel="stylesheet" href="signup-style.css"> 
+    <link rel="stylesheet" href="signup-style.css">
 
     <style>@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');</style>
 
@@ -34,23 +34,54 @@
 
             <div class="formSection">
                 <label>Password</label>
-                <input type="password" id="passwordInput" required>
+                <input type="password" id="passwordInput" required oninput="clearPasswordError()">
             </div>
 
             <div class="formSection">
                 <label>Confirm Password</label>
-                <input type="password" id="confirmPasswordInput" required>
+                <input type="password" id="confirmPasswordInput" required oninput="clearPasswordError()">
+                <p id="passwordError" class="error"></p>
             </div>
 
             <div class="formRole">
                 <label for="userType">Role</label>
                 <div class="roleOptions">
-                    <label><input type="radio" name="role" id="role" value="gigworker">Gig Worker</label>
-                    <label><input type="radio" name="role" id="role" value="serviceprovider">Service Provider</label>
-                </div> 
+                    <input type="radio" name="role" id="role" value="gigworker" onchange="clearRoleError()">Gig Worker
+                    <input type="radio" name="role" id="role" value="serviceprovider" onchange="clearRoleError()">Service Provider
+                </div>
+                <p id="roleError" class="error"></p>
             </div>
 
-            <button type="submit">Next</button>
+            <div class="formSection">
+                <label>Full name</label>
+                <input type="text" id="nameInput" required placeholder="e.g. Amelia Henderson">
+            </div>
+
+            <div class="formSection">
+                <label>Birthday</label>
+                <input type="date" id="birthdayInput" required>
+            </div>
+
+            <div class="formRole">
+              <label>Gender</label>
+              <div class="roleOptions">
+                <input type="radio" name="gender" id="male" value="male" onchange="clearGenderError()">Male
+                <input type="radio" name="gender" id="female" value="female" onchange="clearGenderError()">Female
+              </div>
+              <p id="genderError" class="error"></p>
+            </div>
+
+            <div class="formSection">
+                <label>Full address</label>
+                <input type="text" id="addressInput" required>
+            </div>
+
+            <div class="formSection">
+                <label>Phone number</label>
+                <input type="tel" id="phoneInput" required placeholder="e.g. +0123456789">
+            </div>
+
+            <button type="submit">Sign In</button>
             <h2>Already have an account? <a href="login.html">Log In</a></h2>
 
         </form>
@@ -62,26 +93,68 @@
         <p id="Username"></p>
         <p id="password"></p>
         <p id="confirmPassword"></p>
-        <p id="role"></p>   
+        <p id="role"></p>
+        <p id="fullName"></p>
+        <p id="birthday"></p>
+        <p id="gender"></p>
+        <p id="fullAddress"></p>
+        <p id="phone"></p>   
 
     </div>
     
     <script>
+
+        function clearRoleError() {
+            document.getElementById("roleError").innerHTML = "";
+        }
+
+        function clearGenderError() {
+            document.getElementById("genderError").innerHTML = "";
+        }
+
+        function clearPasswordError() {
+            document.getElementById("passwordError").innerHTML = "";
+        }
 
         function showData() 
         {
             let username = document.getElementById("usernameInput").value;
             let password = document.getElementById("passwordInput").value;
             let confirmPassword = document.getElementById("confirmPasswordInput").value;
-            let role = document.getElementById("userType").value;
+            let role = document.querySelector('input[name="role"]:checked');
+            let fullName = document.getElementById("nameInput").value;
+            let birthday = document.getElementById("birthdayInput").value;
+            let gender = document.querySelector('input[name="gender"]:checked');
+            let fullAddress = document.getElementById("addressInput").value;
+            let phone = document.getElementById("phoneInput").value;
 
             /*document.getElementById("Username").innerHTML = "Username: " + username;
             document.getElementById("password").innerHTML = "Password: " + password;
             document.getElementById("confirmPassword").innerHTML = "Confirm Password: " + confirmPassword;
-            document.getElementById("role").innerHTML = "Role: " + role;*/
+            document.getElementById("role").innerHTML = "Role: " + role;
+            document.getElementById("fullName").innerHTML = "Full Name: " + fullName;
+            document.getElementById("birthday").innerHTML = "Birthday: " + birthday;
+            document.getElementById("gender").innerHTML = "Gender: " + gender;
+            document.getElementById("fullAddress").innerHTML = "Full Address: " + fullAddress;
+            document.getElementById("phone").innerHTML = "Phone Number: " + phone;*/
+
+            // JavaScript Validation
+            if (role === null) {
+                document.getElementById("roleError").innerHTML = "Please select one role.";
+                return;
+            }
+
+            if (gender === null) {
+                document.getElementById("genderError").innerHTML = "Please select your gender.";
+                return; 
+            }
+
+            if (password != confirmPassword) {
+                document.getElementById("passwordError").innerHTML = "Passwords do not match";
+                return; 
+            }
 
             document.getElementById("main").classList.remove("hidden");
-            window.location.href = "personal.html";
         }
 
     </script>
