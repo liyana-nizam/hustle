@@ -46,10 +46,9 @@
             <div class="formRole">
                 <label for="userType">Role</label>
                 <div class="roleOptions">
-                    <input type="radio" name="role" id="role" value="gigworker" onchange="clearRoleError()">Gig Worker
-                    <input type="radio" name="role" id="role" value="serviceprovider" onchange="clearRoleError()">Service Provider
+                    <input type="radio" name="role" id="role" value="gigworker" required>Gig Worker
+                    <input type="radio" name="role" id="role" value="serviceprovider" required>Service Provider
                 </div>
-                <p id="roleError" class="error"></p>
             </div>
 
             <div class="formSection">
@@ -65,10 +64,9 @@
             <div class="formRole">
               <label>Gender</label>
               <div class="roleOptions">
-                <input type="radio" name="gender" id="male" value="male" onchange="clearGenderError()">Male
-                <input type="radio" name="gender" id="female" value="female" onchange="clearGenderError()">Female
+                <input type="radio" name="gender" id="male" value="male" required>Male
+                <input type="radio" name="gender" id="female" value="female" required>Female
               </div>
-              <p id="genderError" class="error"></p>
             </div>
 
             <div class="formSection">
@@ -104,20 +102,14 @@
     
     <script>
 
-        function clearRoleError() {
-            document.getElementById("roleError").innerHTML = "";
-        }
-
-        function clearGenderError() {
-            document.getElementById("genderError").innerHTML = "";
-        }
-
         function clearPasswordError() {
             document.getElementById("passwordError").innerHTML = "";
         }
 
         function showData() 
         {
+            clearPasswordError();
+
             let username = document.getElementById("usernameInput").value;
             let password = document.getElementById("passwordInput").value;
             let confirmPassword = document.getElementById("confirmPasswordInput").value;
@@ -139,16 +131,6 @@
             document.getElementById("phone").innerHTML = "Phone Number: " + phone;*/
 
             // JavaScript Validation
-            if (role === null) {
-                document.getElementById("roleError").innerHTML = "Please select one role.";
-                return;
-            }
-
-            if (gender === null) {
-                document.getElementById("genderError").innerHTML = "Please select your gender.";
-                return; 
-            }
-
             if (password != confirmPassword) {
                 document.getElementById("passwordError").innerHTML = "Passwords do not match";
                 return; 
