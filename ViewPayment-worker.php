@@ -18,49 +18,49 @@
             <img src="images/back.png" alt="Back" class="icon">
             View Payment
         </a>
-    </div>
+        </div>
 
-        <div class="payment-job-card">
-            <div class="job-card-left">
-                <div class="job-avatar"></div>
-                <div class="job-details">
-                    <h3>Job Title</h3>
-                    <p class="salary">Salary</p>
+        <div class="item-container">
+                <div class="gig-left">
+                    <div class="gig-img"><img src="images/cleaning.png"></div>
+                    <div class="gig-info">
+                        <p class="gig-name">Need Help with Laundry</p>
+                        <p class="gig-salary">RM 20</p>
+                    </div>
+                </div>
+
+                <div class="gig-right">
+                    <button class="gig-filter">Cleaning</button>
+                    <button class="gig-filter">Melaka Tengah</button>
+                </div>
+        </div>
+
+
+        <h2>Payment Proof</h2>
+            <ul id="fileList">
+                <li> Job Title.jpg <button class="view-btn">View</button></li>
+            </ul>
+
+
+        <hr class="divider">
+
+            <div class="rating-container">
+                <h3>Your Rating</h3>
+                <div class="formSection">
+                    <input type="number" id="rateInput" required placeholder="1 - 5" min="1" max="5">
                 </div>
             </div>
-            <div class="job-card-tags">
-                <span class="payment-tag">Category</span>
-                <span class="payment-tag">District</span>
+
+            <div class="rating-container">
+                <h3>Give a Feedback Message</h3>
+                <div class="formSection">
+                    <textarea name="feedbackMessage" id="feedbackMessage" rows="4" placeholder="Type your message here..."></textarea>
+                </div>
             </div>
-        </div>
-
-        <div class="payment-proof-section">
-            <h2 class="section-title">Payment Proof</h2>
-
-            <div class="proof-file-row">
-                <span class="file-name">Job Title.jpg</span>
-                <a href="uploads/payment-proof-sample.jpg" target="_blank" class="view-proof-btn">View</a>
-            </div>
-        </div>
 
 
-        <h2 class="section-title">Rating</h2>
-        <div class="rating-box">
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-            <span class="star">&#9733;</span>
-        </div>
 
-
-        <div class="feedback-section">
-            <h2 class="section-title">Feedback</h2>
-            <div class="rating-box">
-                <p class="feedback-message">Feedback message from the owner...</p>
-            </div>
-        </div>
-
+        
     </div>
 
     <?php include('footer-worker.php'); ?>
