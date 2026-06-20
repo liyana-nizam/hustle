@@ -20,16 +20,17 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
 
         if (password_verify($input_password, $user['password'])) {
             $_SESSION['role'] = $user['role'];
+            $currentTab = 'progress.php';
             include("progress.php");
         } else {
             echo "Login Fail: Wrong Password";
             session_unset();
-            echo "<meta http-equiv='refresh' content='3;URL=login.php'>";
+            echo "<meta http-equiv='refresh' content='2;URL=login.php'>";
         }
     } else {
         echo "Login Fail: Username Not Existed";
         session_unset();
-        echo "<meta http-equiv='refresh' content='3;URL=login.php'>";
+        echo "<meta http-equiv='refresh' content='2;URL=login.php'>";
     }
 }
 ?>
