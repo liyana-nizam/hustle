@@ -25,7 +25,7 @@
 
         <h1>Sign up Hustle</h1>
 
-        <form onsubmit="event.preventDefault(); showData();">
+        <form action="signupUser.php" method="POST">
 
             <div class="formSection">
                 <label>Create username</label>
@@ -76,67 +76,26 @@
 
             <div class="formSection">
                 <label>Phone number</label>
-                <input type="tel" id="phoneInput" required placeholder="e.g. +0123456789">
+                <input type="tel" id="phoneInput" required placeholder="e.g. 0123456789">
             </div>
 
             <button type="submit">Sign In</button>
-            <h2>Already have an account? <a href="login.html">Log In</a></h2>
 
         </form>
 
-    </div>
-
-    <div id="main" class="hidden">
-
-        <p id="Username"></p>
-        <p id="password"></p>`
-        <p id="confirmPassword"></p>
-        <p id="role"></p>
-        <p id="fullName"></p>
-        <p id="birthday"></p>
-        <p id="gender"></p>
-        <p id="fullAddress"></p>
-        <p id="phone"></p>   
+        <h2>Already have an account? <a href="login.php">Log In</a></h2>
 
     </div>
     
     <script>
 
         function clearPasswordError() {
-            document.getElementById("passwordError").innerHTML = "";
-        }
-
-        function showData() 
-        {
-            clearPasswordError();
-
-            let username = document.getElementById("usernameInput").value;
-            let password = document.getElementById("passwordInput").value;
-            let confirmPassword = document.getElementById("confirmPasswordInput").value;
-            let role = document.querySelector('input[name="role"]:checked');
-            let fullName = document.getElementById("nameInput").value;
-            let birthday = document.getElementById("birthdayInput").value;
-            let gender = document.querySelector('input[name="gender"]:checked');
-            let fullAddress = document.getElementById("addressInput").value;
-            let phone = document.getElementById("phoneInput").value;
-
-            /*document.getElementById("Username").innerHTML = "Username: " + username;
-            document.getElementById("password").innerHTML = "Password: " + password;
-            document.getElementById("confirmPassword").innerHTML = "Confirm Password: " + confirmPassword;
-            document.getElementById("role").innerHTML = "Role: " + role;
-            document.getElementById("fullName").innerHTML = "Full Name: " + fullName;
-            document.getElementById("birthday").innerHTML = "Birthday: " + birthday;
-            document.getElementById("gender").innerHTML = "Gender: " + gender;
-            document.getElementById("fullAddress").innerHTML = "Full Address: " + fullAddress;
-            document.getElementById("phone").innerHTML = "Phone Number: " + phone;*/
 
             // JavaScript Validation
             if (password != confirmPassword) {
                 document.getElementById("passwordError").innerHTML = "Passwords do not match";
                 return; 
             }
-
-            document.getElementById("main").classList.remove("hidden");
         }
 
     </script>

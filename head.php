@@ -1,6 +1,10 @@
 <?php
 $role = $_SESSION['role'];
-$currentPage = basename($_SERVER['PHP_SELF']);
+if (isset($currentTab)) {
+    $currentPage = $currentTab;
+} else {
+    $currentPage = basename($_SERVER['PHP_SELF']);
+}
 ?>
 
 <!DOCTYPE html>

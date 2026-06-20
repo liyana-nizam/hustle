@@ -53,28 +53,5 @@ if (isset($_SESSION['username']))
         <h2>Don't have an account? <a href="signup.html">Sign Up</a></h2>
 
     </div>
-
-    <div id="main" class="hidden">
-
-        <p id="username"></p>
-        <p id="password"></p>
-
-    </div>
-    
-    <script>
-
-        function showData() 
-        {
-            let username = document.getElementById("nameInput").value;
-            let password = document.getElementById("passwordInput").value;
-      
-            // document.getElementById("username").innerHTML = "Username: " + username;
-            // document.getElementById("password").innerHTML = "Password: " + password;
-
-            document.getElementById("main").classList.remove("hidden");
-        }
-
-    </script>
-    
 </body>
 </html>
