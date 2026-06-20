@@ -19,6 +19,7 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
         $user = $result->fetch_assoc();
 
         if (password_verify($input_password, $user['password'])) {
+            $_SESSION['role'] = $user['role'];
             include("progress.php");
         } else {
             echo "Login Fail: Wrong Password";
@@ -31,6 +32,4 @@ if (isset($_SESSION['username'], $_SESSION['password'])) {
         echo "<meta http-equiv='refresh' content='3;URL=login.php'>";
     }
 }
-
-$conn->close();
 ?>
