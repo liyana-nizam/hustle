@@ -1,7 +1,7 @@
 <?php 
 //Initialise the session
 session_start();
-if (isset($_SESSION['usr']))
+if (isset($_SESSION['username']))
     {
         //Destroy the whole session
         $_SESSION = array();

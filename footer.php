@@ -19,16 +19,16 @@ $role = $_SESSION['role'];
                 <p class="first-line">Navigation</p>
                 <ul>
                 <?php if ($role == 'admin'){ ?>
-                    <li><a href="progress-admin.php">Gig Progress</a></li>
+                    <li><a href="progress.php">Gig Progress</a></li>
                     <li><a href="admin-list-users.php">List Users</a></li>
                     <li><a href="admin-list-gigs.php">List Gigs</a></li>
                     <li><a href="profile-admin.php">Profile</a></li>
                 <?php } elseif($role == 'gig worker'){ ?>
-                    <li><a href="progress-worker.php">Gig Progress</a></li>
+                    <li><a href="progress.php">Gig Progress</a></li>
                     <li><a href="worker-find-gigs.php">Find Gigs</a></li>
                     <li><a href="profile-worker.php">Profile</a></li>
                 <?php } elseif($role == 'gig owner') {?>
-                    <li><a href="progress-owner.php">Gig Progress</a></li>
+                    <li><a href="progress.php">Gig Progress</a></li>
                     <li><a href="gig_post.php">Post a Gig</a></li>
                     <li><a href="profile-owner.php">Profile</a></li>
                 <?php } ?>
