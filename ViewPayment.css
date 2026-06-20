@@ -1,4 +1,126 @@
 
+
+/*untuk gig job section*/
+.item-container 
+{
+    background-color: #fff;
+    border: 2px solid #a00046;
+    border-radius: 10px;
+    padding: 15px 15px;
+    margin: 20px 25px 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* Untuk Gig Name & Salary */
+.gig-left 
+{
+    display: flex;
+    align-items: center;
+}
+
+.gig-img img 
+{
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #d48ca8; 
+    margin-right: 10px;
+}
+
+.file-upload-container 
+{
+    background-color: #fff;
+    border: 2px solid #a00046;
+    border-radius: 10px;
+    padding: 10px 15px;
+    margin: 0 25px 10px 25px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    label {
+        font-size: 0.9em;
+        color: #918f8f;
+    }
+}
+
+.choose-btn, .view-btn
+{
+    background-color: #a00046;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 0.95em;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+.submit-btn
+{
+    background-color: #a00046;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 12px 25px;
+    cursor: pointer;
+    font-size: 0.95em;
+
+}
+
+.submit-btn 
+{
+    display: block;
+    margin: 15px auto;
+    margin-top: 50px;
+}
+
+#fileList 
+{
+    list-style: none;
+    padding: 0;
+    margin: 0 25px;
+}
+
+#fileList li 
+{
+    background-color: #fff;
+    border: 2px solid #a00046;
+    border-radius: 10px;
+    padding: 8px 15px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+footer 
+{
+    margin-top: 40px;
+}
+
+h2 
+{
+    margin-top: 30px;
+    color: #000000;
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
+
+.choose-btn 
+{
+    background-color: #d48ca8;
+    color: white;
+    border: none;
+    border-radius: 25px;
+    padding: 8px 20px;
+    font-size: 0.95em;
+    display: inline-block;
+    margin-right: 10px;
+}
+
+
 .payment-container {
     max-width: 1100px;/* besarkan drpd 900px supaya layout luas */
     margin: 30px auto 100px auto;/* Tambah jarak atas daan bawah untuk ruang header footer */
@@ -22,7 +144,21 @@
     cursor:pointer;
 }
 
+.gig-right 
+{
+    display: flex;
+    gap: 10px;
+}
 
+.gig-filter 
+{
+    background-color: transparent;
+    color: #a00046;
+    border: 3px solid #a00046;
+    border-radius: 25px;
+    padding: 8px 25px;
+    font-size: 0.95em;
+}
 /* --- DIBAIKI: Gaya Butang Kembali Utama --- */
 .back-link {
     display: inline-flex;
@@ -87,6 +223,7 @@
     color: #666666;
 }
 
+<<<<<<< HEAD
 /* Kumpulan Tag Kanan */
 .job-card-tags {
     display: flex;
@@ -102,6 +239,8 @@
     font-weight: 500;
 }
 
+=======
+>>>>>>> 070b80f37b430a3d4d681fb5e0550cdef2a09140
 
 .section-title {
     font-size: 24px;
@@ -145,21 +284,60 @@
     background-color: #4a1229;
 }
 
-.rating-box {
-    border: 1.5px solid rgb(150, 0, 66) ;
-    border-radius: 12px ;
-    padding: 8px 30px ; /* Lebarkan sikit kotak bintang */
-    background-color: #ffffff ;
-    display: flex;
-    gap: 6px;
+.rating-container 
+{
+    text-align: center;
+    margin-top: 30px;
 }
 
-/* Saiz Bintang */
-.star {
-    color: #f1c40f; 
-    font-size: 24px; /* Dibesarkan sikit */
-    line-height: 1;
+.rating-container h3 
+{
+    font-size: 1.25rem;
+    font-weight: bold;
+    color: #000;
+    margin-bottom: 15px;
 }
+.formSection 
+{
+    width: 90%;
+    max-width: 400px;
+    margin: 0 auto 20px auto; 
+    background-color: #ffffff;
+    padding: 10px 20px;       
+    border-radius: 15px;     
+    border: 2px solid #000000; 
+    box-sizing: border-box;
+    display: flex;            
+    justify-content: center;
+    align-items: center;
+}
+
+#rateInput
+{
+    width: 100%;
+    border: none;            /*ni untuk buang border asal untuk input*/
+    text-align: center;       
+    font-size: 1.1em;
+    background: transparent;
+    outline: none;      /*ni untuk buang outline kotak input bila kita type ha*/
+}
+
+#feedbackMessage{
+    border: none;
+    outline: none;
+    resize: none;
+    width: 100%;
+}
+.divider
+{
+    border: none;
+    border-top: 2px solid black;
+    width: 100%;
+    margin: 40px auto;
+    opacity: 0.3;
+}
+
+
 
 /* Responsif Skrin Mudah Alih */
 @media (max-width: 768px) {

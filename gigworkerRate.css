@@ -32,6 +32,8 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    flex-wrap: wrap;
+    box-sizing: border-box;
 }
 
 /* Untuk Gig Name & Salary */
@@ -60,13 +62,15 @@
 {
     display: flex;
     gap: 10px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .gig-filter 
 {
     background-color: transparent;
     color: #a00046;
-    border: 3px solid #a00046;
+    border: 2px solid #a00046;
     border-radius: 25px;
     padding: 8px 25px;
     font-size: 0.95em;
@@ -217,4 +221,35 @@ h2
     outline: none;
     resize: none;
     width: 100%;
+}
+
+@media (max-width: 480px) {
+  form {
+    flex-direction: column;
+  }
+
+  .item-container {
+    margin: 20px auto;   /* center */
+    width: 90%;          /* rapat sikit supaya muat */
+  }
+
+  .file-upload-container {
+    margin: 10px auto;
+    width: 90%;
+  }
+
+  #fileList li {
+    margin: 10px auto;
+    width: 90%;
+  }
+
+  .formSection {
+    margin: 20px auto;
+    width: 90%;
+  }
+
+  .gig-right, .user-right {
+    justify-content: center;
+    margin-top: 20px;
+  }
 }
