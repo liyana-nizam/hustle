@@ -1,5 +1,4 @@
 <?php
-include('connect.php');
 $role = $_SESSION['role'];
 $currentPage = basename($_SERVER['PHP_SELF']);
 ?>

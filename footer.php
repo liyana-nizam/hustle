@@ -1,5 +1,4 @@
 <?php
-include('connect.php'); 
 $role = $_SESSION['role']; 
 ?>
 <!DOCTYPE html>
