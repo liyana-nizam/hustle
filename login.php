@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (isset($_SESSION['username']))
+  {
+    $_SESSION = array();
+    session_destroy();
+  }
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,22 +34,23 @@
 
         <h1>Log in Hustle</h1>
 
-        <form onsubmit="event.preventDefault(); showData();">
+        <form action="loginUser.php" method="POST">
 
             <div class="formSection">
                 <label>Username</label>
-                <input type="text" id="nameInput" required placeholder="Username">
+                <input type="text" id="nameInput" name="username" required placeholder="Username">
             </div>
 
             <div class="formSection">
                 <label>Password</label>
-                <input type="password" id="passwordInput" required placeholder="Password">
+                <input type="password" id="passwordInput" name="password" required placeholder="Password">
             </div>
 
             <button type="submit">Log In</button>
-            <h2>Don't have an account? <a href="signup.html">Sign Up</a></h2>
 
         </form>
+
+        <h2>Don't have an account? <a href="signup.html">Sign Up</a></h2>
 
     </div>
 
