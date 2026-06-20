@@ -58,12 +58,11 @@
 }
 
 /* gap antara category dengan district */
+
 .gig-right 
 {
     display: flex;
     gap: 10px;
-    flex-wrap: wrap;
-    width: 100%;
 }
 
 .gig-filter 
