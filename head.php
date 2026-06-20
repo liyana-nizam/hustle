@@ -22,7 +22,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <li><a href="admin-list-gigs.php" class="<?php if ($currentPage == 'admin-list-gigs.php') echo "current"; ?>">List Gigs</a></li>
             </ul>
             <ul class="hRight-container">
-                <li><a href="noti-admin.php"><img src="images/notification.png" alt="Notification"></a></li>
+                <li><a href="noti.php"><img src="images/notification.png" alt="Notification"></a></li>
                 <li><a href="profile-admin.php" class="<?php if ($currentPage == 'profile-admin.php') echo "current"; ?>">Admin</a></li>
                 <li><a href="logout.php">Log Out</a></li>
             </ul>
@@ -32,7 +32,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <li><a href="worker-find-gigs.php" class="<?php if ($currentPage == 'worker-find-gigs.php') echo "current"; ?>">Find Gigs</a></li>
             </ul>
             <ul class="hRight-container">
-                <li><a href="noti-worker.php"><img src="images/notification.png" alt="Notification"></a></li>
+                <li><a href="noti.php"><img src="images/notification.png" alt="Notification"></a></li>
                 <li><a href="profile-worker.php" class="<?php if ($currentPage == 'profile-worker.php') echo "current"; ?>">Gig Worker</a></li>
                 <li><a href="logout.php">Log Out</a></li>
             </ul>
@@ -42,7 +42,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
                 <li><a href="gig_post.php" class="<?php if ($currentPage == 'gig_post.php') echo "current"; ?>">Post a Gig</a></li>
             </ul>
             <ul class="hRight-container">
-                <li><a href="noti-owner.php"><img src="images/notification.png" alt="Notification"></a></li>
+                <li><a href="noti.php"><img src="images/notification.png" alt="Notification"></a></li>
                 <li><a href="profile-owner.php" class="<?php if ($currentPage == 'profile-owner.php') echo "current"; ?>">Gig Owner</a></li>
                 <li><a href="logout.php">Log Out</a></li>
             </ul>
