@@ -20,7 +20,7 @@ $result_user = $conn->query($sql_user);
 if ($result_user && $result_user->num_rows > 0) {
     $user_data = $result_user->fetch_assoc();
 
-    // Setkan maklumat daripada pangkalan data ke dalam pembolehubah
+    // Setkan maklumat daripada pangkalan data ke dalam pembolehubah 
     $role     = strtolower(trim($user_data['role']));
     $name     = $user_data['name'];
     $birthday = date('d M Y', strtotime($user_data['birthday']));
