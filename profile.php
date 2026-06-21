@@ -23,7 +23,7 @@ if ($result_user && $result_user->num_rows > 0) {
     // Setkan maklumat daripada pangkalan data ke dalam pembolehubah
     $role     = strtolower(trim($user_data['role']));
     $name     = $user_data['name'];
-    $birthday = $user_data['birthday'];
+    $birthday = date('d M Y', strtotime($user_data['birthday']));
     $gender   = $user_data['gender'];
     $address  = $user_data['address'];
     $phone    = $user_data['phone_number'];
