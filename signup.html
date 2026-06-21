@@ -29,12 +29,12 @@
 
             <div class="formSection">
                 <label>Create username</label>
-                <input type="text" id="usernameInput" required placeholder="e.g. amelia123">
+                <input type="text" id="usernameInput" name="usernameInput" required placeholder="e.g. amelia123">
             </div>
 
             <div class="formSection">
                 <label>Password</label>
-                <input type="password" id="passwordInput" required oninput="clearPasswordError()">
+                <input type="password" id="passwordInput" name="passwordInput" required oninput="clearPasswordError()">
             </div>
 
             <div class="formSection">
@@ -46,19 +46,19 @@
             <div class="formRole">
                 <label for="userType">Role</label>
                 <div class="roleOptions">
-                    <input type="radio" name="role" id="role" value="gigworker" required>Gig Worker
-                    <input type="radio" name="role" id="role" value="serviceprovider" required>Service Provider
+                    <input type="radio" name="role" id="role" value="gig worker" required>Gig Worker
+                    <input type="radio" name="role" id="role" value="gig owner" required>Gig Owner
                 </div>
             </div>
 
             <div class="formSection">
                 <label>Full name</label>
-                <input type="text" id="nameInput" required placeholder="e.g. Amelia Henderson">
+                <input type="text" id="nameInput" name="nameInput" required placeholder="e.g. Amelia Henderson">
             </div>
 
             <div class="formSection">
                 <label>Birthday</label>
-                <input type="date" id="birthdayInput" required>
+                <input type="date" id="birthdayInput" name="birthdayInput" required>
             </div>
 
             <div class="formRole">
@@ -71,12 +71,12 @@
 
             <div class="formSection">
                 <label>Full address</label>
-                <input type="text" id="addressInput" required>
+                <input type="text" id="addressInput" name="addressInput" required>
             </div>
 
             <div class="formSection">
                 <label>Phone number</label>
-                <input type="tel" id="phoneInput" required placeholder="e.g. 0123456789">
+                <input type="tel" id="phoneInput" name="phoneInput" required placeholder="e.g. 0123456789">
             </div>
 
             <button type="submit">Sign In</button>

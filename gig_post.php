@@ -1,21 +1,7 @@
 <?php
 session_start();
+include('connect.php');
 
-if(isset($_POST['submit'])){
-
-    $_SESSION['job_name'] = $_POST['job_name'];
-    $_SESSION['category'] = $_POST['CATEGORY_ID'];
-    $_SESSION['description'] = $_POST['job_description'];
-    $_SESSION['district'] = $_POST['district'];
-    $_SESSION['location'] = $_POST['location'];
-    $_SESSION['gig_date'] = $_POST['gig_date'];
-    $_SESSION['frequency'] = $_POST['frequency'];
-    $_SESSION['salary'] = $_POST['salary'];
-    $_SESSION['posted'] = true; 
-
-    header("Location: job-details.php");
-    exit();
-}
 ?>
 
 <!DOCTYPE html>
@@ -33,7 +19,7 @@ if(isset($_POST['submit'])){
 <main class="form-container">
     <h2>Post a Gig</h2>
 
-    <form id="gigForm" method="POST">
+    <form id="gigForm" method="POST" action="post-gig.php">
 
         <input type="hidden" id="GIG_ID" name="GIG_ID" value="101">
         <input type="hidden" id="status" name="status" value="Pending">
@@ -50,8 +36,8 @@ if(isset($_POST['submit'])){
                 <select id="CATEGORY_ID" name="CATEGORY_ID" class="custom-select" required>
                     <option value="" disabled selected>Category</option>
                     <option value="Cleaning">Cleaning</option>
-                    <option value="RunningErrands">Running Errands</option>
-                    <option value="HomeFixing">Home Fixing</option>
+                    <option value="Running Errands">Running Errands</option>
+                    <option value="Home Fixing">Home Fixing</option>
                     <option value="Gardening">Gardening</option>
                     <option value="Tutoring">Tutoring</option>
                     <option value="Caregiving">Caregiving</option>
@@ -78,7 +64,7 @@ if(isset($_POST['submit'])){
 
             <div class="form-group">
                 <label for="location">Location</label>
-                <input type="text" id="location" name="location" maxlength="100" placeholder="Lot 15, Jalan Hang Tuah, 75300 Melaka Tengah, Melaka" required>
+                <input type="text" id="location" name="location" maxlength="100" placeholder="Lot 15, Jalan Hang Tuah" required>
             </div>
         </div>
 
@@ -108,7 +94,7 @@ if(isset($_POST['submit'])){
     </div>
     </form>
 </main>
-
+$conn->close();
 <?php include('footer.php'); ?>
 
 </body>
