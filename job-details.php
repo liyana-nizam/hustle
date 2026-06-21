@@ -19,7 +19,27 @@ if(isset($_SESSION['posted'])){
 </head>
 <body>
 
-<?php include('head.php'); ?>
+<?php 
+include('head.php'); 
+include('connect.php');
+?>
+
+<?php
+    // Get the dynamic gig ID from the URL string
+    $gig_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
+
+    
+    $sql = "SELECT g.GIG_ID, g.gig_name, g.description, c.category_name, gd.location, gd.salary, gd.status, gd.gig_date, gd.frequency 
+            FROM gig g
+            LEFT JOIN gig_detail gd ON g.GIG_ID = gd.GIG_ID
+            LEFT JOIN category c ON gd.CATEGORY_ID = c.category_id
+            WHERE g.GIG_ID = $gig_id";
+            
+    $result = $conn->query($sql);
+    
+    // Fetch the row data to display below
+    $row = $result->fetch_assoc();
+?>
 
 <div class="details-container">
 
@@ -40,15 +60,21 @@ if(isset($_SESSION['posted'])){
             <div class="profile-circle"></div>
 
             <div class="gig-info">
-                <h3><?php echo $_SESSION['job_name'] ?? ''; ?></h3>
-                <p>RM <?php echo $_SESSION['salary'] ?? ''; ?></p>
+                <h3><?php echo htmlspecialchars($row['gig_name'] ?? ''); ?></h3>
+                <p>RM <?php echo htmlspecialchars($row['salary'] ?? ''); ?></p>
             </div>
 
         </div>
 
         <div class="gig-tags">
-            <span><?php echo $_SESSION['category'] ?? ''; ?></span>
-            <span><?php echo $_SESSION['district'] ?? ''; ?></span>
+            <span><?php echo htmlspecialchars($row['category_name'] ?? ''); ?></span>
+            <span>
+                <?php 
+                // Extracts "Melaka Tengah" dynamically if location is "Lot 15, Jalan Hang Tuah, Melaka Tengah"
+                $loc_parts = explode(',', $row['location'] ?? '');
+                echo htmlspecialchars(isset($loc_parts[2]) ? trim($loc_parts[2]) : (end($loc_parts) ?: '')); 
+                ?>
+            </span>
         </div>
 
     </div>
@@ -58,33 +84,31 @@ if(isset($_SESSION['posted'])){
     <div class="description-box">
 
         <h4>Job Description</h4>
-        <p><?php echo $_SESSION['description'] ?? ''; ?></p>
+        <p><?php echo nl2br(htmlspecialchars($row['description'] ?? '')); ?></p>
 
         <br>
 
         <h4>Location</h4>
-        <p><?php echo $_SESSION['location'] ?? ''; ?></p>
+        <p><?php echo htmlspecialchars($row['location'] ?? ''); ?></p>
 
         <br>
 
         <h4>Gig Date & Time</h4>
-        <p><?php echo $_SESSION['gig_date'] ?? ''; ?></p>
+        <p><?php echo htmlspecialchars($row['gig_date'] ?? ''); ?></p>
 
         <br>
 
         <h4>Frequency</h4>
-        <p><?php echo $_SESSION['frequency'] ?? ''; ?></p>
+        <p><?php echo htmlspecialchars($row['frequency'] ?? ''); ?></p>
 
     </div>
 
-    <!-- OWNER BUTTON -->
     <?php if($role == 'gig owner'): ?>
     <div class="apply-section">
-        <button id="editBtn" onclick="editGig()">Edit Details</button>
+        <button id="editBtn" onclick="editGig(<?php echo $gig_id; ?>)">Edit Details</button>
     </div>
     <?php endif; ?>
 
-    <!-- WORKER BUTTON -->
     <?php if($role == 'gig worker'): ?>
     <div class="apply-section">
         <button id="applyBtn">Apply</button>
@@ -102,8 +126,8 @@ if(isset($_SESSION['posted'])){
 
 <script>
 
-function editGig(){
-    window.location.href = "edit-details.php";
+function editGig(id){
+    window.location.href = "edit-details.php?id=" + id;
 }
 
 const applyBtn = document.getElementById("applyBtn");
@@ -118,7 +142,10 @@ if(applyBtn){
 
 </script>
 
-<?php include('footer.php'); ?>
+<?php 
+$conn->close();
+include('footer.php'); 
+?>
 
 </body>
 </html>

@@ -31,7 +31,7 @@ $sql3 = "INSERT INTO gig_detail (gig_id, category_id, location, salary, status, 
         VALUES ('$gig_id', '$category_id', '$location','$salary', 'Pending', '$gig_date', '$frequency')";
 if ($conn->query($sql3) === TRUE) {
     echo "New record created successfully";
-    echo "<meta http-equiv='refresh' content='2;URL=job-details.php'>";
+    echo "<meta http-equiv='refresh' content='2;URL=job-details.php?id=" . $gig_id . "'>";
 } else {
     echo "Error: " . $conn->error;
 }
