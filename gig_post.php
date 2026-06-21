@@ -13,7 +13,7 @@ if(isset($_POST['submit'])){
     $_SESSION['salary'] = $_POST['salary'];
     $_SESSION['posted'] = true; 
 
-    header("Location: job-details-owner.php");
+    header("Location: job-details.php");
     exit();
 }
 ?>
@@ -28,7 +28,7 @@ if(isset($_POST['submit'])){
 </head>
 <body>
 
-<?php include('header-owner.php'); ?>
+<?php include('head.php'); ?>
 
 <main class="form-container">
     <h2>Post a Gig</h2>
@@ -109,7 +109,7 @@ if(isset($_POST['submit'])){
     </form>
 </main>
 
-<?php include('footer-owner.php'); ?>
+<?php include('footer.php'); ?>
 
 </body>
 </html>
