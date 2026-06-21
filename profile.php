@@ -1,53 +1,61 @@
-<?php 
-// Mesti diletakkan di baris pertama untuk membaca data session
+<?php
+// 1. Pastikan session bermula dengan selamat
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
-    }
-    include('head.php');
-    include('connect.php');
-
-// 1. Semak peranan (role) pengguna daripada session. 
-// Jika tiada, kita set secara lalai kepada 'worker' atau anda boleh lencongkan (redirect) ke page login.
-$role = isset($_SESSION['role']) ? strtolower($_SESSION['role']) : 'worker';
-
-// 2. Ambil data secara dinamik berdasarkan peranan masing-masing
-if ($role === 'admin') {
-    $name     = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : "-";
-    $birthday = isset($_SESSION['admin_birthday']) ? $_SESSION['admin_birthday'] : "-";
-    $gender   = isset($_SESSION['admin_gender']) ? $_SESSION['admin_gender'] : "-";
-    $address  = isset($_SESSION['admin_address']) ? $_SESSION['admin_address'] : "-";
-    $phone    = isset($_SESSION['admin_phone']) ? $_SESSION['admin_phone'] : "-";
-    
-    $role_display = "Admin";
-    $header_file  = 'header-admin.php';
-    $footer_file  = 'footer-admin.php';
-    $edit_link    = 'EditProfile-admin.php';
-
-} elseif ($role === 'owner') {
-    $name     = isset($_SESSION['owner_name']) ? $_SESSION['owner_name'] : "-";
-    $birthday = isset($_SESSION['owner_birthday']) ? $_SESSION['owner_birthday'] : "-";
-    $gender   = isset($_SESSION['owner_gender']) ? $_SESSION['owner_gender'] : "-";
-    $address  = isset($_SESSION['owner_address']) ? $_SESSION['owner_address'] : "-";
-    $phone    = isset($_SESSION['owner_phone']) ? $_SESSION['owner_phone'] : "-";
-    
-    $role_display = "Owner";
-    $header_file  = 'header-owner.php';
-    $footer_file  = 'footer-owner.php';
-    $edit_link    = 'EditProfile-owner.php';
-
-} else { // Jika peranan adalah 'worker'
-    $name     = isset($_SESSION['worker_name']) ? $_SESSION['worker_name'] : "-";
-    $birthday = isset($_SESSION['worker_birthday']) ? $_SESSION['worker_birthday'] : "-";
-    $gender   = isset($_SESSION['worker_gender']) ? $_SESSION['worker_gender'] : "-";
-    $address  = isset($_SESSION['worker_address']) ? $_SESSION['worker_address'] : "-";
-    $phone    = isset($_SESSION['worker_phone']) ? $_SESSION['worker_phone'] : "-";
-    $bank     = isset($_SESSION['worker_bank']) ? $_SESSION['worker_bank'] : "-";
-    
-    $role_display = "Gig Worker";
-    $header_file  = 'header-worker.php';
-    $footer_file  = 'footer-worker.php';
-    $edit_link    = 'EditProfile-worker.php';
 }
+
+// Tambahan keselamatan: Jika user belum login, tendang balik ke login.php
+if (!isset($_SESSION['username'])) {
+    echo "<script>alert('Sila log masuk terlebih dahulu!'); window.location.href='login.php';</script>";
+    exit();
+}
+
+include('connect.php');
+
+// 2. AMBIL DATA TERBARU TERUS DARI DATABASE BERDASARKAN USERNAME LOG MASUK
+$username_session = $_SESSION['username'];
+$sql_user = "SELECT * FROM user WHERE username = '$username_session'";
+$result_user = $conn->query($sql_user);
+
+if ($result_user && $result_user->num_rows > 0) {
+    $user_data = $result_user->fetch_assoc();
+
+    // Setkan maklumat daripada pangkalan data ke dalam pembolehubah
+    $role     = strtolower(trim($user_data['role']));
+    $name     = $user_data['name'];
+    $birthday = $user_data['birthday'];
+    $gender   = $user_data['gender'];
+    $address  = $user_data['address'];
+    $phone    = $user_data['phone_number'];
+
+    $bank     = !empty($user_data['bank_account']) ? $user_data['bank_account'] : "Belum Ditetapkan";
+    // Simpan role ke dalam session supaya head.php tidak error lagi
+    $_SESSION['role'] = $role;
+} else {
+    // Jika data tidak dijumpai atas sebab teknikal
+    $role = 'gig worker';
+    $name = $birthday = $gender = $address = $phone = "-";
+}
+
+// 3. Logik penentuan tab mengikut peranan
+if ($role === 'admin') {
+    $currentTab = 'profile-admin.php';
+    $role_display = "Admin";
+    $edit_link    = 'EditProfile.php';
+} elseif ($role === 'gig owner' || $role === 'owner') {
+    $currentTab = 'profile-owner.php';
+    $role_display = "Owner";
+    $edit_link    = 'EditProfile.php';
+} else {
+    $currentTab = 'profile-worker.php';
+    $role_display = "Gig Worker";
+    $edit_link    = 'EditProfile.php';
+}
+
+// 4. Panggil head.php SELEPAS data role berjaya disetkan di atas
+include('head.php');
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -60,8 +68,6 @@ if ($role === 'admin') {
 </head>
 
 <body>
-    <?php include($header_file); ?>
-
     <div class="profile-main-container">
 
         <h1 class="profile-page-title">User's Profile</h1>
@@ -84,16 +90,16 @@ if ($role === 'admin') {
                     <p><strong>Gender:</strong> <?php echo htmlspecialchars($gender); ?></p>
                     <p><strong>Address:</strong> <?php echo htmlspecialchars($address); ?></p>
                     <p><strong>Phone:</strong> <?php echo htmlspecialchars($phone); ?></p>
-                    
-                    <?php if ($role === 'worker'): ?>
+
+                    <?php if ($role === 'worker' || $role === 'gig worker'): ?>
                         <p><strong>Bank Account:</strong> <?php echo htmlspecialchars($bank); ?></p>
                     <?php endif; ?>
-                    
+
                     <p><strong>Role:</strong> <?php echo $role_display; ?></p>
                 </div>
 
                 <div class="profile-footer-row">
-                    <?php if ($role === 'worker'): ?>
+                    <?php if ($role === 'worker' || $role === 'gig worker'): ?>
                         <div class="rating-stars-box">
                             <span class="star">&#9733;</span>
                             <span class="star">&#9733;</span>
@@ -102,7 +108,7 @@ if ($role === 'admin') {
                             <span class="star">&#9733;</span>
                         </div>
                     <?php endif; ?>
-                    
+
                     <a href="<?php echo $edit_link; ?>" class="profile-edit-btn">Edit</a>
                 </div>
 
@@ -111,8 +117,13 @@ if ($role === 'admin') {
         </div>
 
     </div>
-    $conn->close(); 
-    <?php include($footer_file); ?>
+
+    <?php
+    if (isset($conn)) {
+        $conn->close();
+    }
+    include('footer.php');
+    ?>
 </body>
 
 </html>

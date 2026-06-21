@@ -73,23 +73,22 @@ input
 
 button
 {
-    width: 70px;
-    padding: 10px;
+    width: 140px;           
+    padding: 15px 10px;     /* 👈 Ditukar: 15px untuk tinggi (atas/bawah), 10px untuk lebar (kiri/kanan) */
     border: none;
     border-radius: 20px;
     background-color: lightgray;
     font-size: 15px;
     text-align: center;
-    display:flex;
-    margin: auto;
-    display: block;
-    margin-top: 25px;
+    
+    display: block;         
+    margin: 25px auto 0;    
+    cursor: pointer;
+    
+     
 }
 
-/* .hidden 
-{
-    display: none;
-}*/
+
 
 h1
 {

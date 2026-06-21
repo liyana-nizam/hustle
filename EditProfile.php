@@ -1,141 +1,128 @@
-<?php 
-// Mesti diletakkan di baris pertama untuk mengaktifkan memori session
-session_start(); 
-
-// 1. Semak peranan (role) pengguna daripada session
-$role = isset($_SESSION['role']) ? strtolower($_SESSION['role']) : 'worker';
-
-// 2. Ambil data sedia ada dari session berdasarkan role untuk dimasukkan ke dalam value input
-if ($role === 'admin') {
-    $name     = isset($_SESSION['admin_name']) ? $_SESSION['admin_name'] : '';
-    $birthday = isset($_SESSION['admin_birthday']) ? $_SESSION['admin_birthday'] : '';
-    $gender   = isset($_SESSION['admin_gender']) ? $_SESSION['admin_gender'] : '';
-    $address  = isset($_SESSION['admin_address']) ? $_SESSION['admin_address'] : '';
-    $phone    = isset($_SESSION['admin_phone']) ? $_SESSION['admin_phone'] : '';
-    $role_title = "Admin";
-
-} elseif ($role === 'owner') {
-    $name     = isset($_SESSION['owner_name']) ? $_SESSION['owner_name'] : '';
-    $birthday = isset($_SESSION['owner_birthday']) ? $_SESSION['owner_birthday'] : '';
-    $gender   = isset($_SESSION['owner_gender']) ? $_SESSION['owner_gender'] : '';
-    $address  = isset($_SESSION['owner_address']) ? $_SESSION['owner_address'] : '';
-    $phone    = isset($_SESSION['owner_phone']) ? $_SESSION['owner_phone'] : '';
-    $role_title = "Owner";
-
-} else { // Worker
-    $name     = isset($_SESSION['worker_name']) ? $_SESSION['worker_name'] : '';
-    $birthday = isset($_SESSION['worker_birthday']) ? $_SESSION['worker_birthday'] : '';
-    $gender   = isset($_SESSION['worker_gender']) ? $_SESSION['worker_gender'] : '';
-    $address  = isset($_SESSION['worker_address']) ? $_SESSION['worker_address'] : '';
-    $phone    = isset($_SESSION['worker_phone']) ? $_SESSION['worker_phone'] : '';
-    $bank     = isset($_SESSION['worker_bank']) ? $_SESSION['worker_bank'] : '';
-    $role_title = "Worker";
+<?php
+if (session_status() === PHP_SESSION_NONE) {
+    session_start();
 }
 
-// 3. Proses simpan data apabila butang "Save Changes" ditekan
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if ($role === 'admin') {
-        $_SESSION['admin_name']     = $_POST['nameInput'];
-        $_SESSION['admin_birthday'] = $_POST['birthdayInput'];
-        $_SESSION['admin_gender']   = isset($_POST['gender']) ? $_POST['gender'] : '';
-        $_SESSION['admin_address']  = $_POST['addressInput'];
-        $_SESSION['admin_phone']    = $_POST['phoneInput'];
-
-    } elseif ($role === 'owner') {
-        $_SESSION['owner_name']     = $_POST['nameInput'];
-        $_SESSION['owner_birthday'] = $_POST['birthdayInput'];
-        $_SESSION['owner_gender']   = isset($_POST['gender']) ? $_POST['gender'] : '';
-        $_SESSION['owner_address']  = $_POST['addressInput'];
-        $_SESSION['owner_phone']    = $_POST['phoneInput'];
-
-    } else { // Worker
-        $_SESSION['worker_name']     = $_POST['nameInput'];
-        $_SESSION['worker_birthday'] = $_POST['birthdayInput'];
-        $_SESSION['worker_gender']   = isset($_POST['gender']) ? $_POST['gender'] : '';
-        $_SESSION['worker_address']  = $_POST['addressInput'];
-        $_SESSION['worker_phone']    = $_POST['phoneInput'];
-        $_SESSION['worker_bank']     = $_POST['bankInput'];
-    }
-    
-    // Auto-redirect balik ke halaman profil tunggal kita
-    header("Location: profile.php");
+// Sekatan keselamatan: Jika belum login, hantar ke login.php
+if (!isset($_SESSION['username'])) {
+    header("Location: login.php");
     exit();
 }
+
+include('connect.php');
+$username_session = $_SESSION['username'];
+
+// A. COMMAND UPDATE AUTOMATIK APABILA USER KLIK SAVE CHANGES
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $name     = $conn->real_escape_string($_POST['nameInput']);
+    $birthday = $conn->real_escape_string($_POST['birthdayInput']);
+    $gender   = $conn->real_escape_string($_POST['gender']);
+    $address  = $conn->real_escape_string($_POST['addressInput']);
+    $phone    = $conn->real_escape_string($_POST['phoneInput']);
+    
+    // 1. Ambil data sedia ada dahulu untuk tahu role pengguna semasa
+    $sql_check = "SELECT role FROM user WHERE username = '$username_session'";
+    $res_check = $conn->query($sql_check);
+    $user_check = $res_check->fetch_assoc();
+    $current_role = strtolower(trim($user_check['role']));
+
+    // 2. Bina arahan SQL secara dinamik
+    if ($current_role === 'worker' || $current_role === 'gig worker') {
+        // Jika Gig Worker, kemas kini semua termasuk bank account
+        $bank = isset($_POST['bankInput']) ? $conn->real_escape_string($_POST['bankInput']) : '';
+        $sql_update = "UPDATE user SET 
+                        name = '$name', 
+                        birthday = '$birthday', 
+                        gender = '$gender', 
+                        address = '$address', 
+                        phone_number = '$phone', 
+                        bank_account = '$bank' 
+                      WHERE username = '$username_session'";
+    } else {
+        // Jika Admin atau Gig Owner, KEKALKAN data bank lama (jangan usik kolum bank_account)
+        $sql_update = "UPDATE user SET 
+                        name = '$name', 
+                        birthday = '$birthday', 
+                        gender = '$gender', 
+                        address = '$address', 
+                        phone_number = '$phone' 
+                      WHERE username = '$username_session'";
+    }
+    if ($conn->query($sql_update) === TRUE) {
+        echo "<script>alert('Maklumat berjaya dikemas kini!'); window.location.href='profile.php';</script>";
+        exit();
+    } else {
+        echo "<script>alert('Ralat: " . $conn->error . "');</script>";
+    }
+}
+
+// B. SELECT DATA SEDIA ADA UNTUK DIPAPARKAN PADA INPUT FORM
+$sql_select = "SELECT * FROM user WHERE username = '$username_session'";
+$result_select = $conn->query($sql_select);
+$user = $result_select->fetch_assoc();
+
+// Ambil role user untuk kawalan paparan seketika lagi
+$role = strtolower(trim($user['role']));
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit <?php echo $role_title; ?> Profile - Hustle</title>
-    <link rel="stylesheet" href="personal-style.css?v=2" type="text/css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
-    </style>
+    <title>Edit Personal Information</title>
+    <link rel="stylesheet" href="signup-style.css"> 
+    <style>@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');</style>
 </head>
-
 <body id="backgroundColor">
 
-    <div id="formGroup">
-
+    <div id="formGroup" style="margin-top: 50px;">
         <div class="imgIcon">
-            <img src="images/iconuser.png" alt="User Icon">
+            <img src="images/iconuser.png" alt="User Icon">  
         </div>
 
         <h1>Personal Information</h1>
 
-        <form method="POST" action="">
+        <form action="EditProfile.php" method="POST">
 
             <div class="formSection">
                 <label>Full name</label>
-                <input type="text" id="nameInput" name="nameInput" required placeholder="e.g. Amelia Henderson" 
-                       value="<?php echo htmlspecialchars($name); ?>">
+                <input type="text" name="nameInput" value="<?php echo htmlspecialchars($user['name']); ?>" required>
             </div>
 
             <div class="formSection">
                 <label>Birthday</label>
-                <input type="date" id="birthdayInput" name="birthdayInput" required 
-                       value="<?php echo htmlspecialchars($birthday); ?>">
+                <input type="date" name="birthdayInput" value="<?php echo htmlspecialchars($user['birthday']); ?>" required>
             </div>
 
-            <div class="formGender">
-                <label>Gender</label>
-                <div class="radioGroup">
-                    <input type="radio" name="gender" id="male" value="Male" 
-                           <?php echo ($gender == 'Male') ? 'checked' : ''; ?>> 
-                    <span class="radio-text">Male</span>
-                    
-                    <input type="radio" name="gender" id="female" value="Female" 
-                           <?php echo ($gender == 'Female') ? 'checked' : ''; ?>> 
-                    <span class="radio-text">Female</span>
-                </div>
+            <div class="formRole">
+              <label>Gender</label>
+              <div class="roleOptions">
+                <input type="radio" name="gender" value="male" <?php echo ($user['gender'] == 'male') ? 'checked' : ''; ?> required>Male
+                <input type="radio" name="gender" value="female" <?php echo ($user['gender'] == 'female') ? 'checked' : ''; ?> required>Female
+              </div>
             </div>
 
             <div class="formSection">
                 <label>Full address</label>
-                <input type="text" id="addressInput" name="addressInput" required 
-                       value="<?php echo htmlspecialchars($address); ?>">
+                <input type="text" name="addressInput" value="<?php echo htmlspecialchars($user['address']); ?>" required>
             </div>
 
             <div class="formSection">
                 <label>Phone number</label>
-                <input type="text" id="phoneInput" name="phoneInput" required placeholder="e.g. +0123456789" 
-                       value="<?php echo htmlspecialchars($phone); ?>">
+                <input type="tel" name="phoneInput" value="<?php echo htmlspecialchars($user['phone_number']); ?>" required>
             </div>
 
-            <?php if ($role === 'worker'): ?>
+            <?php if ($role === 'worker' || $role === 'gig worker'): ?>
                 <div class="formSection">
                     <label>Bank Account</label>
-                    <input type="text" id="bankInput" name="bankInput" required placeholder="e.g. Maybank 164123456789" 
-                           value="<?php echo htmlspecialchars($bank); ?>">
+                    <input type="text" name="bankInput" placeholder="e.g. Maybank 164123456789" value="<?php echo htmlspecialchars($user['bank_account'] ?? ''); ?>">
                 </div>
             <?php endif; ?>
 
-            <button type="submit" class="save-changes-btn">Save Changes</button>
+            <button type="submit" >Save Changes</button>
 
         </form>
-
     </div>
 
 </body>
