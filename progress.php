@@ -11,10 +11,12 @@
 <body>
     <?php
     if (session_status() === PHP_SESSION_NONE) {
-    session_start();
+        session_start();
     }
     include('head.php');
     include('connect.php');
+
+    $role = $_SESSION['role'] ?? '';
     ?>
 
     <div class="content-container">
@@ -33,74 +35,108 @@
 
             <div class="column">
                 <h2 class="column-title">Pending</h2>
+                <?php
+                // JOIN query combining gig and gig_detail based on GIG_ID
+                $sql_pending = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                FROM gig_detail gd 
+                                INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                                LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                WHERE gd.status = 'Pending'";
+                $result_pending = $conn->query($sql_pending);
 
-                <div class="gig-card">
-                    <a href="job-details.php" class="card-clickable-overlay"></a>
-                    <div class="card-header">
-                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
-                        <div class="job-details">
-                            <h3>Need Help with Laundry</h3>
-                            <p class="salary">RM 20</p>
+                if ($result_pending && $result_pending->num_rows > 0) {
+                    while($row = $result_pending->fetch_assoc()) {
+                ?>
+                        <div class="gig-card">
+                            <a href="job-details.php?id=<?php echo $row['GIG_ID']; ?>" class="card-clickable-overlay"></a>
+                            <div class="card-header">
+                                <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
+                                <div class="job-details">
+                                    <h3><?php echo htmlspecialchars($row['gig_name']); ?></h3>
+                                    <p class="salary">RM <?php echo htmlspecialchars($row['salary']); ?></p>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag"><?php echo htmlspecialchars($row['category_name'] ?? ''); ?></span>
+                                <span class="tag"><?php $address_parts = explode(',', $row['location']); echo htmlspecialchars(trim(end($address_parts))); ?></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-tags">
-                        <span class="tag">Cleaning</span>
-                        <span class="tag">Melaka Tengah</span>
-                    </div>
-                </div>
-
-                <div class="gig-card">
-                    <a href="job-details.php" class="card-clickable-overlay"></a>
-                    <div class="card-header">
-                        <div class="gig-img"><img src="images/errands.png" alt="Gig Photo"></div>
-                        <div class="job-details">
-                            <h3>Need a Groceries Runner</h3>
-                            <p class="salary">RM 40</p>
-                        </div>
-                    </div>
-                    <div class="card-tags">
-                        <span class="tag">Running Errands</span>
-                        <span class="tag">Alor Gajah</span>
-                    </div>
-                </div>
+                <?php 
+                    }
+                } else {
+                    echo "<p class='no-gigs'>No pending gigs.</p>";
+                }
+                ?>
             </div>
 
             <div class="column">
                 <h2 class="column-title">Ongoing</h2>
+                <?php
+                $sql_ongoing = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                FROM gig_detail gd 
+                                INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                                LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                WHERE gd.status = 'Ongoing'";
+                $result_ongoing = $conn->query($sql_ongoing);
 
-                <div class="gig-card">
-                    <a href="job-details.php" class="card-clickable-overlay"></a>
-                    <div class="card-header">
-                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
-                        <div class="job-details">
-                            <h3>Need Help with Laundry</h3>
-                            <p class="salary">RM 20</p>
+                if ($result_ongoing && $result_ongoing->num_rows > 0) {
+                    while($row = $result_ongoing->fetch_assoc()) {
+                ?>
+                        <div class="gig-card">
+                            <a href="job-details.php?id=<?php echo $row['GIG_ID']; ?>" class="card-clickable-overlay"></a>
+                            <div class="card-header">
+                                <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
+                                <div class="job-details">
+                                    <h3><?php echo htmlspecialchars($row['gig_name']); ?></h3>
+                                    <p class="salary">RM <?php echo htmlspecialchars($row['salary']); ?></p>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag"><?php echo htmlspecialchars($row['category_name'] ?? ''); ?></span>
+                                <span class="tag"><?php $address_parts = explode(',', $row['location']); echo htmlspecialchars(trim(end($address_parts))); ?></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-tags">
-                        <span class="tag">Cleaning</span>
-                        <span class="tag">Melaka Tengah</span>
-                    </div>
-                </div>
+                <?php 
+                    }
+                } else {
+                    echo "<p class='no-gigs'>No ongoing gigs.</p>";
+                }
+                ?>
             </div>
 
             <div class="column">
                 <h2 class="column-title">Completed</h2>
+                <?php
+                $sql_completed = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                  FROM gig_detail gd 
+                                  INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID
+                                  LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                  WHERE gd.status = 'Completed'";
+                $result_completed = $conn->query($sql_completed);
 
-                <div class="gig-card">
-                    <a href="job-details.php" class="card-clickable-overlay"></a>
-                    <div class="card-header">
-                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
-                        <div class="job-details">
-                            <h3>Need Help with Laundry</h3>
-                            <p class="salary">RM 20</p>
+                if ($result_completed && $result_completed->num_rows > 0) {
+                    while($row = $result_completed->fetch_assoc()) {
+                ?>
+                        <div class="gig-card">
+                            <a href="job-details.php?id=<?php echo $row['GIG_ID']; ?>" class="card-clickable-overlay"></a>
+                            <div class="card-header">
+                                <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
+                                <div class="job-details">
+                                    <h3><?php echo htmlspecialchars($row['gig_name']); ?></h3>
+                                    <p class="salary">RM <?php echo htmlspecialchars($row['salary']); ?></p>
+                                </div>
+                            </div>
+                            <div class="card-tags">
+                                <span class="tag"><?php echo htmlspecialchars($row['category_name'] ?? ''); ?></span>
+                                <span class="tag"><?php $address_parts = explode(',', $row['location']); echo htmlspecialchars(trim(end($address_parts))); ?></span>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-tags">
-                        <span class="tag">Cleaning</span>
-                        <span class="tag">Melaka Tengah</span>
-                    </div>
-                </div>
+                <?php 
+                    }
+                } else {
+                    echo "<p class='no-gigs'>No completed gigs.</p>";
+                }
+                ?>
             </div>
 
         </div>

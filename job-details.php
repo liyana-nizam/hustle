@@ -34,11 +34,17 @@ include('connect.php');
             LEFT JOIN gig_detail gd ON g.GIG_ID = gd.GIG_ID
             LEFT JOIN category c ON gd.CATEGORY_ID = c.category_id
             WHERE g.GIG_ID = $gig_id";
+
+    $sql2 = "SELECT u.username AS gig_owner 
+            FROM gig g
+            LEFT JOIN user u ON g.user_id = u.user_id
+            WHERE g.GIG_ID = $gig_id";
             
     $result = $conn->query($sql);
-    
+    $result2 = $conn->query($sql2);
     // Fetch the row data to display below
     $row = $result->fetch_assoc();
+    $gig_owner = $result2->fetch_assoc();
 ?>
 
 <div class="details-container">
@@ -83,23 +89,28 @@ include('connect.php');
 
     <div class="description-box">
 
-        <h4>Job Description</h4>
+        <h3>Job Description:</h3>
         <p><?php echo nl2br(htmlspecialchars($row['description'] ?? '')); ?></p>
 
         <br>
 
-        <h4>Location</h4>
+        <h3>Location:</h3>
         <p><?php echo htmlspecialchars($row['location'] ?? ''); ?></p>
 
         <br>
 
-        <h4>Gig Date & Time</h4>
+        <h3>Gig Date & Time:</h3>
         <p><?php echo htmlspecialchars($row['gig_date'] ?? ''); ?></p>
 
         <br>
 
-        <h4>Frequency</h4>
+        <h3>Frequency:</h3>
         <p><?php echo htmlspecialchars($row['frequency'] ?? ''); ?></p>
+
+        <br>
+        
+        <h3>Posted By:</h3>
+        <p><?php echo htmlspecialchars($gig_owner['gig_owner'] ?? ''); ?></p>
 
     </div>
 
