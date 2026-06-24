@@ -25,7 +25,7 @@
 
         <h1>Sign up Hustle</h1>
 
-        <form action="signupUser.php" method="POST" onsubmit="return validateForm()">
+        <form action="signupUser.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
 
             <div class="formSection">
                 <label>Create username</label>
@@ -82,6 +82,11 @@
             <div class="formSection" id="bankAccountSection" style="display:none;">
                 <label>Bank Account</label>
                 <input type="text" id="bankAccount" name="accInput" placeholder="e.g. Maybank - 162991174909">
+            </div>
+
+            <div class="formSection">
+                <label>Profile Picture</label>
+                <input type="file" id="profileInput" name="profileInput" accept="image/*">
             </div>
 
             <button type="submit">Sign In</button>
