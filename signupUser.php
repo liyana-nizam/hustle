@@ -10,6 +10,7 @@ $gender = $_POST['gender'];
 $address = $_POST['addressInput'];
 $phone = $_POST['phoneInput'];
 $bankAccount = $_POST['accInput'];
+$profilePic = "images/iconuser.png";
 
 
 if (isset($_FILES['profileInput']) && $_FILES['profileInput']['error'] == 0)
@@ -29,10 +30,7 @@ if (isset($_FILES['profileInput']) && $_FILES['profileInput']['error'] == 0)
         }
 
     }
-    else
-    {
-        $profilePic = "images/iconuser.png";
-    }
+    
 
 
 // Hash password sebelum simpan
