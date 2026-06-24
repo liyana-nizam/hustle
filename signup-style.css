@@ -1,9 +1,16 @@
 body
 {
-    background-color: rgb(150, 0, 66);;
+    background-image: linear-gradient(rgba(150, 0, 66, 0.5), rgba(150, 0, 66, 0.5)),url('images/backgroundHustle.png');
+    background-color: rgb(150, 0, 66);
     font-family: Arial;
     margin: 0;
     padding: 20px;
+    box-sizing: border-box;
+    background-size: cover;           
+    background-position: center;     
+    background-repeat: no-repeat;    
+    background-attachment: fixed;    
+    min-height: 100vh;     
 }
 
 input
@@ -77,10 +84,10 @@ button
     padding: 15px 10px;     /* 👈 Ditukar: 15px untuk tinggi (atas/bawah), 10px untuk lebar (kiri/kanan) */
     border: none;
     border-radius: 20px;
-    background-color: lightgray;
+    background-color: rgb(150, 0, 66);
+    color: white;
     font-size: 15px;
     text-align: center;
-    
     display: block;         
     margin: 25px auto 0;    
     cursor: pointer;
