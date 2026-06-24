@@ -139,6 +139,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_gig_id'])) {
 
     <?php if($role == 'gig owner'): ?>
     <div class="apply-section">
+         <button onclick="window.location.href='list-applicant.php?id=<?php echo $gig_id; ?>'">View Applicants</button>
         <button id="editBtn" onclick="editGig(<?php echo $gig_id; ?>)">Edit Details</button>
     </div>
     <?php endif; ?>
