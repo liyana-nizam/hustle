@@ -130,7 +130,7 @@ include('head.php');
 
                             // Paparan mesej jika pekerja baru dan belum menerima sebarang rating
                             if ($average_rating == 0) {
-                                echo "<span style='color: #888; font-size: 14px;'>Belum ada rating</span>";
+                                echo "<span style='color: #888; font-size: 14px;'>Apply job to get rating from your Gig Owner</span>";
                             }
                             ?>
                         </div>
