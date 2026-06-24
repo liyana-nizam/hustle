@@ -48,13 +48,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         phone_number = '$phone' 
                       WHERE username = '$username_session'";
     }
-    if ($conn->query($sql_update) === TRUE) {
-        echo "<script>alert('Maklumat berjaya dikemas kini!'); window.location.href='profile.php';</script>";
+   if ($conn->query($sql_update) === TRUE) {
+        echo "<script>alert('Information successfully updated!'); window.location.href='profile.php';</script>";
         exit();
     } else {
-        echo "<script>alert('Ralat: " . $conn->error . "');</script>";
+        echo "<script>alert('Error: " . $conn->error . "');</script>";
     }
 }
+
 
 // B. SELECT DATA SEDIA ADA UNTUK DIPAPARKAN PADA INPUT FORM
 $sql_select = "SELECT * FROM user WHERE username = '$username_session'";

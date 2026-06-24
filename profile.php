@@ -6,7 +6,7 @@ if (session_status() === PHP_SESSION_NONE) {
 
 // Tambahan keselamatan: Jika user belum login, tendang balik ke login.php
 if (!isset($_SESSION['username'])) {
-    echo "<script>alert('Sila log masuk terlebih dahulu!'); window.location.href='login.php';</script>";
+    echo "<script>alert('Please Login First!'); window.location.href='login.php';</script>";
     exit();
 }
 
@@ -20,7 +20,9 @@ $result_user = $conn->query($sql_user);
 if ($result_user && $result_user->num_rows > 0) {
     $user_data = $result_user->fetch_assoc();
 
-    // Setkan maklumat daripada pangkalan data ke dalam pembolehubah 
+    // AMBIL USER ID DI SINI DAHULU
+    $user_id  = $user_data['USER_ID']; // Pastikan nama kolum ID betul (cth: USER_ID atau id)
+
     $role     = strtolower(trim($user_data['role']));
     $name     = $user_data['name'];
     $birthday = date('d M Y', strtotime($user_data['birthday']));
@@ -29,12 +31,29 @@ if ($result_user && $result_user->num_rows > 0) {
     $phone    = $user_data['phone_number'];
 
     $bank     = !empty($user_data['bank_account']) ? $user_data['bank_account'] : "Belum Ditetapkan";
-    // Simpan role ke dalam session supaya head.php tidak error lagi
+
     $_SESSION['role'] = $role;
-} else {
-    // Jika data tidak dijumpai atas sebab teknikal
-    $role = 'gig worker';
-    $name = $birthday = $gender = $address = $phone = "-";
+
+    // Default nilai rating awal
+    $average_rating = 0;
+
+    if ($role === 'worker' || $role === 'gig worker') {
+        // Sekarang $user_id sudah selamat digunakan
+        $sql_all_stars = "SELECT star FROM gig_application WHERE USER_ID = '$user_id' AND app_status = 'approved'";
+        $result_stars = $conn->query($sql_all_stars);
+
+        if ($result_stars && $result_stars->num_rows > 0) {
+            $total_stars = 0;
+            $total_completed_gigs = $result_stars->num_rows;
+
+            while ($row_star = $result_stars->fetch_assoc()) {
+                $total_stars += intval($row_star['star']);
+            }
+
+            $raw_average = $total_stars / $total_completed_gigs;
+            $average_rating = round($raw_average);
+        }
+    }
 }
 
 // 3. Logik penentuan tab mengikut peranan
@@ -101,11 +120,19 @@ include('head.php');
                 <div class="profile-footer-row">
                     <?php if ($role === 'worker' || $role === 'gig worker'): ?>
                         <div class="rating-stars-box">
-                            <img src="images/star.png" alt="Star" class="star-icon">
-                            <img src="images/star.png" alt="Star" class="star-icon">
-                            <img src="images/star.png" alt="Star" class="star-icon">
-                            <img src="images/star.png" alt="Star" class="star-icon">
-                            <img src="images/star.png" alt="Star" class="star-icon">
+                            <?php
+                            // Melukis gambar bintang mengikut jumlah purata ($average_rating)
+                            for ($i = 1; $i <= 5; $i++) {
+                                if ($i <= $average_rating) {
+                                    echo '<img src="images/star.png" alt="Star" class="star-icon">';
+                                }
+                            }
+
+                            // Paparan mesej jika pekerja baru dan belum menerima sebarang rating
+                            if ($average_rating == 0) {
+                                echo "<span style='color: #888; font-size: 14px;'>Apply job to get rating from your Gig Owner</span>";
+                            }
+                            ?>
                         </div>
                     <?php endif; ?>
 
