@@ -116,7 +116,7 @@
         </div>
         <?php 
              }} else {
-                echo "<p style='text-align:center; padding-top:10px'>No Gig Found.</p>";
+                echo "<p style='text-align:center; padding-top:15px'>No Gig Found.</p>";
             }
         } else {
             echo "<p style='text-align:center;'>You must be logged in to view profile.</p>";
