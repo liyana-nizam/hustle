@@ -81,23 +81,20 @@
     width: 100%;
 }
 
-/* Kotak Sempadan Bintang Rating */
 .rating-stars-box {
+    display: flex;
+    gap: 4px; /* Jarak antara setiap bintang */
+    align-items: center;
     border: 1.5px solid rgb(150, 0, 66) ;
     border-radius: 12px ;
     padding: 8px 30px ; /* Lebarkan sikit kotak bintang */
     background-color: #ffffff ;
-    display: flex;
-    gap: 6px;
 }
-
-/* Saiz Bintang */
-.star {
-    color: #f1c40f; 
-    font-size: 24px; /* Dibesarkan sikit */
-    line-height: 1;
+.star-icon {
+    width: 20px;  /* Anda boleh ubah saiz lebar mengikut kesesuaian */
+    height: 20px; /* Anda boleh ubah saiz tinggi mengikut kesesuaian */
+    object-fit: contain;
 }
-
 /* Butang Edit Maroon */
 .profile-edit-btn {
     background-color: #6b1d3d ;

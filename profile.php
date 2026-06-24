@@ -101,11 +101,11 @@ include('head.php');
                 <div class="profile-footer-row">
                     <?php if ($role === 'worker' || $role === 'gig worker'): ?>
                         <div class="rating-stars-box">
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
+                            <img src="images/star.png" alt="Star" class="star-icon">
+                            <img src="images/star.png" alt="Star" class="star-icon">
+                            <img src="images/star.png" alt="Star" class="star-icon">
+                            <img src="images/star.png" alt="Star" class="star-icon">
+                            <img src="images/star.png" alt="Star" class="star-icon">
                         </div>
                     <?php endif; ?>
 
