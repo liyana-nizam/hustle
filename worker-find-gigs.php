@@ -26,7 +26,7 @@
                     FROM gig_detail gd 
                     INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID
                     LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
-                    WHERE 1 = 1";
+                    WHERE g.visibility = 'visible'";
             $result = $conn->query($sql);
 
             $params = [];
