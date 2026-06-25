@@ -183,6 +183,7 @@
     cursor: pointer;
     position: relative;
     z-index: 2;
+}
 
 .gig-card {
     position: relative;
