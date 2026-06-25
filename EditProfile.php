@@ -12,6 +12,10 @@ if (!isset($_SESSION['username'])) {
 include('connect.php');
 $username_session = $_SESSION['username'];
 
+$sql_select = "SELECT * FROM user WHERE username = '$username_session'";
+$result_select = $conn->query($sql_select);
+$user = $result_select->fetch_assoc();
+
 // A. COMMAND UPDATE AUTOMATIK APABILA USER KLIK SAVE CHANGES
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name     = $conn->real_escape_string($_POST['nameInput']);
@@ -19,6 +23,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $gender   = $conn->real_escape_string($_POST['gender']);
     $address  = $conn->real_escape_string($_POST['addressInput']);
     $phone    = $conn->real_escape_string($_POST['phoneInput']);
+    
+    if (isset($_FILES['profileInput']) && $_FILES['profileInput']['error'] === 0) 
+    {
+        $uploadDir = 'images/';
+        $originalName = basename($_FILES['profileInput']['name']);
+        $newFileName = uniqid('img_') . '_' . $originalName;
+        $uploadPath = $uploadDir . $newFileName;
+
+        if (move_uploaded_file($_FILES['profileInput']['tmp_name'], $uploadPath)) 
+        {
+            $picture = $uploadPath;
+        }
+        else
+        {
+            $picture = $user['user_image'];
+        }
+
+    } 
+    else 
+    {
+    $picture = $user['user_image'];
+    }
+    
+
     
     // 1. Ambil data sedia ada dahulu untuk tahu role pengguna semasa
     $sql_check = "SELECT role FROM user WHERE username = '$username_session'";
@@ -36,7 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         gender = '$gender', 
                         address = '$address', 
                         phone_number = '$phone', 
-                        bank_account = '$bank' 
+                        bank_account = '$bank',
+                        user_image = '$picture' 
                       WHERE username = '$username_session'";
     } else {
         // Jika Admin atau Gig Owner, KEKALKAN data bank lama (jangan usik kolum bank_account)
@@ -45,21 +74,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         birthday = '$birthday', 
                         gender = '$gender', 
                         address = '$address', 
-                        phone_number = '$phone' 
+                        phone_number = '$phone',
+                        user_image = '$picture'
                       WHERE username = '$username_session'";
     }
-    if ($conn->query($sql_update) === TRUE) {
-        echo "<script>alert('Maklumat berjaya dikemas kini!'); window.location.href='profile.php';</script>";
+   if ($conn->query($sql_update) === TRUE) {
+        echo "<script>alert('Information successfully updated!'); window.location.href='profile.php';</script>";
         exit();
     } else {
-        echo "<script>alert('Ralat: " . $conn->error . "');</script>";
+        echo "<script>alert('Error: " . $conn->error . "');</script>";
     }
 }
-
-// B. SELECT DATA SEDIA ADA UNTUK DIPAPARKAN PADA INPUT FORM
-$sql_select = "SELECT * FROM user WHERE username = '$username_session'";
-$result_select = $conn->query($sql_select);
-$user = $result_select->fetch_assoc();
 
 // Ambil role user untuk kawalan paparan seketika lagi
 $role = strtolower(trim($user['role']));
@@ -83,7 +108,7 @@ $role = strtolower(trim($user['role']));
 
         <h1>Personal Information</h1>
 
-        <form action="EditProfile.php" method="POST">
+        <form action="EditProfile.php" method="POST" enctype="multipart/form-data">
 
             <div class="formSection">
                 <label>Full name</label>
@@ -111,6 +136,11 @@ $role = strtolower(trim($user['role']));
             <div class="formSection">
                 <label>Phone number</label>
                 <input type="tel" name="phoneInput" value="<?php echo htmlspecialchars($user['phone_number']); ?>" required>
+            </div>
+
+            <div class="formSection">
+                <label>Profile Picture</label>
+                <input type="file" id="profileInput" name="profileInput" accept="image/*">
             </div>
 
             <?php if ($role === 'worker' || $role === 'gig worker'): ?>

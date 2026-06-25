@@ -1,20 +1,18 @@
 <?php
-// 1. Pastikan session bermula dengan selamat
+//make sure session tu start safely
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Tambahan keselamatan: Jika user belum login, tendang balik ke login.php
+//incase user belum login then akan back to login.php
 if (!isset($_SESSION['username'])) {
-    echo "<script>alert('Sila log masuk terlebih dahulu!'); window.location.href='login.php';</script>";
+    echo "<script>alert('Please Login First!'); window.location.href='login.php';</script>";
     exit();
 }
 
 include('connect.php');
 
-<<<<<<< Updated upstream
-// 2. AMBIL DATA TERBARU TERUS DARI DATABASE BERDASARKAN USERNAME LOG MASUK
-=======
+
 //kena defualt value dulu untuk roro deakt php yang variable ni ada tapi isi takda lagi
 //isi ada nanti bila dah dapat data dari database
 $role         = '';
@@ -31,7 +29,7 @@ $average_rating = 0;
 $user_id      = null;
 
 //ambik latest data from db based on username login
->>>>>>> Stashed changes
+
 $username_session = $_SESSION['username'];
 $sql_user = "SELECT * FROM user WHERE username = '$username_session'";
 $result_user = $conn->query($sql_user);
@@ -39,7 +37,9 @@ $result_user = $conn->query($sql_user);
 if ($result_user && $result_user->num_rows > 0) {
     $user_data = $result_user->fetch_assoc();
 
-    // Setkan maklumat daripada pangkalan data ke dalam pembolehubah 
+    //amik user id kat sini
+    $user_id  = $user_data['USER_ID']; //makesure nama column id betul
+
     $role     = strtolower(trim($user_data['role']));
     $name     = $user_data['name'];
     $birthday = date('d M Y', strtotime($user_data['birthday']));
@@ -48,30 +48,47 @@ if ($result_user && $result_user->num_rows > 0) {
     $phone    = $user_data['phone_number'];
 
     $bank     = !empty($user_data['bank_account']) ? $user_data['bank_account'] : "Belum Ditetapkan";
-    // Simpan role ke dalam session supaya head.php tidak error lagi
+    $picture = (!empty($user_data['user_image']) && file_exists($user_data['user_image'])) ? $user_data['user_image'] : 'images/iconuser.png';
+
     $_SESSION['role'] = $role;
-} else {
-    // Jika data tidak dijumpai atas sebab teknikal
-    $role = 'gig worker';
-    $name = $birthday = $gender = $address = $phone = "-";
+
+    //default value dri awal
+    $average_rating = 0;
+
+    if ($role === 'worker' || $role === 'gig worker') {
+        $sql_all_stars = "SELECT star FROM gig_application WHERE USER_ID = '$user_id' AND app_status = 'approved'";
+        $result_stars = $conn->query($sql_all_stars);
+
+        if ($result_stars && $result_stars->num_rows > 0) {
+            $total_stars = 0;
+            $total_completed_gigs = $result_stars->num_rows;
+
+            while ($row_star = $result_stars->fetch_assoc()) {
+                $total_stars += intval($row_star['star']);
+            }
+
+            $raw_average = $total_stars / $total_completed_gigs;
+            $average_rating = round($raw_average);
+        }
+    }
 }
 
-// 3. Logik penentuan tab mengikut peranan
+
 if ($role === 'admin') {
     $currentTab = 'profile-admin.php';
-    $role_display = "Admin";
+    $role_display = "admin";
     $edit_link    = 'EditProfile.php';
 } elseif ($role === 'gig owner' || $role === 'owner') {
     $currentTab = 'profile-owner.php';
-    $role_display = "Owner";
+    $role_display = "gig owner";
     $edit_link    = 'EditProfile.php';
 } else {
     $currentTab = 'profile-worker.php';
-    $role_display = "Gig Worker";
+    $role_display = "gig Worker";
     $edit_link    = 'EditProfile.php';
 }
 
-// 4. Panggil head.php SELEPAS data role berjaya disetkan di atas
+
 include('head.php');
 
 
@@ -95,9 +112,7 @@ include('head.php');
 
             <div class="profile-avatar-column">
                 <div class="profile-icon-circle">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
+                    <img src="<?php echo htmlspecialchars($picture);?>">
                 </div>
             </div>
 
@@ -119,12 +134,20 @@ include('head.php');
 
                 <div class="profile-footer-row">
                     <?php if ($role === 'worker' || $role === 'gig worker'): ?>
+                        <a href="list-user-rating.php?id=<?php echo $user_id; ?>" class="rating-stars-link" style="text-decoration: none; display: inline-block;">
                         <div class="rating-stars-box">
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
-                            <span class="star">&#9733;</span>
+                            <?php
+                            //gambar star ikut average
+                            for ($i = 1; $i <= 5; $i++) {
+                                if ($i <= $average_rating) {
+                                    echo '<img src="images/star.png" alt="Star" class="star-icon">';
+                                }
+                            }
+
+                            if ($average_rating == 0) {
+                                echo "<span style='color: #888; font-size: 14px;'>Apply job to get rating from your Gig Owner</span>";
+                            }
+                            ?>
                         </div>
                     <?php endif; ?>
 

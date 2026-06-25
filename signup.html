@@ -25,7 +25,7 @@
 
         <h1>Sign up Hustle</h1>
 
-        <form action="signupUser.php" method="POST">
+        <form action="signupUser.php" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()">
 
             <div class="formSection">
                 <label>Create username</label>
@@ -46,8 +46,8 @@
             <div class="formRole">
                 <label for="userType">Role</label>
                 <div class="roleOptions">
-                    <input type="radio" name="role" id="role" value="gig worker" required>Gig Worker
-                    <input type="radio" name="role" id="role" value="gig owner" required>Gig Owner
+                    <input type="radio" name="role" id="roleWorker" value="gig worker" onclick="toggleBankRequired()" required>Gig Worker
+                    <input type="radio" name="role" id="roleOwner" value="gig owner" onclick="toggleBankRequired()" required>Gig Owner
                 </div>
             </div>
 
@@ -79,6 +79,16 @@
                 <input type="tel" id="phoneInput" name="phoneInput" required placeholder="e.g. 0123456789">
             </div>
 
+            <div class="formSection" id="bankAccountSection" style="display:none;">
+                <label>Bank Account</label>
+                <input type="text" id="bankAccount" name="accInput" placeholder="e.g. Maybank - 162991174909">
+            </div>
+
+            <div class="formSection">
+                <label>Profile Picture</label>
+                <input type="file" id="profileInput" name="profileInput" accept="image/*">
+            </div>
+
             <button type="submit">Sign In</button>
 
         </form>
@@ -89,17 +99,60 @@
     
     <script>
 
-        function clearPasswordError() {
+        function toggleBankRequired()
+        {
+            const role = document.querySelector('input[name="role"]:checked');
+            const bankSection = document.getElementById("bankAccountSection");
+            const bankInput = document.getElementById("bankAccount");
 
-            // JavaScript Validation
-            if (password != confirmPassword) {
-                document.getElementById("passwordError").innerHTML = "Passwords do not match";
-                return; 
+            if (role && role.value === "gig worker")
+            {
+                bankSection.style.display = "block";
+                bankInput.required = true;
+            }
+            else
+            {
+                bankSection.style.display = "none";
+                bankInput.required = false;
+                bankInput.value = ""
             }
         }
+
+        
+        function clearPasswordError() 
+        {
+            const password = document.getElementById("passwordInput").value;
+            const confirmPassword = document.getElementById("confirmPasswordInput").value;
+
+            if (password !== confirmPassword)
+            {
+                document.getElementById("passwordError").innerHTML = "Password does not match";
+            }
+            else
+            {
+                document.getElementById("passwordError").innerHTML = "";
+            }
+        }
+
+        function validateForm()
+        {
+            const password = document.getElementById("passwordInput").value;
+            const confirmPassword = document.getElementById("confirmPasswordInput").value;
+
+            if (password !== confirmPassword)
+            {
+                document.getElementById("passwordError").innerHTML = "Password does not match";
+                return false;
+            }
+
+            return true;
+        }
+
+
 
     </script>
     
 </body>
 </html>
+
 
