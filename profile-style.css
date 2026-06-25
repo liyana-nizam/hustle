@@ -138,7 +138,14 @@
     object-fit: cover;
     border-radius: 50%;
 }
+.rating-stars-link {
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
 
+.rating-stars-link:hover {
+    transform: scale(1.05); /* Memberi kesan membesar sedikit semasa di-hover */
+}
 /* Responsif untuk skrin phone */
 @media (max-width: 768px) {
     .profile-content-layout {

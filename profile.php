@@ -117,6 +117,7 @@ include('head.php');
 
                 <div class="profile-footer-row">
                     <?php if ($role === 'worker' || $role === 'gig worker'): ?>
+                        <a href="list-user-rating.php?id=<?php echo $user_id; ?>" class="rating-stars-link" style="text-decoration: none; display: inline-block;">
                         <div class="rating-stars-box">
                             <?php
                             //gambar star ikut average
