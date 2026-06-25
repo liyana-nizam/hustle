@@ -69,11 +69,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_content'])) {
         }
     }
 }
+
+// Handle hide/unhide toggle
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_hide'])) {
+    $current_visibility = $_POST['current_visibility'];
+    $new_visibility = $current_visibility == 'visible' ? 'hidden' : 'visible';
+    $conn->query("UPDATE gig SET visibility = '$new_visibility' WHERE GIG_ID = $gig_id");
+    header("Location: job-details.php?id=$gig_id");
+    exit();
+}
 ?>
 
 <?php
     // Get the dynamic gig ID from the URL string
-    $sql = "SELECT g.GIG_ID, g.gig_name, g.description, c.category_name, gd.location, gd.salary, gd.status, gd.gig_date, gd.frequency 
+    $sql = "SELECT g.GIG_ID, g.gig_name, g.description,g.visibility, c.category_name, gd.location, gd.salary, gd.status, gd.gig_date, gd.frequency 
             FROM gig g
             LEFT JOIN gig_detail gd ON g.GIG_ID = gd.GIG_ID
             LEFT JOIN category c ON gd.CATEGORY_ID = c.category_id
@@ -170,6 +179,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_content'])) {
     <div class="apply-section">
          <button onclick="window.location.href='list-applicant.php?id=<?php echo $gig_id; ?>'">View Applicants</button>
         <button id="editBtn" onclick="editGig(<?php echo $gig_id; ?>)">Edit Details</button>
+        <form method="POST" style="display: inline;">
+            <input type="hidden" name="toggle_hide" value="1">
+            <input type="hidden" name="current_visibility" value="<?php echo $row['visibility']; ?>">
+            <button type="submit" name="toggle_hide">
+                <?php echo $row['visibility'] == 'visible' ? 'Hide Gig' : 'Unhide Gig'; ?>
+            </button>
+        </form>
     </div>
     <?php endif; ?>
 
