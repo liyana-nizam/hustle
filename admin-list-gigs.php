@@ -57,6 +57,7 @@
             $stmt->execute();
             $result = $stmt->get_result();
     ?>
+
     <div class="content-container">
         <!-- Search Bar & Filter -->
         <div class="search-filter-container">
@@ -65,6 +66,7 @@
                     <label for="searchUser" class="accessibility">Username</label>
                     <input type="search" id="searchUser" name="searchUser" placeholder="Search by gig name..." value="<?php echo htmlspecialchars($searchUser); ?>">
                 </div>
+
                 <div class="filter-section">
                     <label for="filterCategory" class="accessibility">Category</label>
                     <select id="filterCategory" name="filterCategory">
@@ -78,6 +80,7 @@
                         <option value="Other" <?php echo $filterCategory == 'Other' ? 'selected' : ''; ?>>Other</option>
                     </select>
                 </div>
+
                 <div class="filter-section">
                     <label for="filterDistrict" class="accessibility">District</label>
                     <select id="filterDistrict" name="filterDistrict">
@@ -86,10 +89,13 @@
                         <option value="Jasin" <?php echo $filterDistrict == 'Jasin' ? 'selected' : ''; ?>>Jasin</option>
                         <option value="Melaka Tengah" <?php echo $filterDistrict == 'Melaka Tengah' ? 'selected' : ''; ?>>Melaka Tengah</option>
                     </select>
-                </div>                
+                </div>   
+
                 <button type="submit">Search</button>
+
             </form>
         </div>
+
         <?php
         if ($result && $result->num_rows > 0) {
              while ($row = $result->fetch_assoc()) {
@@ -100,12 +106,17 @@
                 <li class="item-container">
                     <a href="job-details.php?id=<?php echo $row['GIG_ID']; ?>">
                     <div class="gig-left">
-                        <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
+                        <div class="gig-img">
+                            <img src="<?php echo getCategoryImage($row['category_name'] ?? ''); ?>"
+                            alt="<?php echo htmlspecialchars($row['category_name'] ?? ''); ?>">
+                        </div>
+
                         <div class="gig-info">
                             <p class="gig-name"><?php echo htmlspecialchars($row['gig_name']) . " (" . htmlspecialchars($row['status']) . ")"?></p>
                             <p class="gig-salary">RM <?php echo htmlspecialchars($row['salary'])?></p>                            
                         </div>
                     </div>
+
                     <div class="gig-right">
                         <p class="gig-filter"><?php echo htmlspecialchars($row['category_name'])?></p>
                         <p class="gig-filter"><?php $address_parts = explode(',', $row['location']); echo htmlspecialchars(trim(end($address_parts))); ?></p>
@@ -114,6 +125,7 @@
                 </li>
             </ul>                
         </div>
+
         <?php 
              }} else {
                 echo "<p style='text-align:center; padding-top:15px'>No Gig Found.</p>";
@@ -122,10 +134,13 @@
             echo "<p style='text-align:center;'>You must be logged in to view profile.</p>";
         }
         ?>
+
     </div>
+
     <?php
     $conn->close();
     include('footer.php') 
     ?>
+    
 </body>
 </html>

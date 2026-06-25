@@ -54,6 +54,7 @@
                     <label for="searchUser" class="accessibility">Username</label>
                     <input type="search" id="searchUser" name="searchUser" placeholder="Search by username..." value="<?php echo htmlspecialchars($searchUser); ?>">
                 </div>
+
                 <div class="filter-section">
                     <label for="filterRole" class="accessibility">Role</label>
                     <select id="filterRole" name="filterRole">
@@ -63,9 +64,12 @@
                         <option value="Admin" <?php echo $filterRole == 'Admin' ? 'selected' : ''; ?>>Admin</option>
                     </select>
                 </div>
+
                 <button type="submit">Search</button>
+
             </form>
         </div>
+
         <?php
         if ($result && $result->num_rows > 0) {
              while ($row = $result->fetch_assoc()) {
@@ -76,11 +80,22 @@
                 <li class="item-container">
                     <a href="profile-user.php?id=<?php echo $row['USER_ID']; ?>">
                     <div class="user-left">
-                        <div class="user-img"><img src="" alt="Icon User"></div>
+
+                        <div class="user-img">
+                            <?php 
+                            $user_pic = (!empty($row['user_image']) && file_exists($row['user_image'])) ? 
+                            $row['user_image'] : 'images/iconuser.png';
+                            ?>
+
+                            <img src="<?php echo htmlspecialchars($user_pic); ?>" alt="Icon User">
+
+                        </div>
+
                         <div class="user-info">
                             <p class="user-name"><?php echo htmlspecialchars($row['username']) ?></p>                           
                         </div>
                     </div>
+
                     <div class="user-right">
                         <p class="user-filter"><?php echo htmlspecialchars($row['role']) ?></p>
                     </div>
@@ -88,6 +103,7 @@
                 </li>
             </ul>
         </div>
+
         <?php 
              }} else {
                 echo "<p style='text-align:center; padding-top:15px'>No User Found.</p>";
@@ -96,10 +112,13 @@
             echo "<p style='text-align:center;'>You must be logged in to view profile.</p>";
         }
         ?>
+
     </div>
+
     <?php
     $conn->close();
     include('footer.php') 
     ?>
+    
 </body>
 </html>
