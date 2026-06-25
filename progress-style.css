@@ -172,3 +172,34 @@
 .rate-btn {
     padding: 8px 24px;
 }
+
+.gig-card {
+    position: relative;
+}
+
+.gig-hidden {
+    opacity: 0.6;
+    border: 1px dashed grey !important;
+}
+
+.hidden-badge {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background-color: grey;
+    color: white;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    border-radius: 20px;
+    z-index: 1;
+}
+
+.gig-pending-app {
+    opacity: 0.6;
+    border: 1px dashed orange !important;
+}
+
+.pending-badge {
+    background-color: orange !important;
+}
