@@ -119,26 +119,45 @@ body{
     font-size:16px;
 }
 
-.comment-section{
-    margin-top:20px;
-    border:1px solid rgb(150, 0, 66);
-    border-radius:5px;
-    padding:12px;
-    display:flex;
-    align-items:center;
+.comment-section {
+    margin-top: 20px;
+    border: 1px solid rgb(150, 0, 66);
+    border-radius: 5px;
+    padding: 12px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
 }
 
-.comment-section i{
-    color:rgb(150, 0, 66);
-    margin-right:10px;
-    font-size:18px;
+.comment-form {
+    display: flex;
+    flex: 1;
+    gap: 8px;
+    align-items: center;
 }
 
-.comment-section input{
-    width:100%;
-    border:none;
-    outline:none;
-    font-size:15px;
+.comment-form input[type="text"] {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    padding: 5px 0;
+}
+
+.post-btn {
+    padding: 8px 20px;
+    background-color: rgb(150, 0, 66);
+    color: #fff;
+    border: none;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.post-btn:hover {
+    background-color: rgb(120, 0, 52);
 }
 
 #applyBtn:disabled{
@@ -220,4 +239,63 @@ body{
         font-size:14px;
         padding:8px;
     }
+}
+
+
+.comment-msg {
+    font-size: 13px;
+    margin: 4px 0;
+    width: 100%;
+}
+.comment-msg.error   { color: #e74c3c; }
+.comment-msg.success { color: #27ae60; }
+
+.comments-list {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 30px;
+}
+
+.comment-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.comment-avatar {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #c98ca8;
+    flex-shrink: 0;
+}
+
+.comment-body {
+    background-color: #f5f5f5;
+    border-radius: 12px;
+    padding: 8px 14px;
+    flex: 1;
+}
+
+.comment-username {
+    font-weight: 700;
+    font-size: 13px;
+    color: #333;
+    display: block;
+    margin-bottom: 3px;
+}
+
+.comment-text {
+    font-size: 14px;
+    color: #555;
+    margin: 0;
+}
+
+.no-comments {
+    font-size: 13px;
+    color: #999;
+    text-align: center;
+    padding: 10px 0;
 }
