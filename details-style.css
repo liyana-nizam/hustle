@@ -56,13 +56,16 @@ body{
 }
 
 .profile-circle{
-    width:40px;
-    height:40px;
+    width:50px;
+    height:50px;
     min-width:40px;
     min-height:40px;
     border-radius:50%;
     background:#c98ca8;
     flex-shrink:0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .gig-info{
@@ -150,6 +153,13 @@ body{
     width:25px;
     height:25px;
     cursor:pointer;
+}
+
+.profile-circle img {
+    width: 80%;
+    height: 80%;
+    object-fit: contain;
+    border-radius: 50%;
 }
 
 

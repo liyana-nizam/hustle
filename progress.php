@@ -50,7 +50,10 @@
                         <div class="gig-card">
                             <a href="job-details.php?id=<?php echo $row['GIG_ID']; ?>" class="card-clickable-overlay"></a>
                             <div class="card-header">
-                                <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
+                                <div class="gig-img">
+                                    <img src="<?php echo getCategoryImage($row['category_name'] ?? ''); ?>"
+                                    alt="<?php echo htmlspecialchars($row['category_name'] ?? ''); ?>">
+                                </div>
                                 <div class="job-details">
                                     <h3><?php echo htmlspecialchars($row['gig_name']); ?></h3>
                                     <p class="salary">RM <?php echo htmlspecialchars($row['salary']); ?></p>
@@ -59,6 +62,7 @@
                             <div class="card-tags">
                                 <span class="tag"><?php echo htmlspecialchars($row['category_name'] ?? ''); ?></span>
                                 <span class="tag"><?php $address_parts = explode(',', $row['location']); echo htmlspecialchars(trim(end($address_parts))); ?></span>
+                                
                             </div>
                         </div>
                 <?php 
@@ -85,7 +89,10 @@
                         <div class="gig-card">
                             <a href="job-details.php?id=<?php echo $row['GIG_ID']; ?>" class="card-clickable-overlay"></a>
                             <div class="card-header">
-                                <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
+                                <div class="gig-img">
+                                    <img src="<?php echo getCategoryImage($row['category_name'] ?? ''); ?>"
+                                    alt="<?php echo htmlspecialchars($row['category_name'] ?? ''); ?>">
+                                </div>
                                 <div class="job-details">
                                     <h3><?php echo htmlspecialchars($row['gig_name']); ?></h3>
                                     <p class="salary">RM <?php echo htmlspecialchars($row['salary']); ?></p>
@@ -94,6 +101,8 @@
                             <div class="card-tags">
                                 <span class="tag"><?php echo htmlspecialchars($row['category_name'] ?? ''); ?></span>
                                 <span class="tag"><?php $address_parts = explode(',', $row['location']); echo htmlspecialchars(trim(end($address_parts))); ?></span>
+                                <a href="workerProof.php?id=<?php echo $row['GIG_ID']; ?>" class="tag complete-btn">Complete</a>
+                                
                             </div>
                         </div>
                 <?php 
@@ -120,7 +129,10 @@
                         <div class="gig-card">
                             <a href="job-details.php?id=<?php echo $row['GIG_ID']; ?>" class="card-clickable-overlay"></a>
                             <div class="card-header">
-                                <div class="gig-img"><img src="images/cleaning.png" alt="Gig Photo"></div>
+                                <div class="gig-img">
+                                    <img src="<?php echo getCategoryImage($row['category_name'] ?? ''); ?>"
+                                    alt="<?php echo htmlspecialchars($row['category_name'] ?? ''); ?>">
+                                </div>
                                 <div class="job-details">
                                     <h3><?php echo htmlspecialchars($row['gig_name']); ?></h3>
                                     <p class="salary">RM <?php echo htmlspecialchars($row['salary']); ?></p>
@@ -129,6 +141,7 @@
                             <div class="card-tags">
                                 <span class="tag"><?php echo htmlspecialchars($row['category_name'] ?? ''); ?></span>
                                 <span class="tag"><?php $address_parts = explode(',', $row['location']); echo htmlspecialchars(trim(end($address_parts))); ?></span>
+                                <span class="tag"><?php echo htmlspecialchars($row['status']); ?></span>
                             </div>
                         </div>
                 <?php 
