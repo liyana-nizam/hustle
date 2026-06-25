@@ -70,18 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_content'])) {
     }
 }
 
-// Handle hide/unhide toggle
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_hide'])) {
-    if ($row['status'] == 'ongoing') {
-        header("Location: job-details.php?id=$gig_id&error=ongoing");
-        exit();
-    }
-    $current_visibility = $_POST['current_visibility'];
-    $new_visibility = $current_visibility == 'visible' ? 'hidden' : 'visible';
-    $conn->query("UPDATE gig SET visibility = '$new_visibility' WHERE GIG_ID = $gig_id");
-    header("Location: job-details.php?id=$gig_id");
-    exit();
-}
+
 ?>
 
 <?php
@@ -102,6 +91,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_hide'])) {
     // Fetch the row data to display below
     $row = $result->fetch_assoc();
     $gig_owner = $result2->fetch_assoc();
+
+    // Handle hide/unhide toggle
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_hide'])) {
+    if (strtolower($row['status']) == 'ongoing') {
+        header("Location: job-details.php?id=$gig_id&error=ongoing");
+        exit();
+    }
+    $current_visibility = $_POST['current_visibility'];
+    $new_visibility = $current_visibility == 'visible' ? 'hidden' : 'visible';
+    $conn->query("UPDATE gig SET visibility = '$new_visibility' WHERE GIG_ID = $gig_id");
+    header("Location: job-details.php?id=$gig_id");
+    exit();
+}
 
     $comments_result = $conn->query(
     "SELECT c.content, c.COMMENT_ID, u.username 
@@ -184,7 +186,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_hide'])) {
         <button onclick="window.location.href='list-applicant.php?id=<?php echo $gig_id; ?>'">View Applicants</button>
         <button id="editBtn" onclick="editGig(<?php echo $gig_id; ?>)">Edit Details</button>
 
-        <?php if (isset($_GET['hide_error']) && $_GET['hide_error'] == 1): ?>
+        <?php if (isset($_GET['error']) && $_GET['error'] == 'ongoing'): ?>
         <script>
             alert('Cannot hide this post while the gig is ongoing.');
         </script>
@@ -193,7 +195,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_hide'])) {
         <form method="POST" style="display: inline;">
             <input type="hidden" name="toggle_hide" value="1">
             <input type="hidden" name="current_visibility" value="<?php echo $row['visibility']; ?>">
-            <button type="submit" <?php echo $row['status'] ?? '' == 'ongoing' ? 'disabled title="Cannot hide ongoing gig"' : ''; ?>>
+            <button type="submit" <?php echo strtolower($row['status'] ?? '') == 'ongoing' ? 'disabled' : ''; ?>>
                 <?php echo $row['visibility'] == 'visible' ? 'Hide Gig' : 'Unhide Gig'; ?>
             </button>
         </form>
