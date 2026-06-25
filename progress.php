@@ -17,6 +17,18 @@
     include('connect.php');
 
     $role = $_SESSION['role'] ?? '';
+
+    if (!isset($_SESSION['username'])) {
+    die("Please log in to view your gigs.");
+    }
+
+    $username = $_SESSION['username'];
+    $sql = "SELECT * from user where username = '$username'";
+    $result = $conn->query($sql);
+    if ($result && $result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    $user_id = $row['USER_ID'];
+    }
     ?>
 
     <div class="content-container">
@@ -37,11 +49,31 @@
                 <h2 class="column-title">Pending</h2>
                 <?php
                 // JOIN query combining gig and gig_detail based on GIG_ID
-                $sql_pending = "SELECT gd.*, g.gig_name, g.description, c.category_name
-                                FROM gig_detail gd 
-                                INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
-                                LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
-                                WHERE gd.status = 'Pending'";
+                If($role === "admin"){
+                    $sql_pending = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                    FROM gig_detail gd 
+                                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                    WHERE gd.status = 'Pending'";
+                }
+
+                elseif($role === "gig owner"){
+                    $sql_pending = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                    FROM gig_detail gd 
+                                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                    WHERE gd.status = 'Pending' AND g.user_id = '$user_id'";
+                }
+
+                else{
+                    $sql_pending = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                    FROM gig_detail gd 
+                                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                    INNER JOIN gig_application ga ON g.GIG_ID = ga.GIG_ID
+                                    WHERE gd.status = 'Pending' AND ga.user_id = '$user_id'";
+                }
+
                 $result_pending = $conn->query($sql_pending);
 
                 if ($result_pending && $result_pending->num_rows > 0) {
@@ -72,11 +104,31 @@
             <div class="column">
                 <h2 class="column-title">Ongoing</h2>
                 <?php
-                $sql_ongoing = "SELECT gd.*, g.gig_name, g.description, c.category_name
-                                FROM gig_detail gd 
-                                INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
-                                LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
-                                WHERE gd.status = 'Ongoing'";
+                If($role === "admin"){
+                    $sql_ongoing = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                    FROM gig_detail gd 
+                                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                    WHERE gd.status = 'Ongoing'";
+                }
+
+                elseif($role === "gig owner"){
+                    $sql_ongoing = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                    FROM gig_detail gd 
+                                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                    WHERE gd.status = 'Ongoing' AND g.user_id = '$user_id'";
+                }
+
+                else{
+                    $sql_ongoing = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                    FROM gig_detail gd 
+                                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                    INNER JOIN gig_application ga ON g.GIG_ID = ga.GIG_ID
+                                    WHERE gd.status = 'Ongoing' AND ga.user_id = '$user_id'";
+                }
+
                 $result_ongoing = $conn->query($sql_ongoing);
 
                 if ($result_ongoing && $result_ongoing->num_rows > 0) {
@@ -107,11 +159,30 @@
             <div class="column">
                 <h2 class="column-title">Completed</h2>
                 <?php
-                $sql_completed = "SELECT gd.*, g.gig_name, g.description, c.category_name
-                                  FROM gig_detail gd 
-                                  INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID
-                                  LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
-                                  WHERE gd.status = 'Completed'";
+                if($role === "admin"){
+                    $sql_completed = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                    FROM gig_detail gd 
+                                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID
+                                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                    WHERE gd.status = 'Completed'";
+                }
+
+                elseif($role === "gig owner"){
+                    $sql_completed = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                    FROM gig_detail gd 
+                                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                    WHERE gd.status = 'Completed' AND g.user_id = '$user_id'";
+                }
+
+                else{
+                    $sql_completed = "SELECT gd.*, g.gig_name, g.description, c.category_name
+                                    FROM gig_detail gd 
+                                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                                    INNER JOIN gig_application ga ON g.GIG_ID = ga.GIG_ID
+                                    WHERE gd.status = 'Completed' AND ga.user_id = '$user_id'";
+                }
                 $result_completed = $conn->query($sql_completed);
 
                 if ($result_completed && $result_completed->num_rows > 0) {
