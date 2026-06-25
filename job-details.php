@@ -130,7 +130,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_content'])) {
 
         <div class="gig-left">
 
-            <div class="profile-circle"></div>
+            <div class="profile-circle">
+                <img src="<?php echo getCategoryImage($row['category_name'] ?? ''); ?>"
+                alt="<?php echo htmlspecialchars($row['category_name'] ?? ''); ?>">
+            </div>
 
             <div class="gig-info">
                 <h3><?php echo htmlspecialchars($row['gig_name'] ?? ''); ?></h3>

@@ -12,7 +12,24 @@ if (!isset($_SESSION['username'])) {
 
 include('connect.php');
 
+
+//kena defualt value dulu untuk roro deakt php yang variable ni ada tapi isi takda lagi
+//isi ada nanti bila dah dapat data dari database
+$role         = '';
+$role_display = '';
+$edit_link    = '';
+$name         = '';
+$birthday     = '';
+$gender       = '';
+$address      = '';
+$phone        = '';
+$bank         = '';
+$picture      = '';
+$average_rating = 0;
+$user_id      = null;
+
 //ambik latest data from db based on username login
+
 $username_session = $_SESSION['username'];
 $sql_user = "SELECT * FROM user WHERE username = '$username_session'";
 $result_user = $conn->query($sql_user);

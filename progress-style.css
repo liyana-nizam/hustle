@@ -173,6 +173,17 @@
     padding: 8px 24px;
 }
 
+
+.complete-btn 
+{
+    color:rgb(150, 0, 66) ;
+    background-color: rgb(217, 148, 178);
+    border-color:  rgb(217, 148, 178);
+    text-decoration: none; 
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+
 .gig-card {
     position: relative;
 }
@@ -202,4 +213,5 @@
 
 .pending-badge {
     background-color: orange !important;
+
 }
