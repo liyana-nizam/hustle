@@ -45,13 +45,34 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_gig_id'])) {
         echo "<script>alert('Applied successfully!');</script>";
     }
 }
+
+$comment_error   = '';
+$comment_success = '';
+ 
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_content'])) {
+    $comment_text = trim($_POST['comment_content']);
+ 
+    if ($comment_text === '') {
+        $comment_error = 'Comment cannot be empty.';
+    } elseif ($user_id === 0) {
+        $comment_error = 'You must be logged in to comment.';
+    } else {
+        $safe_comment = $conn->real_escape_string($comment_text);
+        $insert_comment = $conn->query(
+            "INSERT INTO comment (GIG_ID, USER_ID, content) VALUES ($gig_id, $user_id, '$safe_comment')"
+        );
+        if ($insert_comment) {
+            header("Location: job-details.php?id=$gig_id&success=1");
+            exit();
+        } else {
+            $comment_error = 'Failed to post comment. Please try again.';
+        }
+    }
+}
 ?>
 
 <?php
     // Get the dynamic gig ID from the URL string
-    
-
-    
     $sql = "SELECT g.GIG_ID, g.gig_name, g.description, c.category_name, gd.location, gd.salary, gd.status, gd.gig_date, gd.frequency 
             FROM gig g
             LEFT JOIN gig_detail gd ON g.GIG_ID = gd.GIG_ID
@@ -68,6 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_gig_id'])) {
     // Fetch the row data to display below
     $row = $result->fetch_assoc();
     $gig_owner = $result2->fetch_assoc();
+
+    $comments_result = $conn->query(
+    "SELECT c.content, c.COMMENT_ID, u.username 
+     FROM comment c
+     LEFT JOIN user u ON c.USER_ID = u.user_id
+     WHERE c.GIG_ID = $gig_id
+     ORDER BY c.COMMENT_ID DESC"
+);
 ?>
 
 <div class="details-container">
@@ -159,9 +188,50 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_gig_id'])) {
 
     <div class="comment-section">
         <img src="images/comment.png" alt="Comment" class="icon">
-        <input type="text" placeholder="Write a Comment.....">
+ 
+        <?php if ($comment_error): ?>
+            <p class="comment-msg error"><?php echo htmlspecialchars($comment_error); ?></p>
+        <?php endif; ?>
+        <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+            <script>
+                alert('Comment posted successfully!');
+            </script>
+        <?php endif; ?>
+ 
+        <form method="POST" class="comment-form">
+            <input type="hidden" name="gig_id" value="<?php echo $gig_id; ?>">
+            <input
+                type="text"
+                name="comment_content"
+                id="commentInput"
+                placeholder="Write a Comment....."
+                autocomplete="off"
+            >
+            <button type="submit" class="post-btn">Post</button>
+        </form>
     </div>
-
+ 
+    <!-- Comment List Section -->
+    <div class="comments-list">
+        <?php if ($comments_result && $comments_result->num_rows > 0): ?>
+            <?php while ($comment = $comments_result->fetch_assoc()): ?>
+                <div class="comment-item">
+                    <div class="comment-avatar"></div>
+                    <div class="comment-body">
+                        <span class="comment-username">
+                            <?php echo htmlspecialchars($comment['username'] ?? 'Unknown'); ?>
+                        </span>
+                        <p class="comment-text">
+                            <?php echo nl2br(htmlspecialchars($comment['content'])); ?>
+                        </p>
+                    </div>
+                </div>
+            <?php endwhile; ?>
+        <?php else: ?>
+            <p class="no-comments">No comments yet. Be the first to comment!</p>
+        <?php endif; ?>
+    </div>
+ 
 </div>
 
 <script>
