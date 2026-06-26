@@ -18,23 +18,26 @@
     if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];
 
-        // Mengambil ID gig worker daripada URL untuk paparan maklum balas khusus pekerja tersebut
+        
         $worker_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-        // Query untuk mendapatkan maklumat Gig Owner, Nama Gig, Feedback Message, dan Rating Star
-        $sql = "SELECT 
-                    u.username AS owner_name,
-                    g.gig_name,
-                    ga.feedback_message,
-                    ga.star
-                FROM 
-                    gig_application ga
-                INNER JOIN 
-                    gig g ON ga.GIG_ID = g.GIG_ID
-                INNER JOIN 
-                    user u ON g.USER_ID = u.USER_ID
-                WHERE 
-                    ga.USER_ID = ? AND ga.app_status = 'approved'";
+
+$sql = "SELECT 
+            u.username AS owner_name,
+            g.gig_name,
+            ga.feedback_message,
+            ga.star
+        FROM 
+            gig_application ga
+        INNER JOIN 
+            gig g ON ga.GIG_ID = g.GIG_ID
+        INNER JOIN 
+            user u ON g.USER_ID = u.USER_ID
+        WHERE 
+            ga.USER_ID = ? 
+            AND ga.app_status = 'approved'
+            AND ga.star IS NOT NULL 
+            AND ga.star > 0"; 
 
         $stmt = $conn->prepare($sql);
         $stmt->bind_param("i", $worker_id);
