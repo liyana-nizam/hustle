@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('connect.php');
+require_once('connect.php');
 
 $gig_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
@@ -18,13 +18,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 
 // Get all applicants for this gig
-$sql = "SELECT u.user_id, u.username, ga.app_status 
+$sql = "SELECT u.user_id, u.username, u.user_image, ga.app_status 
         FROM gig_application ga
         LEFT JOIN user u ON ga.USER_ID = u.user_id
         WHERE ga.GIG_ID = $gig_id";
 
 $result = $conn->query($sql);
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -34,21 +35,26 @@ $result = $conn->query($sql);
     <link rel="stylesheet" href="base.css" type="text/css">
     <link rel="stylesheet" href="list-style.css" type="text/css">
 </head>
+
 <body>
     <?php include('head.php') ?>
     <div class="content-container">
     <?php if($result->num_rows > 0): ?>
         <div class="list-container">
             <ul class="user-list">
-                
                 <?php while($row = $result->fetch_assoc()): ?>
                     <li class="item-container">
                         <a href="profile.php?id=<?php echo $row['user_id']; ?>">
                             
                             <div class="user-left">
                                 <div class="user-img">
-                                    <img src="" alt="Icon User">
+                                    <?php
+                                        $user_pic = (!empty($row['user_image']) && file_exists($row['user_image'])) ?
+                                        $row['user_image'] : 'images/iconuser.png';
+                                    ?>
+                                    <img src="<?php echo htmlspecialchars($user_pic); ?>" alt="Icon User">
                                 </div>
+
                                 <div class="user-info">
                                     <p class="user-name"><?php echo htmlspecialchars($row['username']); ?></p>
                                 </div>
@@ -60,14 +66,18 @@ $result = $conn->query($sql);
                                         <input type="hidden" name="approve_user_id" value="<?php echo $row['user_id']; ?>">
                                         <button type="submit">Approve</button>
                                     </form>
+
                                     <form method="POST" style="display: contents;">
                                         <input type="hidden" name="reject_user_id" value="<?php echo $row['user_id']; ?>">
                                         <button type="submit">Reject</button>
                                     </form>
+
                                 <?php elseif($row['app_status'] == 'approved'): ?>
                                     <p class="user-filter">Approved</p>
+
                                 <?php elseif($row['app_status'] == 'rejected'): ?>
                                     <p class="user-filter">Rejected</p>
+
                                 <?php endif; ?>
                             </div>
 

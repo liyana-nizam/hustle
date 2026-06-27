@@ -14,7 +14,7 @@
         session_start();
     }
     include("head.php"); 
-    include('connect.php'); 
+    require_once('connect.php');
     ?>
 
     <div class="admin-comtainer">

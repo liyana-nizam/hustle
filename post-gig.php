@@ -1,6 +1,6 @@
 <?php
 session_start();
-include('connect.php');
+require_once('connect.php');
 
      $job_name = $_POST['job_name'];
      $category = $_POST['CATEGORY_ID'];

@@ -13,7 +13,7 @@
         session_start();
     }
     include('head.php');
-    include('connect.php');
+    require_once('connect.php');
 
     if (isset($_SESSION['username'])) {
         $username = $_SESSION['username'];

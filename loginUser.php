@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include('connect.php');
+require_once('connect.php');
 
 if (!isset($_SESSION['username']) && $_SERVER['REQUEST_METHOD'] == 'POST') {
     $_SESSION['username'] = $_POST['username'];

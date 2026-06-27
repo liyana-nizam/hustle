@@ -16,7 +16,7 @@ session_start();
 
 <?php 
 include('head.php'); 
-include('connect.php');
+require_once('connect.php');
 
 $role = $_SESSION['role'] ?? 'gig worker';
 $gig_id = isset($_GET['id']) ? intval($_GET['id']) : 0;

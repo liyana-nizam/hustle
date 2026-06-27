@@ -1,5 +1,5 @@
 <?php
-include('connect.php');
+require_once('connect.php');
 
 $username = $_POST['usernameInput'];
 $pass = $_POST['passwordInput'];

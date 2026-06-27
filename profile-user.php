@@ -2,7 +2,7 @@
     if (session_status() === PHP_SESSION_NONE) {
         session_start();
     }
-    include('connect.php');
+    require_once('connect.php');
     if (isset($_SESSION['username'])) {
             $username = $_SESSION['username'];
             $user_id = intval($_GET['id']);

@@ -10,7 +10,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-include('connect.php');
+require_once('connect.php');
 
 
 //kena defualt value dulu untuk roro deakt php yang variable ni ada tapi isi takda lagi

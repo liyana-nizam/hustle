@@ -9,7 +9,7 @@ if (!isset($_SESSION['username'])) {
     exit();
 }
 
-include('connect.php');
+require_once('connect.php');
 $username_session = $_SESSION['username'];
 
 $sql_select = "SELECT * FROM user WHERE username = '$username_session'";
