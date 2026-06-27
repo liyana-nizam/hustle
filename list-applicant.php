@@ -37,14 +37,14 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <?php include('head.php') ?>
+    <?php include('head.php')?>
     <div class="content-container">
     <?php if($result->num_rows > 0): ?>
         <div class="list-container">
             <ul class="user-list">
                 <?php while($row = $result->fetch_assoc()): ?>
                     <li class="item-container">
-                        <a href="profile.php?id=<?php echo $row['user_id']; ?>">
+                        <a href="profile-user.php?id=<?php echo $row['user_id']; ?>">
                             
                             <div class="user-left">
                                 <div class="user-img">
