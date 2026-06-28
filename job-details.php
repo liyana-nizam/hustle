@@ -135,6 +135,20 @@ session_start();
          WHERE c.GIG_ID = $gig_id
          ORDER BY c.COMMENT_ID DESC"
     );
+    "SELECT c.content, c.COMMENT_ID, c.USER_ID, u.username, u.user_image
+     FROM comment c
+     LEFT JOIN user u ON c.USER_ID = u.user_id
+     WHERE c.GIG_ID = $gig_id
+     ORDER BY c.COMMENT_ID DESC"
+);
+
+    $my_result = $conn->query("SELECT user_image FROM user WHERE user_id = $user_id");
+    $my_row = $my_result->fetch_assoc();
+    $my_pic = (!empty($my_row['user_image']) && file_exists($my_row['user_image']))
+              ? $my_row['user_image']
+              : 'images/iconuser.png';
+?>
+?>
 
     $taken_by_username = 'None';
     $gig_status = isset($row['status']) ? trim(strtolower($row['status'])) : '';
@@ -172,6 +186,112 @@ session_start();
                 <div class="profile-circle">
                     <img src="<?php echo getCategoryImage($row['category_name'] ?? ''); ?>"
                         alt="<?php echo htmlspecialchars($row['category_name'] ?? ''); ?>">
+    </div>
+
+    <h3 class="view-title">View Details</h3>
+
+    <div class="description-box">
+
+        <h3>Job Description:</h3>
+        <p><?php echo nl2br(htmlspecialchars($row['description'] ?? '')); ?></p>
+
+        <br>
+
+        <h3>Location:</h3>
+        <p><?php echo htmlspecialchars($row['location'] ?? ''); ?></p>
+
+        <br>
+
+        <h3>Gig Date & Time:</h3>
+        <p><?php echo htmlspecialchars($row['gig_date'] ?? ''); ?></p>
+
+        <br>
+
+        <h3>Frequency:</h3>
+        <p><?php echo htmlspecialchars($row['frequency'] ?? ''); ?></p>
+
+        <br>
+        
+        <h3>Posted By:</h3>
+        <p><?php echo htmlspecialchars($gig_owner['gig_owner'] ?? ''); ?></p>
+
+    </div>
+
+    <?php if($role == 'gig owner'): ?>
+    <div class="apply-section">
+        <button onclick="window.location.href='list-applicant.php?id=<?php echo $gig_id; ?>'">View Applicants</button>
+        <button id="editBtn" onclick="editGig(<?php echo $gig_id; ?>)">Edit Details</button>
+
+        <form method="POST" style="display: inline;">
+            <input type="hidden" name="toggle_hide" value="1">
+            <input type="hidden" name="current_visibility" value="<?php echo $row['visibility']; ?>">
+            <button type="submit" <?php echo in_array(strtolower($row['status'] ?? ''), ['ongoing', 'completed']) ? 'disabled' : ''; ?>>
+                <?php echo $row['visibility'] == 'visible' ? 'Hide Gig' : 'Unhide Gig'; ?>
+            </button>
+        </form>
+    </div>
+    <?php endif; ?>
+
+<?php if($role == 'gig worker'): ?>
+<div class="apply-section">
+    <form method="POST">
+        <input type="hidden" name="apply_gig_id" value="<?php echo $gig_id; ?>">
+        <button type="submit" id="applyBtn" <?php echo $already_applied ? 'disabled' : ''; ?>>
+            <?php echo $already_applied ? 'Applied' : 'Apply'; ?>
+        </button>
+    </form>
+</div>
+<?php endif; ?>
+
+    <hr>
+
+    <div class="comment-section">
+        <img src="images/comment.png" alt="Comment" class="icon">
+ 
+        <?php if ($comment_error): ?>
+            <p class="comment-msg error"><?php echo htmlspecialchars($comment_error); ?></p>
+        <?php endif; ?>
+        <?php if (isset($_GET['success']) && $_GET['success'] == 1): ?>
+            <script>
+                alert('Comment posted successfully!');
+            </script>
+        <?php endif; ?>
+ 
+        <form method="POST" class="comment-form">
+            <input type="hidden" name="gig_id" value="<?php echo $gig_id; ?>">
+
+            <img src="<?php echo htmlspecialchars($my_pic); ?>" alt="My Profile" class="comment-my-avatar">
+            <input
+                type="text"
+                name="comment_content"
+                id="commentInput"
+                placeholder="Write a Comment....."
+                autocomplete="off"
+            >
+            <button type="submit" class="post-btn">Post</button>
+        </form>
+    </div>
+ 
+    <!-- Comment List Section -->
+    <div class="comments-list">
+        <?php if ($comments_result && $comments_result->num_rows > 0): ?>
+            <?php while ($comment = $comments_result->fetch_assoc()): ?>
+                <div class="comment-item">
+                    <a href="profile-user.php?id=<?php echo $comment['USER_ID']; ?>">
+                        <div class="comment-avatar">
+                            <img src="<?php echo htmlspecialchars(!empty($comment['user_image']) && file_exists($comment['user_image']) ? $comment['user_image'] : 'images/iconuser.png'); ?>" 
+                                 alt="<?php echo htmlspecialchars($comment['username'] ?? ''); ?>">
+                        </div>
+                    </a>
+                    <div class="comment-body">
+                        <span class="comment-username">
+                            <?php echo htmlspecialchars($comment['username'] ?? 'Unknown'); ?>
+                        </span>
+                        <p class="comment-text">
+                            <?php echo nl2br(htmlspecialchars($comment['content'])); ?>
+                        </p>
+                        <button class="reply-btn" onclick="replyTo('<?php echo htmlspecialchars($comment['username']); ?>')">Reply</button>
+                    </div>
                 </div>
                 <div class="gig-info">
                     <h3><?php echo htmlspecialchars($row['gig_name'] ?? ''); ?></h3>
