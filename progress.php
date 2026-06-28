@@ -37,8 +37,7 @@
             <h1 class="main-title">Gig Progress</h1>
             <?php if ($role == 'admin'){ ?>
             <div class="action-buttons">
-                <button class="action-btn">Download Report</button>
-                <button class="action-btn">Display Graph</button>
+                <button class="action-btn"> <a href="view-report.php">View Report</a></button>
             </div>
             <?php } ?>
         </div>
