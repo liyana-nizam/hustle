@@ -217,13 +217,13 @@ session_start();
             <h3>Taken By:</h3>
             <p>
                 <?php if ($taken_by_username !== 'None'): ?>
-                    <span style="color: #28a745; font-weight: bold;">
+                    
                         <?php echo htmlspecialchars($taken_by_username); ?>
-                    </span>
+                    
                 <?php else: ?>
-                    <span style="color: #6c757d; font-style: italic;">
+                    
                         Not taken yet
-                    </span>
+                    
                 <?php endif; ?>
             </p>
         </div>
