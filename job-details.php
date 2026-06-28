@@ -106,12 +106,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_content'])) {
 }
 
     $comments_result = $conn->query(
-    "SELECT c.content, c.COMMENT_ID, u.username 
+    "SELECT c.content, c.COMMENT_ID, c.USER_ID, u.username, u.user_image
      FROM comment c
      LEFT JOIN user u ON c.USER_ID = u.user_id
      WHERE c.GIG_ID = $gig_id
      ORDER BY c.COMMENT_ID DESC"
 );
+
+    $my_result = $conn->query("SELECT user_image FROM user WHERE user_id = $user_id");
+    $my_row = $my_result->fetch_assoc();
+    $my_pic = (!empty($my_row['user_image']) && file_exists($my_row['user_image']))
+              ? $my_row['user_image']
+              : 'images/iconuser.png';
+?>
 ?>
 
 <div class="details-container">
@@ -226,6 +233,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_content'])) {
  
         <form method="POST" class="comment-form">
             <input type="hidden" name="gig_id" value="<?php echo $gig_id; ?>">
+
+            <img src="<?php echo htmlspecialchars($my_pic); ?>" alt="My Profile" class="comment-my-avatar">
             <input
                 type="text"
                 name="comment_content"
@@ -242,7 +251,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_content'])) {
         <?php if ($comments_result && $comments_result->num_rows > 0): ?>
             <?php while ($comment = $comments_result->fetch_assoc()): ?>
                 <div class="comment-item">
-                    <div class="comment-avatar"></div>
+                    <a href="profile-user.php?id=<?php echo $comment['USER_ID']; ?>">
+                        <div class="comment-avatar">
+                            <img src="<?php echo htmlspecialchars(!empty($comment['user_image']) && file_exists($comment['user_image']) ? $comment['user_image'] : 'images/iconuser.png'); ?>" 
+                                 alt="<?php echo htmlspecialchars($comment['username'] ?? ''); ?>">
+                        </div>
+                    </a>
                     <div class="comment-body">
                         <span class="comment-username">
                             <?php echo htmlspecialchars($comment['username'] ?? 'Unknown'); ?>
