@@ -250,6 +250,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_content'])) {
                         <p class="comment-text">
                             <?php echo nl2br(htmlspecialchars($comment['content'])); ?>
                         </p>
+                        <button class="reply-btn" onclick="replyTo('<?php echo htmlspecialchars($comment['username']); ?>')">Reply</button>
                     </div>
                 </div>
             <?php endwhile; ?>
@@ -265,7 +266,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['comment_content'])) {
 function editGig(id){
     window.location.href = "edit-details.php?id=" + id;
 }
-
+function replyTo(username) {
+    const input = document.getElementById('commentInput');
+    input.value = '@' + username + ' ';
+    input.focus();
+    input.scrollIntoView({ behavior: 'smooth' });
+}
 
 </script>
 
