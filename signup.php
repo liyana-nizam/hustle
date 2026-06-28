@@ -1,3 +1,4 @@
+<?php $maxDate = date('Y-m-d', strtotime('-16 years')); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -58,7 +59,7 @@
 
             <div class="formSection">
                 <label>Birthday</label>
-                <input type="date" id="birthdayInput" name="birthdayInput" required>
+                <input type="date" id="birthdayInput" name="birthdayInput" required max="<?php echo $maxDate; ?>">
             </div>
 
             <div class="formRole">
