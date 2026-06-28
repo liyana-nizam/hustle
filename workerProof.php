@@ -53,6 +53,7 @@
         if (move_uploaded_file($file['tmp_name'], $upload_path))
         {
             $conn->query("UPDATE gig_application SET proof = '$new_proof' WHERE GIG_ID = '$gig_id'");
+            $conn->query("UPDATE gig_detail SET status = 'Completed' WHERE GIG_ID = '$gig_id'");
             echo "<script>alert('Upload successful!');</script>";
         }
     }
@@ -80,6 +81,7 @@
                     <?php $img = getCategoryImage($row['category_name'] ?? ''); ?>
                     <img src="<?php echo $img; ?>" alt="<?php echo htmlspecialchars($row['category_name'] ?? ''); ?>">
                 </div>
+                
                 <div class="gig-info">
                     <p class="gig-name"><?php echo htmlspecialchars($row['gig_name']); ?></p>
                     <p class="gig-salary">RM <?php echo htmlspecialchars($row['salary']); ?></p>
