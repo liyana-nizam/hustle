@@ -94,8 +94,11 @@ require_once('connect.php');
     </div>
     </form>
 </main>
+
+<?php 
+include('footer.php'); 
 $conn->close();
-<?php include('footer.php'); ?>
+?>
 
 <script>
     const gigDateInput = document.getElementById('gig_date');
