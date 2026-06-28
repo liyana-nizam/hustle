@@ -50,7 +50,7 @@ if (isset($_SESSION['username']))
 
         </form>
 
-        <h2>Don't have an account? <a href="signup.html">Sign Up</a></h2>
+        <h2>Don't have an account? <a href="signup.php">Sign Up</a></h2>
 
     </div>
 </body>
