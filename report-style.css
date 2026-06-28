@@ -44,3 +44,90 @@ button a{
     color: white;
     text-decoration: none;
 }
+
+.chart-hint{
+    display: flex;
+    justify-content: center;
+}
+
+.hint{
+    display: flex;
+    align-items: center;
+    margin: 25px 25px 0px;
+}
+
+.hint-dot{
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+}
+
+.chart-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    padding: 20px;
+    margin: 15px auto; 
+}
+
+.chart-row{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.bar-container{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    width: 100%;
+}
+
+.bar-wrapper{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+}
+
+.coloured-bar{
+    height: 18px;
+    border-radius: 4px;
+    min-width: 2%;
+}
+
+.bar-value{
+    min-width: 25px;
+}
+
+.category-name{
+    width: 150px;
+    font-weight: 600;
+}
+
+.summary-container{
+    padding: 10px 20% 35px;
+}
+
+@media print {
+  *{
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;         
+  }
+
+  button{
+    display: none;
+  }
+
+  .summary-container{
+    padding: 10px 2% 35px;
+  }
+}
+
+@media (max-width: 480px) {
+    .summary-container{
+        padding: 5px 0 35px;
+    }
+}
