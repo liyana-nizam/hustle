@@ -97,5 +97,19 @@ require_once('connect.php');
 $conn->close();
 <?php include('footer.php'); ?>
 
+<script>
+    const gigDateInput = document.getElementById('gig_date');
+    
+    const now = new Date();
+    // Format to YYYY-MM-DDTHH:MM (required format for datetime-local)
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    const minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+    gigDateInput.min = minDateTime;
+</script>
 </body>
 </html>
