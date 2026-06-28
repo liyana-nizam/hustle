@@ -54,7 +54,7 @@ require_once('connect.php');
         <div class="row-2col">
         <div class="form-group">
             <label for="district">District</label>
-                <select id="district" name="district" class="custom-select">
+                <select id="district" name="district" class="custom-select" required>
                     <option value="" disabled selected>District</option>
                     <option value="Melaka Tengah">Melaka Tengah</option>
                     <option value="Alor Gajah">Alor Gajah</option>
