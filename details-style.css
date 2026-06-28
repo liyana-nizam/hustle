@@ -315,3 +315,18 @@ body{
     text-align: center;
     padding: 10px 0;
 }
+
+.reply-btn {
+    background: none;
+    border: none;
+    color: #888;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 2px 0;
+    margin-top: 4px;
+}
+
+.reply-btn:hover {
+    color: rgb(120, 0, 52);
+    text-decoration: underline;
+}
