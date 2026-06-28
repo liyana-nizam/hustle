@@ -216,3 +216,8 @@
     background-color: orange !important;
 
 }
+
+.action-buttons a{
+    text-decoration: none;
+    color: white;
+}
