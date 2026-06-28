@@ -54,7 +54,7 @@ require_once('connect.php');
         <div class="row-2col">
         <div class="form-group">
             <label for="district">District</label>
-                <select id="district" name="district" class="custom-select">
+                <select id="district" name="district" class="custom-select" required>
                     <option value="" disabled selected>District</option>
                     <option value="Melaka Tengah">Melaka Tengah</option>
                     <option value="Alor Gajah">Alor Gajah</option>
@@ -94,8 +94,25 @@ require_once('connect.php');
     </div>
     </form>
 </main>
-$conn->close();
-<?php include('footer.php'); ?>
 
+<?php 
+include('footer.php'); 
+$conn->close();
+?>
+
+<script>
+    const gigDateInput = document.getElementById('gig_date');
+    
+    const now = new Date();
+    // Format to YYYY-MM-DDTHH:MM (required format for datetime-local)
+    const year = now.getFullYear();
+    const month = String(now.getMonth() + 1).padStart(2, '0');
+    const day = String(now.getDate()).padStart(2, '0');
+    const hours = String(now.getHours()).padStart(2, '0');
+    const minutes = String(now.getMinutes()).padStart(2, '0');
+
+    const minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
+    gigDateInput.min = minDateTime;
+</script>
 </body>
 </html>

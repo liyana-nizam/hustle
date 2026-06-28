@@ -1,9 +1,8 @@
 body{
-    background-image: url('images/backgroundHustle.png');
-    background-color: rgb(150, 0, 66);
+    background-color: rgb(255, 255, 255);
     font-family: Arial;
     margin: 0;
-    padding: 20px;
+    padding: 0;
     box-sizing: border-box;
     background-size: cover;           
     background-position: center;     

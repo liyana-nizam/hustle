@@ -12,6 +12,13 @@ $phone = $_POST['phoneInput'];
 $bankAccount = $_POST['accInput'];
 $profilePic = "images/iconuser.png";
 
+$age = (new DateTime($birthday))->diff(new DateTime())->y;
+if ($age < 16) {
+    echo "<p style='text-align:center; color:red;'>You must be at least 16 years old to register.</p>";
+    echo "<meta http-equiv='refresh' content='2;URL=signup.php'>";
+    exit();
+}
+
 
 if (isset($_FILES['profileInput']) && $_FILES['profileInput']['error'] == 0)
     {
