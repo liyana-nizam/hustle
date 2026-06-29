@@ -62,12 +62,12 @@ $result = $conn->query($sql);
 
                             <div class="user-right">
                                 <?php if($row['app_status'] == 'pending'): ?>
-                                    <form method="POST" style="display: contents;">
+                                    <form method="POST" style="display: contents;" onsubmit="return confirm('Are you sure you want to approve this gig worker?');">
                                         <input type="hidden" name="approve_user_id" value="<?php echo $row['user_id']; ?>">
                                         <button type="submit">Approve</button>
                                     </form>
 
-                                    <form method="POST" style="display: contents;">
+                                    <form method="POST" style="display: contents;" onsubmit="return confirm('Are you sure you want to reject this gig worker?');">
                                         <input type="hidden" name="reject_user_id" value="<?php echo $row['user_id']; ?>">
                                         <button type="submit">Reject</button>
                                     </form>
