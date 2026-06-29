@@ -26,7 +26,8 @@ $sql = "SELECT
             u.username AS owner_name,
             g.gig_name,
             ga.feedback_message,
-            ga.star
+            ga.star,
+            u.user_image
         FROM 
             gig_application ga
         INNER JOIN 
@@ -55,7 +56,13 @@ $sql = "SELECT
                     <a href="#">
                         <div class="user-left" style="align-items: flex-start;">
                             <div class="user-img">
-                                <img src="" alt="Icon User">
+                                 <?php 
+                            $user_pic = (!empty($row['user_image']) && file_exists($row['user_image'])) ? 
+                            $row['user_image'] : 'images/iconuser.png';
+                            ?>
+
+                            <img src="<?php echo htmlspecialchars($user_pic); ?>" alt="Icon User">
+
                             </div>
                             <div class="user-info" style="display: flex; flex-direction: column; gap: 4px;">
                                 <p class="user-name" style="font-weight: bold; margin: 0;">
