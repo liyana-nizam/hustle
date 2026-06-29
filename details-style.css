@@ -245,10 +245,19 @@ body{
     .comment-section{
         flex-direction:row;
         padding:10px;
+        min-width: 0;
     }
 
     .comment-section input{
         font-size:14px;
+    }
+
+    .comment-form {
+        min-width: 0;
+    }
+
+    .comment-form input[type="text"] {
+        min-width: 0;
     }
 
     .back-btn a{

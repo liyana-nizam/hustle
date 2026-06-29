@@ -22,15 +22,15 @@ $role = $_SESSION['role'];
                     <li><a href="progress.php">Gig Progress</a></li>
                     <li><a href="admin-list-users.php">List Users</a></li>
                     <li><a href="admin-list-gigs.php">List Gigs</a></li>
-                    <li><a href="profile-admin.php">Profile</a></li>
+                    <li><a href="profile.php">Profile</a></li>
                 <?php } elseif($role == 'gig worker'){ ?>
                     <li><a href="progress.php">Gig Progress</a></li>
                     <li><a href="worker-find-gigs.php">Find Gigs</a></li>
-                    <li><a href="profile-worker.php">Profile</a></li>
+                    <li><a href="profile.php">Profile</a></li>
                 <?php } elseif($role == 'gig owner') {?>
                     <li><a href="progress.php">Gig Progress</a></li>
                     <li><a href="gig_post.php">Post a Gig</a></li>
-                    <li><a href="profile-owner.php">Profile</a></li>
+                    <li><a href="profile.php">Profile</a></li>
                 <?php } ?>
                 </ul>
             </div>
