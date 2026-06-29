@@ -54,7 +54,6 @@
     ?>
 
     <div class="payment-container"><!-- Container besar untuk page tu -->
-    
         <div class="back-btn">
         <a href="progress.php">
             <img src="images/back.png" alt="Back" class="icon">
@@ -64,7 +63,6 @@
 
         <div class="item-container">
                 <div class="gig-left">
-
                     <div class="gig-img">
                         <img src="<?php echo getCategoryImage($row['category_name'] ?? ''); ?>"
                         alt="<?php echo htmlspecialchars($row['category_name'] ?? ''); ?>">
@@ -81,7 +79,6 @@
                     <button class="gig-filter"><?php echo htmlspecialchars($short_location); ?></button>
                 </div>
         </div>
-
 
         <h2>Gig Completion Proof</h2>
             <ul id="fileList">
@@ -108,79 +105,83 @@
                ?>
             </ul>
 
-
             <hr class="divider">
 
-<?php
-$sql_fb = "SELECT star, feedback_message, payment_proof FROM gig_application WHERE GIG_ID = '$gig_id'";
-$result_fb = $conn->query($sql_fb);
-$row_fb = $result_fb->fetch_assoc();
-$payment_files = $row_fb['payment_proof'] ?? '';
-$role = $_SESSION['role'] ?? '';
-?>
-
-<?php if ($role == 'gig owner' && empty($payment_files)) { ?>
-
-    <form method="POST" enctype="multipart/form-data">
-        <input type="hidden" name="gig_id" value="<?php echo $gig_id; ?>">
-        <div class="rating-container">
-            <h3>Your Rating</h3>
-            <div class="formSection">
-                <input type="number" name="star" id="rateInput" required placeholder="1 - 5" min="1" max="5">
-            </div>
-        </div>
-        <div class="rating-container">
-            <h3>Give a Feedback Message</h3>
-            <div class="formSection">
-                <textarea name="feedbackMessage" id="feedbackMessage" rows="4" placeholder="Type your message here..."></textarea>
-            </div>
-        </div>
-        <h2>Upload Payment Proof</h2>
-        <div class="file-upload-container">
-            <input type="file" name="paymentProof" accept="image/*,.pdf">
-            <button class="view-btn" type="button" id="viewBtn">View</button>
-        </div>
-        <button type="submit" name="submit_all" class="upload-btn">Upload</button>
-    </form>
-
-<?php } else { ?>
-
-    <div class="rating-container">
-        <h3>Rating</h3>
-        <div class="formSection">
-            <p><?php echo htmlspecialchars($row_fb['star'] ?? '-'); ?> / 5</p>
-        </div>
-    </div>
-    <div class="rating-container">
-        <h3>Feedback Message</h3>
-        <div class="formSection">
-            <p><?php echo htmlspecialchars($row_fb['feedback_message'] ?? '-'); ?></p>
-        </div>
-    </div>
-    <h2>Payment Proof</h2>
-    <ul id="paymentList">
         <?php
-        if (!empty($payment_files))
-        {
-            $files = explode(',', $payment_files);
-            foreach ($files as $f)
-            {
-                echo '<li>' . htmlspecialchars($f) . '
-                      <a href="images/' . htmlspecialchars($f) . '" target="_blank">
-                      <button class="view-btn">View</button></a></li>';
-            }
-        }
-        else
-        {
-            echo '<li>No payment proof uploaded yet.</li>';
-        }
+            $sql_fb = "SELECT star, feedback_message, payment_proof FROM gig_application WHERE GIG_ID = '$gig_id'";
+            $result_fb = $conn->query($sql_fb);
+            $row_fb = $result_fb->fetch_assoc();
+            $payment_files = $row_fb['payment_proof'] ?? '';
+            $role = $_SESSION['role'] ?? '';
         ?>
-    </ul>
 
-<?php } ?>
+        <?php if ($role == 'gig owner' && empty($payment_files)) { ?>
 
+        <form method="POST" enctype="multipart/form-data">
+            <input type="hidden" name="gig_id" value="<?php echo $gig_id; ?>">
+            <div class="rating-container">
+                <h3>Your Rating</h3>
+                <div class="formSection">
+                    <input type="number" name="star" id="rateInput" required placeholder="1 - 5" min="1" max="5">
+                </div>
+            </div>
+
+            <div class="rating-container">
+                <h3>Give a Feedback Message</h3>
+                <div class="formSection">
+                    <textarea name="feedbackMessage" id="feedbackMessage" rows="4" placeholder="Type your message here..."></textarea>
+                </div>
+            </div>
+
+            <h2>Upload Payment Proof</h2>
+
+            <div class="file-upload-container">
+                <input type="file" name="paymentProof" accept="image/*,.pdf">
+                <button class="view-btn" type="button" id="viewBtn">View</button>
+            </div>
+            <button type="submit" name="submit_all" class="upload-btn">Upload</button>
+        </form>
+
+        <?php } else { ?>
+
+        <div class="rating-container">
+            <h3>Rating</h3>
+            <div class="formSection">
+                <p><?php echo htmlspecialchars($row_fb['star'] ?? '-'); ?> / 5</p>
+            </div>
+        </div>
+
+        <div class="rating-container">
+            <h3>Feedback Message</h3>
+            <div class="formSection">
+                <p><?php echo htmlspecialchars($row_fb['feedback_message'] ?? '-'); ?></p>
+            </div>
+        </div>
+
+        <h2>Payment Proof</h2>
+        <ul id="paymentList">
+            <?php
+                if (!empty($payment_files))
+                {
+                    $files = explode(',', $payment_files);
+                    foreach ($files as $f)
+                    {
+                        echo '<li>' . htmlspecialchars($f) . '
+                        <a href="images/' . htmlspecialchars($f) . '" target="_blank">
+                        <button class="view-btn">View</button></a></li>';
+                    }
+                }
+                else
+                {
+                    echo '<li>No payment proof uploaded yet.</li>';
+                }
+            ?>
+        </ul>
+
+        <?php } ?>
+    </div>
 </div>
-</div>
+
     <script>
         var paymentInput = document.querySelector('[name="paymentProof"]');
         if (paymentInput)
@@ -203,5 +204,4 @@ $role = $_SESSION['role'] ?? '';
     <?php include('footer.php'); ?>
 
 </body>
-
 </html>

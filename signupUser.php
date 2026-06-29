@@ -13,7 +13,8 @@ $bankAccount = $_POST['accInput'];
 $profilePic = "images/iconuser.png";
 
 $age = (new DateTime($birthday))->diff(new DateTime())->y;
-if ($age < 16) {
+if ($age < 16) 
+{
     echo "<p style='text-align:center; color:red;'>You must be at least 16 years old to register.</p>";
     echo "<meta http-equiv='refresh' content='2;URL=signup.php'>";
     exit();
@@ -38,20 +39,19 @@ if (isset($_FILES['profileInput']) && $_FILES['profileInput']['error'] == 0)
 
     }
     
-
-
 // Hash password sebelum simpan
 $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
-
 
 // Masukkan ke dalam database
 $sql = "INSERT INTO user (username, password, phone_number, role, birthday, address, gender, name, bank_account, user_image)
         VALUES ('$username', '$hashedPassword', '$phone', '$role', '$birthday', '$address', '$gender', '$name', '$bankAccount', '$profilePic')";
 
-if ($conn->query($sql) === TRUE) {
+if ($conn->query($sql) === TRUE) 
+{
     echo "New record created successfully";
     echo "<meta http-equiv='refresh' content='2;URL=login.php'>";
-} else {
+} else 
+{
     echo "Error: " . $conn->error;
 }
 

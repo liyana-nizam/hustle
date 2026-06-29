@@ -7,58 +7,64 @@
     <link rel="stylesheet" href="base.css" type="text/css">
     <link rel="stylesheet" href="list-style.css" type="text/css">
 </head>
+
 <body>
     <?php
-    if (session_status() === PHP_SESSION_NONE) {
+    if (session_status() === PHP_SESSION_NONE) 
+    {
         session_start();
     }
     include('head.php');
     require_once('connect.php');
 
-    if (isset($_SESSION['username'])) {
-            $username = $_SESSION['username'];
+    if (isset($_SESSION['username'])) 
+    {
+        $username = $_SESSION['username'];
+        $searchUser = isset($_GET['searchUser']) ? trim($_GET['searchUser']) : '';
+        $filterCategory = isset($_GET['filterCategory']) ? trim($_GET['filterCategory']) : '';
+        $filterDistrict = isset($_GET['filterDistrict']) ? trim($_GET['filterDistrict']) : '';
 
-            $searchUser = isset($_GET['searchUser']) ? trim($_GET['searchUser']) : '';
-            $filterCategory = isset($_GET['filterCategory']) ? trim($_GET['filterCategory']) : '';
-            $filterDistrict = isset($_GET['filterDistrict']) ? trim($_GET['filterDistrict']) : '';
+        $sql = "SELECT gd.*, g.gig_name, c.category_name
+                FROM gig_detail gd 
+                INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID
+                LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                WHERE g.visibility = 'visible' AND gd.status = 'pending'";
+        $result = $conn->query($sql);
 
-            $sql = "SELECT gd.*, g.gig_name, c.category_name
-                    FROM gig_detail gd 
-                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID
-                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
-                    WHERE g.visibility = 'visible' AND gd.status = 'pending'";
-            $result = $conn->query($sql);
+        $params = [];
+        $types = "";
 
-            $params = [];
-            $types = "";
-
-            if (!empty($searchUser)) {
+            if (!empty($searchUser)) 
+            {
                 $sql .= " AND g.gig_name LIKE ?";
                 $params[] = "%" . $searchUser . "%";
                 $types .= "s";
             }
 
-            if (!empty($filterCategory)) {
+            if (!empty($filterCategory)) 
+            {
                 $sql .= " AND c.category_name = ?";
                 $params[] = $filterCategory;
                 $types .= "s";
             }
 
-            if (!empty($filterDistrict)) {
+            if (!empty($filterDistrict)) 
+            {
                 $sql .= " AND gd.location LIKE ?";
                 $params[] = "%" . $filterDistrict . "%";
                 $types .= "s";
             }
 
             $stmt = $conn->prepare($sql);
-            if (!empty($params)) {
+            if (!empty($params)) 
+            {
                 $stmt->bind_param($types, ...$params);
             }
             $stmt->execute();
             $result = $stmt->get_result();
     ?>
+
     <div class="content-container">
-        <!-- Search Bar & Filter -->
         <div class="search-filter-container">
             <form action="" method="GET">
                 <div class="search-section">
@@ -91,15 +97,16 @@
                 </div>  
 
                 <button type="submit">Search</button>
-
             </form>
         </div>
 
         <?php
-        if ($result && $result->num_rows > 0) {
-             while ($row = $result->fetch_assoc()) {
+        if ($result && $result->num_rows > 0) 
+        {
+            while ($row = $result->fetch_assoc()) 
+            {
         ?>
-        <!-- List of Gigs -->
+        
         <div class="list-container">
             <ul class="gig-list">
                 <li class="item-container">
@@ -126,12 +133,14 @@
         </div>
 
         <?php 
-             }} else {
+             }} else 
+            {
                 echo "<p style='text-align:center; padding-top:15px'>No Gig Found.</p>";
             }
-        } else {
+            } else 
+            {
             echo "<p style='text-align:center;'>You must be logged in to view profile.</p>";
-        }
+            }
         ?>
     </div>
 

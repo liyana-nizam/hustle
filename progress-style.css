@@ -1,12 +1,13 @@
-
-.content-container {
+.content-container 
+{
     max-width: 1200px;
     margin: 40px auto;
     padding: 0 20px;
     box-sizing: border-box;
 }
 
-.title-action-section {
+.title-action-section 
+{
     display: flex;
     align-items: center;
     gap: 20px;
@@ -14,7 +15,8 @@
     flex-wrap: wrap; 
 }
 
-.main-title {
+.main-title 
+{
     color: rgb(150, 0, 66); 
     font-size: 32px;
     font-weight: 700;
@@ -22,15 +24,16 @@
     font-family: sans-serif;
 }
 
-.column-title {
+.column-title 
+{
     font-size: 24px;
     font-weight: 700;
     margin-bottom: 0px; 
     font-family: sans-serif;
 }
 
-/* Papan Grid Utama (3 Lajur) */
-.gig-board {
+.gig-board 
+{
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
     gap: 30px;
@@ -38,14 +41,16 @@
     margin-top: 10px; 
 }
 
-.column {
+.column 
+{
     display: flex;
     flex-direction: column;
     gap: 20px; 
 }
 
-.gig-card {
-    position: relative; /* WAJIB: Untuk mengawal saiz overlay di bawah */
+.gig-card 
+{
+    position: relative; 
     border: 2px solid rgb(150, 0, 66);
     border-radius: 12px;
     padding: 20px;
@@ -56,27 +61,32 @@
     box-shadow: 0 2px 5px rgba(0,0,0,0.05);
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
-.gig-card:hover {
+
+.gig-card:hover 
+{
     transform: translateY(-3px);
     box-shadow: 0 5px 15px rgba(107, 29, 61, 0.15);
 }
 
-.card-clickable-overlay {
+.card-clickable-overlay 
+{
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    z-index: 1; /* Duduk di atas teks biasa, di bawah butang */
+    z-index: 1; 
 }
 
-.card-header {
+.card-header 
+{
     display: flex;
     align-items: center;
     gap: 15px;
 }
 
-.gig-img img {
+.gig-img img 
+{
     width: 55px;
     height: 55px;
     border-radius: 50%;
@@ -85,25 +95,29 @@
     padding: 4px;
 }
 
-.job-details h3 {
+.job-details h3 
+{
     font-size: 22px;
     font-weight: 600;
     margin: 0 0 2px 0;
     font-family: sans-serif;
 }
 
-.salary {
+.salary 
+{
     font-size: 16px;
     color: #555555;
     margin: 0;
 }
 
-.card-tags {
+.card-tags 
+{
     display: flex;
     gap: 10px;
 }
 
-.tag {
+.tag 
+{
     border: 1.5px solid #000000;
     padding: 5px 16px;
     border-radius: 20px;
@@ -112,43 +126,49 @@
     background-color: transparent;
 }
 
-
-.card-actions {
+.card-actions 
+{
     display: flex;
     margin-top: 5px;
     position: relative;
-    z-index: 2; /* Naikkan ke atas lapisan overlay supaya boleh diklik */
+    z-index: 2; 
 }
 
-.card-actions.split-actions {
+.card-actions.split-actions 
+{
     justify-content: flex-start;
     gap: 12px;
 }
 
-.card-actions.single-action-right {
+.card-actions.single-action-right 
+{
     justify-content: flex-end;
 }
 
-.gig-card .card-actions.split-actions {
+.gig-card .card-actions.split-actions 
+{
     justify-content: space-between !important;
     width: 100% !important;
 }
 
-.gig-card .card-actions.split-actions a {
+.gig-card .card-actions.split-actions a 
+{
     display: inline-block;
     text-decoration: none;
     position: relative;
     z-index: 2; 
 }
 
-.action-buttons {
+.action-buttons 
+{
     display: flex;
     gap: 12px;
 }
 
 .edit-btn, 
 .action-btn, 
-.rate-btn {
+.rate-btn 
+{
     background-color: rgb(150, 0, 66);
     color: #ffffff;
     border: none;
@@ -165,14 +185,15 @@
 
 .edit-btn:hover, 
 .action-btn:hover, 
-.rate-btn:hover {
+.rate-btn:hover 
+{
     background-color: #4a1229;
 }
 
-.rate-btn {
+.rate-btn 
+{
     padding: 8px 24px;
 }
-
 
 .complete-btn 
 {
@@ -185,16 +206,19 @@
     z-index: 2;
 }
 
-.gig-card {
+.gig-card 
+{
     position: relative;
 }
 
-.gig-hidden {
+.gig-hidden 
+{
     opacity: 0.6;
     border: 1px dashed grey !important;
 }
 
-.hidden-badge {
+.hidden-badge 
+{
     position: absolute;
     top: 8px;
     right: 8px;
@@ -207,17 +231,20 @@
     z-index: 1;
 }
 
-.gig-pending-app {
+.gig-pending-app 
+{
     opacity: 0.6;
     border: 1px dashed orange !important;
 }
 
-.pending-badge {
+.pending-badge 
+{
     background-color: orange !important;
 
 }
 
-.action-buttons a{
+.action-buttons a
+{
     text-decoration: none;
     color: white;
 }
