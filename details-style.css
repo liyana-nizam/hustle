@@ -195,7 +195,12 @@ body{
         padding:20px;
     }
 
-    
+    .apply-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
     .gig-card{
         flex-direction: column;
         align-items: flex-start; 
@@ -255,6 +260,7 @@ body{
         font-size:14px;
         padding:8px;
     }
+
 }
 
 
