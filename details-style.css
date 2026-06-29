@@ -195,7 +195,12 @@ body{
         padding:20px;
     }
 
-    
+    .apply-section {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+    }
+
     .gig-card{
         flex-direction: column;
         align-items: flex-start; 
@@ -240,10 +245,19 @@ body{
     .comment-section{
         flex-direction:row;
         padding:10px;
+        min-width: 0;
     }
 
     .comment-section input{
         font-size:14px;
+    }
+
+    .comment-form {
+        min-width: 0;
+    }
+
+    .comment-form input[type="text"] {
+        min-width: 0;
     }
 
     .back-btn a{
@@ -255,6 +269,7 @@ body{
         font-size:14px;
         padding:8px;
     }
+
 }
 
 

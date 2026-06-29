@@ -148,5 +148,32 @@ h2
     margin-bottom: 10px;
 }
 
+@media (max-width: 480px) 
+{
+    .item-container 
+    {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+        margin: 20px 10px;
+    }
 
+    .gig-right 
+    {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+    }
+
+    .gig-filter 
+    {
+        padding: 6px 14px;
+        font-size: 0.85em;
+    }
+
+    .gig-left 
+    {
+        align-items: flex-start;
+    }
+}
 

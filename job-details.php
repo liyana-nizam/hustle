@@ -62,7 +62,7 @@ session_start();
                 $clash_row = $clash_query->fetch_assoc();
                 $clashed_job = htmlspecialchars($clash_row['gig_name']);
                 $clashed_status = htmlspecialchars($clash_row['app_status']);
-                
+
                 echo "<script>alert('Application failed! You need at least a 1-hour gap between gigs. This clashes with your gig ( $clashed_job ) which is $clashed_status at a time.');</script>";
             } else {
                 // 3. Jika lulus syarat gap 1 jam, baru masuk database
@@ -112,7 +112,7 @@ session_start();
 
     $result = $conn->query($sql);
     $result2 = $conn->query($sql2);
-    
+
     $row = $result->fetch_assoc();
     $gig_owner = $result2->fetch_assoc();
 
@@ -217,13 +217,13 @@ session_start();
             <h3>Taken By:</h3>
             <p>
                 <?php if ($taken_by_username !== 'None'): ?>
-                    
-                        <?php echo htmlspecialchars($taken_by_username); ?>
-                    
+
+                    <?php echo htmlspecialchars($taken_by_username); ?>
+
                 <?php else: ?>
-                    
-                        Not taken yet
-                    
+
+                    Not taken yet
+
                 <?php endif; ?>
             </p>
         </div>
@@ -282,9 +282,9 @@ session_start();
                     <div class="comment-item" style="display: flex; margin-bottom: 15px;">
                         <a href="profile-user.php?id=<?php echo $comment['USER_ID']; ?>">
                             <div class="comment-avatar" style="margin-right: 15px;">
-                                <img src="<?php echo htmlspecialchars(!empty($comment['user_image']) && file_exists($comment['user_image']) ? $comment['user_image'] : 'images/iconuser.png'); ?>" 
-                                     alt="<?php echo htmlspecialchars($comment['username'] ?? ''); ?>"
-                                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
+                                <img src="<?php echo htmlspecialchars(!empty($comment['user_image']) && file_exists($comment['user_image']) ? $comment['user_image'] : 'images/iconuser.png'); ?>"
+                                    alt="<?php echo htmlspecialchars($comment['username'] ?? ''); ?>"
+                                    style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                             </div>
                         </a>
                         <div class="comment-body">
@@ -314,7 +314,9 @@ session_start();
             const input = document.getElementById('commentInput');
             input.value = '@' + username + ' ';
             input.focus();
-            input.scrollIntoView({ behavior: 'smooth' });
+            input.scrollIntoView({
+                behavior: 'smooth'
+            });
         }
     </script>
 

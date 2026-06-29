@@ -75,13 +75,15 @@
 
                     else 
                     {
-                        $sql_pending = "SELECT gd.*, g.gig_name, g.description, g.visibility, c.category_name
-                                        FROM gig_detail gd 
-                                        INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
-                                        LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
-                                        INNER JOIN gig_application ga ON g.GIG_ID = ga.GIG_ID
-                                        WHERE gd.status = 'Pending' AND ga.user_id = '$user_id'";
-                    }
+                       
+    $sql_pending = "SELECT gd.*, g.gig_name, g.description, g.visibility, c.category_name
+                    FROM gig_detail gd 
+                    INNER JOIN gig g ON gd.GIG_ID = g.GIG_ID 
+                    LEFT JOIN category c ON gd.CATEGORY_ID = c.CATEGORY_ID
+                    INNER JOIN gig_application ga ON g.GIG_ID = ga.GIG_ID
+                    WHERE gd.status = 'Pending' AND ga.user_id = '$user_id'
+                    AND ga.app_status != 'rejected'";
+}
 
                     $result_pending = $conn->query($sql_pending);
 
