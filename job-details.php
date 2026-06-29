@@ -42,12 +42,12 @@ session_start();
         if ($check && $check->num_rows > 0) {
             echo "<script>alert('You already applied for this gig.');</script>";
         } else {
-            // 1. Dapatkan tarikh & masa (gig_date) bagi gig yang hendak dimohon
+            
             $current_gig_query = $conn->query("SELECT gig_date FROM gig_detail WHERE GIG_ID = $gig_id_apply");
             $current_gig_row = $current_gig_query->fetch_assoc();
             $current_gig_date = $current_gig_row['gig_date'] ?? '';
 
-            // 2. SEMAK GAP MASA: Sekat jika jarak masa dengan mana-mana kerja sedia ada kurang dari 1 jam (60 minit)
+            
             $clash_query = $conn->query("
                 SELECT g.gig_name, ga.app_status, gd.gig_date AS existing_gig_date
                 FROM gig_application ga
@@ -98,8 +98,8 @@ session_start();
         }
     }
 
-    // --- AMBIL DATA KANDUNGAN HALAMAN ---
-    $sql = "SELECT g.GIG_ID, g.gig_name, g.description, g.visibility, c.category_name, gd.location, gd.salary, gd.status, gd.gig_date, gd.frequency 
+    
+    $sql = "SELECT g.GIG_ID, g.gig_name, g.description, g.visibility, c.category_name, gd.location, gd.salary, gd.status, gd.gig_date, gd.due 
             FROM gig g
             LEFT JOIN gig_detail gd ON g.GIG_ID = gd.GIG_ID
             LEFT JOIN category c ON gd.CATEGORY_ID = c.category_id
@@ -208,8 +208,8 @@ session_start();
             <h3>Gig Date & Time:</h3>
             <p><?php echo htmlspecialchars($row['gig_date'] ?? ''); ?></p>
             <br>
-            <h3>Frequency:</h3>
-            <p><?php echo htmlspecialchars($row['frequency'] ?? ''); ?></p>
+            <h3>Due:</h3>
+            <p><?php echo htmlspecialchars($row['due'] ?? ''); ?></p>
             <br>
             <h3>Posted By:</h3>
             <p><?php echo htmlspecialchars($gig_owner['gig_owner'] ?? ''); ?></p>

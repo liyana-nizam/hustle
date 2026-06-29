@@ -274,7 +274,12 @@
                                 </div>
                             </div>
 
-                            <div class="card-tags">
+                            <?php 
+                            $current_time = date('Y-m-d H:i:s');
+                            $is_overdue = $current_time > $row['due'];
+                            $card_overdue_class = $is_overdue ? ' overdue-card' : '';
+                            ?>
+                            <div class="card-tags<?php echo $card_overdue_class; ?>">
                                 <span class="tag"><?php echo htmlspecialchars($row['category_name'] ?? ''); ?></span>
                                 <span class="tag"><?php $address_parts = explode(',', $row['location']); echo htmlspecialchars(trim(end($address_parts))); ?></span>
 

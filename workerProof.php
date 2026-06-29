@@ -91,7 +91,15 @@
             </div>
         </div>
 
-        <h2>Proof: Upload Files</h2>
+<h2>Proof: Upload Files</h2>
+
+        <?php
+        $due_date = $row['due'];
+        $current_time = date('Y-m-d H:i:s');
+
+        if ($current_time > $due_date): ?>
+            <p style="color: red; font-weight: bold;"> You have exceeded the due date. Your submission will be marked as late.</p>
+        <?php endif; ?>
 
         <form method="POST" enctype="multipart/form-data">
             <input type="hidden" name="gig_id" value="<?php echo $gig_id; ?>">
