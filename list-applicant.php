@@ -4,7 +4,7 @@ require_once('connect.php');
 
 $gig_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// Handle approve/reject
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['approve_user_id'])) {
         $check = $conn->query("SELECT COUNT(*) as cnt FROM gig_application WHERE GIG_ID = $gig_id AND app_status = 'approved'");
@@ -13,10 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($row_check['cnt'] == 0) {
             $approve_user = intval($_POST['approve_user_id']);
 
-            // Approve the selected worker
+            
             $conn->query("UPDATE gig_application SET app_status = 'approved' WHERE USER_ID = $approve_user AND GIG_ID = $gig_id");
 
-            // Auto-reject everyone else still pending
             $conn->query("UPDATE gig_application SET app_status = 'rejected' WHERE GIG_ID = $gig_id AND USER_ID != $approve_user AND app_status = 'pending'");
 
             $conn->query("UPDATE gig_detail SET status = 'ongoing' WHERE GIG_ID = $gig_id");
@@ -28,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Get all applicants for this gig
+
 $sql = "SELECT u.user_id, u.username, u.user_image, ga.app_status 
         FROM gig_application ga
         LEFT JOIN user u ON ga.USER_ID = u.user_id

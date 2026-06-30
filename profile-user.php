@@ -13,6 +13,28 @@ if (isset($_SESSION['username'])) {
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
+       
+        $average_rating = 0;
+        $role_check = strtolower(trim($row['role']));
+
+        if ($role_check === 'worker' || $role_check === 'gig worker') {
+            $sql_all_stars = "SELECT star FROM gig_application WHERE USER_ID = '$user_id' AND app_status = 'approved'";
+            $result_stars = $conn->query($sql_all_stars);
+
+            if ($result_stars && $result_stars->num_rows > 0) {
+                $total_stars = 0;
+                $total_completed_gigs = $result_stars->num_rows;
+
+                while ($row_star = $result_stars->fetch_assoc()) {
+                    $total_stars += intval($row_star['star']);
+                }
+
+                $raw_average = $total_stars / $total_completed_gigs;
+                $average_rating = round($raw_average);
+            }
+        }
+     
+
 ?>
         <!DOCTYPE html>
         <html lang="en">
@@ -51,7 +73,7 @@ if (isset($_SESSION['username'])) {
                             <p><strong>Address:</strong> <?php echo htmlspecialchars($row['address']); ?></p>
                             <p><strong>Phone:</strong> <?php echo htmlspecialchars($row['phone_number']); ?></p>
 
-                            <?php if (htmlspecialchars($row['role']) === 'gig worker'): ?>
+                            <?php if ($role_check === 'worker' || $role_check === 'gig worker'): ?>
                                 <p><strong>Bank Account:</strong> <?php echo htmlspecialchars($row['bank_account']); ?></p>
                             <?php endif; ?>
 
@@ -59,16 +81,23 @@ if (isset($_SESSION['username'])) {
                         </div>
 
                         <div class="profile-footer-row">
-                            <?php if (htmlspecialchars($row['role']) === 'gig worker'): ?>
+                            <?php if ($role_check === 'worker' || $role_check === 'gig worker'): ?>
                                 <a href="list-user-rating.php?id=<?php echo $user_id; ?>" class="rating-stars-link" style="text-decoration: none; display: inline-block;">
                                     <div class="rating-stars-box">
-                                        <img src="images/star.png" alt="Star" class="star-icon">
-                                        <img src="images/star.png" alt="Star" class="star-icon">
-                                        <img src="images/star.png" alt="Star" class="star-icon">
-                                        <img src="images/star.png" alt="Star" class="star-icon">
-                                        <img src="images/star.png" alt="Star" class="star-icon">
+                                        <?php
+                                        for ($i = 1; $i <= 5; $i++) {
+                                            if ($i <= $average_rating) {
+                                                echo '<img src="images/star.png" alt="Star" class="star-icon">';
+                                            }
+                                        }
+
+                                        if ($average_rating == 0) {
+                                            echo "<span style='color: #888; font-size: 14px;'>No rating yet</span>";
+                                        }
+                                        ?>
                                     </div>
-                                <?php endif; ?>
+                                </a>
+                            <?php endif; ?>
                         <?php }
                 } ?>
                         </div>

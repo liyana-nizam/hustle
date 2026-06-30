@@ -1,10 +1,10 @@
 <?php
-//make sure session tu start safely
+
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-//incase user belum login then akan back to login.php
+
 if (!isset($_SESSION['username'])) {
     echo "<script>alert('Please Login First!'); window.location.href='login.php';</script>";
     exit();
@@ -13,8 +13,7 @@ if (!isset($_SESSION['username'])) {
 require_once('connect.php');
 
 
-//kena defualt value dulu untuk roro deakt php yang variable ni ada tapi isi takda lagi
-//isi ada nanti bila dah dapat data dari database
+
 $role         = '';
 $role_display = '';
 $edit_link    = '';
@@ -28,7 +27,6 @@ $picture      = '';
 $average_rating = 0;
 $user_id      = null;
 
-//ambik latest data from db based on username login
 
 $username_session = $_SESSION['username'];
 $sql_user = "SELECT * FROM user WHERE username = '$username_session'";
@@ -37,8 +35,8 @@ $result_user = $conn->query($sql_user);
 if ($result_user && $result_user->num_rows > 0) {
     $user_data = $result_user->fetch_assoc();
 
-    //amik user id kat sini
-    $user_id  = $user_data['USER_ID']; //makesure nama column id betul
+   
+    $user_id  = $user_data['USER_ID'];
 
     $role     = strtolower(trim($user_data['role']));
     $name     = $user_data['name'];
@@ -52,7 +50,7 @@ if ($result_user && $result_user->num_rows > 0) {
 
     $_SESSION['role'] = $role;
 
-    //default value dri awal
+    
     $average_rating = 0;
 
     if ($role === 'worker' || $role === 'gig worker') {

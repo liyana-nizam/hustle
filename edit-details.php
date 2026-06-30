@@ -48,7 +48,7 @@ $current_district = $location_parts[1] ?? '';
 
 if (isset($_POST['save'])) {
     
-    // Clean inputs to avoid basic database errors
+
     $job_name    = mysqli_real_escape_string($conn, $_POST['job_name']);
     $category    = mysqli_real_escape_string($conn, $_POST['CATEGORY_ID']);
     $description = mysqli_real_escape_string($conn, $_POST['job_description']);
@@ -63,7 +63,7 @@ if (isset($_POST['save'])) {
     if ($cat_result->num_rows > 0) {
         $category_id = $cat_result->fetch_assoc()['category_id'];
     } else {
-        $category_id = $gig['CATEGORY_ID']; // Fallback to current if not found
+        $category_id = $gig['CATEGORY_ID'];
     }
 
     
@@ -72,7 +72,7 @@ if (isset($_POST['save'])) {
                     description = '$description' 
                     WHERE GIG_ID = '$gig_id' AND USER_ID = '$logged_in_user'";
 
-    // Update table gig_detail
+   
     $sql_update2 = "UPDATE gig_detail SET 
                     category_id = '$category_id', 
                     location = '$location', 
@@ -81,7 +81,7 @@ if (isset($_POST['save'])) {
                     due = '$due' 
                     WHERE GIG_ID = '$gig_id'";
 
-    // Execute updates
+    
     if ($conn->query($sql_update1) === TRUE && $conn->query($sql_update2) === TRUE) {
         echo "Changes saved successfully!";
         echo "<meta http-equiv='refresh' content='2;URL=job-details.php?id=" . $gig_id . "'>";

@@ -64,7 +64,7 @@
             $username = $_SESSION['username'];
     ?>
 
-    <div class="proof-container"><!-- Container besar untuk page tu -->
+    <div class="proof-container">
         <div class="back-btn">
             <a href="progress.php">
                 <img src="images/back.png" alt="Back" class="icon">

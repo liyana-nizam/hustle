@@ -26,14 +26,13 @@ session_start();
     $user_row = $user_result->fetch_assoc();
     $user_id = $user_row['user_id'] ?? 0;
 
-    // Check if already applied
+    
     $already_applied = false;
     $check_applied = $conn->query("SELECT USER_ID FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id");
     if ($check_applied && $check_applied->num_rows > 0) {
         $already_applied = true;
     }
 
-    // --- PROSES PERMOHONAN GIG ---
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_gig_id'])) {
         $gig_id_apply = intval($_POST['apply_gig_id']);
 
@@ -65,7 +64,7 @@ session_start();
 
                 echo "<script>alert('Application failed! You need at least a 1-hour gap between gigs. This clashes with your gig ( $clashed_job ) which is $clashed_status at a time.');</script>";
             } else {
-                // 3. Jika lulus syarat gap 1 jam, baru masuk database
+               
                 $conn->query("INSERT INTO gig_application (USER_ID, GIG_ID, app_status) VALUES ($user_id, $gig_id_apply, 'pending')");
                 echo "<script>alert('Applied successfully!');</script>";
                 echo "<script>window.location.href='job-details.php?id=$gig_id_apply';</script>";
@@ -73,7 +72,7 @@ session_start();
         }
     }
 
-    // --- PROSES HANTAR KOMEN ---
+  
     $comment_error   = '';
     $comment_success = '';
 
@@ -116,7 +115,7 @@ session_start();
     $row = $result->fetch_assoc();
     $gig_owner = $result2->fetch_assoc();
 
-    // Handle hide/unhide toggle
+  
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_hide'])) {
         if (in_array(strtolower($row['status'] ?? ''), ['ongoing', 'completed'])) {
             header("Location: job-details.php?id=$gig_id&error=ongoing");
@@ -129,7 +128,7 @@ session_start();
         exit();
     }
 
-    // Ambil senarai komen beserta gambar profil
+
     $comments_result = $conn->query(
         "SELECT c.content, c.COMMENT_ID, c.USER_ID, u.username, u.user_image
          FROM comment c
@@ -138,7 +137,7 @@ session_start();
          ORDER BY c.COMMENT_ID DESC"
     );
 
-    // Ambil gambar profil saya sendiri untuk ruangan post komen
+
     $my_result = $conn->query("SELECT user_image FROM user WHERE user_id = $user_id");
     $my_pic = 'images/iconuser.png';
     if ($my_result && $my_row = $my_result->fetch_assoc()) {
