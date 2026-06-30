@@ -323,11 +323,11 @@ h2
 #rateInput
 {
     width: 100%;
-    border: none;            /*ni untuk buang border asal untuk input*/
+    border: none;            
     text-align: center;       
     font-size: 1.1em;
     background: transparent;
-    outline: none;      /*ni untuk buang outline kotak input bila kita type ha*/
+    outline: none;      
 }
 
 #feedbackMessage{

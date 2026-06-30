@@ -59,7 +59,7 @@
     ?>
 
     <div class="content-container">
-        <!-- Search Bar & Filter -->
+        
         <div class="search-filter-container">
             <form action="" method="GET">
                 <div class="search-section">

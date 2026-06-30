@@ -53,7 +53,7 @@
     $short_location = trim(end($address_parts));
     ?>
 
-    <div class="payment-container"><!-- Container besar untuk page tu -->
+    <div class="payment-container">
         <div class="back-btn">
         <a href="progress.php">
             <img src="images/back.png" alt="Back" class="icon">
