@@ -28,9 +28,13 @@ session_start();
 
     // Check if already applied
     $already_applied = false;
-    $check_applied = $conn->query("SELECT USER_ID FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id");
-    if ($check_applied && $check_applied->num_rows > 0) {
+    $applied_status = '';
+    $check_applied = $conn->query("SELECT USER_ID, app_status FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id");
+    if ($check_applied && $check_applied->num_rows > 0) 
+    {
         $already_applied = true;
+        $applied_row = $check_applied->fetch_assoc();
+        $applied_status = strtolower($applied_row['app_status']);
     }
 
     // --- PROSES PERMOHONAN GIG ---
@@ -39,9 +43,12 @@ session_start();
 
         $check = $conn->query("SELECT USER_ID FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id_apply");
 
-        if ($check && $check->num_rows > 0) {
+        if ($check && $check->num_rows > 0) 
+        {
             echo "<script>alert('You already applied for this gig.');</script>";
-        } else {
+        } 
+        else 
+        {
             
             $current_gig_query = $conn->query("SELECT gig_date FROM gig_detail WHERE GIG_ID = $gig_id_apply");
             $current_gig_row = $current_gig_query->fetch_assoc();
@@ -70,6 +77,25 @@ session_start();
                 echo "<script>alert('Applied successfully!');</script>";
                 echo "<script>window.location.href='job-details.php?id=$gig_id_apply';</script>";
             }
+        }
+    }
+
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['unapply_gig_id']))
+    {
+        $gig_id_unapply = intval($_POST['unapply_gig_id']);
+        $check_status = $conn->query("SELECT app_status FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id_unapply");
+        $status_row = $check_status->fetch_assoc();
+        $current_status = strtolower($status_row['app_status'] ?? '');
+
+        if ($current_status === 'approved' || $current_status === 'completed') 
+        {
+            echo "<script>alert('You cannot unapply because your application has already been approved.');</script>";
+        }
+        else 
+            {
+            $conn->query("DELETE FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id_unapply");
+            echo "<script>alert('You have unapplied from this gig.');</script>";
+            echo "<script>window.location.href='job-details.php?id=$gig_id_unapply';</script>";
         }
     }
 
@@ -129,7 +155,7 @@ session_start();
         exit();
     }
 
-    // Ambil senarai komen beserta gambar profil
+    //ambil list comment sekali dengan gambar pfp
     $comments_result = $conn->query(
         "SELECT c.content, c.COMMENT_ID, c.USER_ID, u.username, u.user_image
          FROM comment c
@@ -138,7 +164,7 @@ session_start();
          ORDER BY c.COMMENT_ID DESC"
     );
 
-    // Ambil gambar profil saya sendiri untuk ruangan post komen
+    //ambik gambar pfp sendiri untuk post comment section
     $my_result = $conn->query("SELECT user_image FROM user WHERE user_id = $user_id");
     $my_pic = 'images/iconuser.png';
     if ($my_result && $my_row = $my_result->fetch_assoc()) {
@@ -232,7 +258,6 @@ session_start();
             <div class="apply-section">
                 <button onclick="window.location.href='list-applicant.php?id=<?php echo $gig_id; ?>'">View Applicants</button>
                 <button id="editBtn" onclick="editGig(<?php echo $gig_id; ?>)">Edit Details</button>
-
                 <form method="POST" style="display: inline;">
                     <input type="hidden" name="toggle_hide" value="1">
                     <input type="hidden" name="current_visibility" value="<?php echo $row['visibility']; ?>">
@@ -243,14 +268,20 @@ session_start();
             </div>
         <?php endif; ?>
 
+
         <?php if ($role == 'gig worker'): ?>
             <div class="apply-section">
-                <form method="POST">
-                    <input type="hidden" name="apply_gig_id" value="<?php echo $gig_id; ?>">
-                    <button type="submit" id="applyBtn" <?php echo $already_applied ? 'disabled' : ''; ?>>
-                        <?php echo $already_applied ? 'Applied' : 'Apply'; ?>
-                    </button>
-                </form>
+                <?php if ($already_applied): ?>
+                    <form method="POST" onsubmit="return confirm('Are you sure you want to unapply from this gig?');">
+                        <input type="hidden" name="unapply_gig_id" value="<?php echo $gig_id; ?>">
+                        <button type="submit" id="applyBtn">Unapply</button>
+                    </form>
+                <?php else: ?>
+                    <form method="POST" onsubmit="return confirm('Are you sure you want to apply for this gig?');">
+                        <input type="hidden" name="apply_gig_id" value="<?php echo $gig_id; ?>">
+                        <button type="submit" id="applyBtn">Apply</button>
+                    </form>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
 
@@ -287,6 +318,7 @@ session_start();
                                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                             </div>
                         </a>
+
                         <div class="comment-body">
                             <span class="comment-username" style="font-weight: bold; display: block;">
                                 <?php echo htmlspecialchars($comment['username'] ?? 'Unknown'); ?>
