@@ -13,7 +13,7 @@ if (isset($_SESSION['username'])) {
     if ($result && $result->num_rows > 0) {
         $row = $result->fetch_assoc();
 
-       
+        
         $average_rating = 0;
         $role_check = strtolower(trim($row['role']));
 
@@ -33,7 +33,7 @@ if (isset($_SESSION['username'])) {
                 $average_rating = round($raw_average);
             }
         }
-     
+        
 
 ?>
         <!DOCTYPE html>

@@ -250,6 +250,11 @@
 }
 
 .overdue-card {
-    background-color: red;
-    color: white;
+    background-color: #f37c7c;;
+    border-color: red !important;
+}
+
+.overdue-card .salary,
+.overdue-card h3 {
+    color: #333333 !important;
 }

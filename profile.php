@@ -28,6 +28,7 @@ $average_rating = 0;
 $user_id      = null;
 
 
+
 $username_session = $_SESSION['username'];
 $sql_user = "SELECT * FROM user WHERE username = '$username_session'";
 $result_user = $conn->query($sql_user);
@@ -35,8 +36,8 @@ $result_user = $conn->query($sql_user);
 if ($result_user && $result_user->num_rows > 0) {
     $user_data = $result_user->fetch_assoc();
 
-   
-    $user_id  = $user_data['USER_ID'];
+  
+    $user_id  = $user_data['USER_ID']; 
 
     $role     = strtolower(trim($user_data['role']));
     $name     = $user_data['name'];
@@ -50,7 +51,7 @@ if ($result_user && $result_user->num_rows > 0) {
 
     $_SESSION['role'] = $role;
 
-    
+  
     $average_rating = 0;
 
     if ($role === 'worker' || $role === 'gig worker') {
