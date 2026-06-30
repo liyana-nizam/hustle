@@ -75,12 +75,10 @@ require_once('connect.php');
             </div>
 
             <div class="form-group">
-                <label for="frequency">Frequency</label>
-                <select id="frequency" name="frequency" required>
-                <option value="One-time">One-time</option>
-                <option value="Daily">Daily</option>
-                <option value="Weekly">Weekly</option>
-                </select>
+                <label for="due">Due</label>
+                <input type="datetime-local" id="due" name="due" required>
+
+
             </div>
 
         </div>
@@ -102,7 +100,8 @@ $conn->close();
 
 <script>
     const gigDateInput = document.getElementById('gig_date');
-    
+    const dueInput = document.getElementById('due');
+
     const now = new Date();
     // Format to YYYY-MM-DDTHH:MM (required format for datetime-local)
     const year = now.getFullYear();
@@ -113,6 +112,26 @@ $conn->close();
 
     const minDateTime = `${year}-${month}-${day}T${hours}:${minutes}`;
     gigDateInput.min = minDateTime;
+
+// Due date must be at least 1 hour after gig date
+    gigDateInput.addEventListener('change', function() {
+        if (gigDateInput.value) {
+            const gigDate = new Date(gigDateInput.value);
+            gigDate.setHours(gigDate.getHours() + 1); // at least 1 hour after
+
+            const year = gigDate.getFullYear();
+            const month = String(gigDate.getMonth() + 1).padStart(2, '0');
+            const day = String(gigDate.getDate()).padStart(2, '0');
+            const hours = String(gigDate.getHours()).padStart(2, '0');
+            const minutes = String(gigDate.getMinutes()).padStart(2, '0');
+
+            dueInput.min = `${year}-${month}-${day}T${hours}:${minutes}`;
+
+            if (dueInput.value && dueInput.value <= gigDateInput.value) {
+                dueInput.value = '';
+            }
+        }
+    });
 </script>
 </body>
 </html>

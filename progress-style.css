@@ -248,3 +248,8 @@
     text-decoration: none;
     color: white;
 }
+
+.overdue-card {
+    background-color: red;
+    color: white;
+}

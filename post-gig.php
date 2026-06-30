@@ -7,7 +7,7 @@ require_once('connect.php');
      $description = $_POST['job_description'];
      $location = $_POST['location'] . ", " . $_POST['district'];
      $gig_date = $_POST['gig_date'];
-     $frequency = $_POST['frequency'];
+     $due = $_POST['due'];
      $salary = $_POST['salary'];
 
 if (isset($_SESSION['username'])) {
@@ -27,8 +27,8 @@ if ($conn->query($sql1) === TRUE) {
     $sql2 = "SELECT category_id FROM category WHERE category_name='$category'";
     $result2 = $conn->query($sql2);
     $category_id = $result2->fetch_assoc()['category_id'];
-$sql3 = "INSERT INTO gig_detail (gig_id, category_id, location, salary, status, gig_date, frequency)
-        VALUES ('$gig_id', '$category_id', '$location','$salary', 'Pending', '$gig_date', '$frequency')";
+$sql3 = "INSERT INTO gig_detail (gig_id, category_id, location, salary, status, gig_date, due)
+        VALUES ('$gig_id', '$category_id', '$location','$salary', 'Pending', '$gig_date', '$due')";
 if ($conn->query($sql3) === TRUE) {
     echo "New record created successfully";
     echo "<meta http-equiv='refresh' content='2;URL=job-details.php?id=" . $gig_id . "'>";

@@ -54,7 +54,7 @@ if (isset($_POST['save'])) {
     $description = mysqli_real_escape_string($conn, $_POST['job_description']);
     $location    = mysqli_real_escape_string($conn, $_POST['location'] . ", " . $_POST['district']);
     $gig_date    = mysqli_real_escape_string($conn, $_POST['gig_date']);
-    $frequency   = mysqli_real_escape_string($conn, $_POST['frequency']);
+    $due   = mysqli_real_escape_string($conn, $_POST['due']);
     $salary      = mysqli_real_escape_string($conn, $_POST['salary']);
 
 
@@ -78,7 +78,7 @@ if (isset($_POST['save'])) {
                     location = '$location', 
                     salary = '$salary', 
                     gig_date = '$gig_date', 
-                    frequency = '$frequency' 
+                    due = '$due' 
                     WHERE GIG_ID = '$gig_id'";
 
    
@@ -157,12 +157,8 @@ if (isset($_POST['save'])) {
             </div>
 
             <div class="form-group">
-                <label for="frequency">Frequency</label>
-                <select id="frequency" name="frequency" required>
-                    <option value="one-time" <?php if(strtolower($gig['frequency'] ?? '') == 'one-time') echo 'selected'; ?>>One-time</option>
-                    <option value="daily" <?php if(strtolower($gig['frequency'] ?? '') == 'daily') echo 'selected'; ?>>Daily</option>
-                    <option value="weekly" <?php if(strtolower($gig['frequency'] ?? '') == 'weekly') echo 'selected'; ?>>Weekly</option>
-                </select>
+                <label for="due">Due</label>
+                <input type="datetime-local" id="due" name="due" value="<?php echo date('Y-m-d\TH:i', strtotime($gig['due'] ?? '')); ?>" required>
             </div>
         </div>
 
