@@ -26,7 +26,7 @@ session_start();
     $user_row = $user_result->fetch_assoc();
     $user_id = $user_row['user_id'] ?? 0;
 
-    // Check if already applied
+    
     $already_applied = false;
     $applied_status = '';
     $check_applied = $conn->query("SELECT USER_ID, app_status FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id");
@@ -37,7 +37,6 @@ session_start();
         $applied_status = strtolower($applied_row['app_status']);
     }
 
-    // --- PROSES PERMOHONAN GIG ---
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_gig_id'])) {
         $gig_id_apply = intval($_POST['apply_gig_id']);
 
@@ -72,7 +71,7 @@ session_start();
 
                 echo "<script>alert('Application failed! You need at least a 1-hour gap between gigs. This clashes with your gig ( $clashed_job ) which is $clashed_status at a time.');</script>";
             } else {
-                // 3. Jika lulus syarat gap 1 jam, baru masuk database
+               
                 $conn->query("INSERT INTO gig_application (USER_ID, GIG_ID, app_status) VALUES ($user_id, $gig_id_apply, 'pending')");
                 echo "<script>alert('Applied successfully!');</script>";
                 echo "<script>window.location.href='job-details.php?id=$gig_id_apply';</script>";
@@ -80,26 +79,7 @@ session_start();
         }
     }
 
-    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['unapply_gig_id']))
-    {
-        $gig_id_unapply = intval($_POST['unapply_gig_id']);
-        $check_status = $conn->query("SELECT app_status FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id_unapply");
-        $status_row = $check_status->fetch_assoc();
-        $current_status = strtolower($status_row['app_status'] ?? '');
-
-        if ($current_status === 'approved' || $current_status === 'completed') 
-        {
-            echo "<script>alert('You cannot unapply because your application has already been approved.');</script>";
-        }
-        else 
-            {
-            $conn->query("DELETE FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id_unapply");
-            echo "<script>alert('You have unapplied from this gig.');</script>";
-            echo "<script>window.location.href='job-details.php?id=$gig_id_unapply';</script>";
-        }
-    }
-
-    // --- PROSES HANTAR KOMEN ---
+  
     $comment_error   = '';
     $comment_success = '';
 
@@ -125,6 +105,23 @@ session_start();
     }
 
     
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_comment_id'])) {
+    $delete_comment_id = intval($_POST['delete_comment_id']);
+
+    // Only allow deleting if the comment belongs to the logged-in user
+    $check_owner = $conn->query("SELECT USER_ID FROM comment WHERE COMMENT_ID = $delete_comment_id");
+    $owner_row = $check_owner ? $check_owner->fetch_assoc() : null;
+
+    if ($owner_row && intval($owner_row['USER_ID']) === intval($user_id)) {
+        $conn->query("DELETE FROM comment WHERE COMMENT_ID = $delete_comment_id");
+        header("Location: job-details.php?id=$gig_id&deleted=1");
+        exit();
+    } else {
+        echo "<script>alert('You can only delete your own comments.');</script>";
+    }
+}
+
+    
     $sql = "SELECT g.GIG_ID, g.gig_name, g.description, g.visibility, c.category_name, gd.location, gd.salary, gd.status, gd.gig_date, gd.due 
             FROM gig g
             LEFT JOIN gig_detail gd ON g.GIG_ID = gd.GIG_ID
@@ -142,7 +139,7 @@ session_start();
     $row = $result->fetch_assoc();
     $gig_owner = $result2->fetch_assoc();
 
-    // Handle hide/unhide toggle
+  
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['toggle_hide'])) {
         if (in_array(strtolower($row['status'] ?? ''), ['ongoing', 'completed'])) {
             header("Location: job-details.php?id=$gig_id&error=ongoing");
@@ -155,7 +152,7 @@ session_start();
         exit();
     }
 
-    //ambil list comment sekali dengan gambar pfp
+
     $comments_result = $conn->query(
         "SELECT c.content, c.COMMENT_ID, c.USER_ID, u.username, u.user_image
          FROM comment c
@@ -164,7 +161,7 @@ session_start();
          ORDER BY c.COMMENT_ID DESC"
     );
 
-    //ambik gambar pfp sendiri untuk post comment section
+
     $my_result = $conn->query("SELECT user_image FROM user WHERE user_id = $user_id");
     $my_pic = 'images/iconuser.png';
     if ($my_result && $my_row = $my_result->fetch_assoc()) {
@@ -298,6 +295,11 @@ session_start();
                     alert('Comment posted successfully!');
                 </script>
             <?php endif; ?>
+            <?php if (isset($_GET['deleted']) && $_GET['deleted'] == 1): ?>
+                <script>
+                    alert('Comment deleted.');
+                </script>
+            <?php endif; ?>
 
             <form method="POST" class="comment-form">
                 <input type="hidden" name="gig_id" value="<?php echo $gig_id; ?>">
@@ -327,6 +329,12 @@ session_start();
                                 <?php echo nl2br(htmlspecialchars($comment['content'])); ?>
                             </p>
                             <button class="reply-btn" onclick="replyTo('<?php echo htmlspecialchars($comment['username'], ENT_QUOTES); ?>')">Reply</button>
+                            <?php if (intval($comment['USER_ID']) === intval($user_id)): ?>
+                                <form method="POST" style="display: inline;" onsubmit="return confirm('Delete this comment?');">
+                                    <input type="hidden" name="delete_comment_id" value="<?php echo $comment['COMMENT_ID']; ?>">
+                                    <button type="submit" class="delete-btn">Delete</button>
+                                </form>
+                            <?php endif; ?>
                         </div>
                     </div>
                 <?php endwhile; ?>

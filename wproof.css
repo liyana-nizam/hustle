@@ -1,8 +1,8 @@
 .proof-container 
 {
-    max-width: 1100px;/* besarkan drpd 900px supaya layout luas */
-    margin: 30px auto 100px auto;/* Tambah jarak atas daan bawah untuk ruang header footer */
-    padding: 20px;/* Padding sisi kiri kanan untuk space pada skrin kecil mcm phone */
+    max-width: 1100px;
+    margin: 30px auto 100px auto;
+    padding: 20px;
     font-family: sans-serif;
 }
 
@@ -22,7 +22,7 @@
     cursor:pointer;
 }
 
-/*untuk gig job section*/
+
 .item-container 
 {
     background-color: #fff;
@@ -35,7 +35,6 @@
     align-items: center;
 }
 
-/* Untuk Gig Name & Salary */
 .gig-left 
 {
     display: flex;
@@ -56,7 +55,6 @@
     color: #a00046;
 }
 
-/* gap antara category dengan district */
 .gig-right 
 {
     display: flex;
@@ -73,7 +71,7 @@
     font-size: 0.95em;
 }
 
-/* untuk upload section */
+
 .file-upload-container 
 {
     background-color: #fff;
