@@ -108,7 +108,10 @@
             <hr class="divider">
 
         <?php
-            $sql_fb = "SELECT star, feedback_message, payment_proof FROM gig_application WHERE GIG_ID = '$gig_id'";
+            $sql_fb = "SELECT ga.star, ga.feedback_message, ga.payment_proof, u.name AS worker_name, u.bank_account, u.username
+                       FROM gig_application ga
+                       LEFT JOIN user u ON ga.USER_ID = u.USER_ID
+                       WHERE ga.GIG_ID = '$gig_id'";
             $result_fb = $conn->query($sql_fb);
             $row_fb = $result_fb->fetch_assoc();
             $payment_files = $row_fb['payment_proof'] ?? '';
@@ -134,6 +137,9 @@
             </div>
 
             <h2>Upload Payment Proof</h2>
+
+            <p><?php echo htmlspecialchars($row_fb['username']); ?>'s Bank Account Details: 
+            <?php echo htmlspecialchars($row_fb['bank_account'] ?? 'Not Provided'); ?> (<?php echo htmlspecialchars($row_fb['worker_name']); ?>)</p>
 
             <div class="file-upload-container">
                 <input type="file" name="paymentProof" accept="image/*,.pdf">
