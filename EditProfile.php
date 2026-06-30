@@ -3,7 +3,7 @@ if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-// Sekatan keselamatan: Jika belum login, hantar ke login.php
+
 if (!isset($_SESSION['username'])) {
     header("Location: login.php");
     exit();
@@ -16,7 +16,7 @@ $sql_select = "SELECT * FROM user WHERE username = '$username_session'";
 $result_select = $conn->query($sql_select);
 $user = $result_select->fetch_assoc();
 
-// A. COMMAND UPDATE AUTOMATIK APABILA USER KLIK SAVE CHANGES
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $name     = $conn->real_escape_string($_POST['nameInput']);
     $birthday = $conn->real_escape_string($_POST['birthdayInput']);
@@ -47,16 +47,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
     
 
-    
-    // 1. Ambil data sedia ada dahulu untuk tahu role pengguna semasa
     $sql_check = "SELECT role FROM user WHERE username = '$username_session'";
     $res_check = $conn->query($sql_check);
     $user_check = $res_check->fetch_assoc();
     $current_role = strtolower(trim($user_check['role']));
 
-    // 2. Bina arahan SQL secara dinamik
+   
     if ($current_role === 'worker' || $current_role === 'gig worker') {
-        // Jika Gig Worker, kemas kini semua termasuk bank account
+     
         $bank = isset($_POST['bankInput']) ? $conn->real_escape_string($_POST['bankInput']) : '';
         $sql_update = "UPDATE user SET 
                         name = '$name', 
@@ -68,7 +66,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         user_image = '$picture' 
                       WHERE username = '$username_session'";
     } else {
-        // Jika Admin atau Gig Owner, KEKALKAN data bank lama (jangan usik kolum bank_account)
+      
         $sql_update = "UPDATE user SET 
                         name = '$name', 
                         birthday = '$birthday', 
@@ -86,7 +84,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 
-// Ambil role user untuk kawalan paparan seketika lagi
+
 $role = strtolower(trim($user['role']));
 ?>
 

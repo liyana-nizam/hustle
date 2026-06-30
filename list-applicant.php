@@ -4,7 +4,6 @@ require_once('connect.php');
 
 $gig_id = isset($_GET['id']) ? intval($_GET['id']) : 0;
 
-// Handle approve/reject
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (isset($_POST['approve_user_id'])) {
         $check = $conn->query("SELECT COUNT(*) as cnt FROM gig_application WHERE GIG_ID = $gig_id AND app_status = 'approved'");
@@ -28,7 +27,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 
-// Get all applicants for this gig
 $sql = "SELECT u.user_id, u.username, u.user_image, ga.app_status 
         FROM gig_application ga
         LEFT JOIN user u ON ga.USER_ID = u.user_id
