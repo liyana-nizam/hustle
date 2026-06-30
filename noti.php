@@ -46,7 +46,7 @@
               FROM comment c
               JOIN gig g ON c.GIG_ID = g.GIG_ID
               JOIN user u ON c.USER_ID = u.USER_ID
-              WHERE g.USER_ID = '$userID' AND c.USER_ID != '$userID';
+              WHERE g.USER_ID = '$userID' AND c.USER_ID != '$userID'
               
               UNION ALL
               
@@ -56,8 +56,7 @@
                       JOIN gig g ON ga.GIG_ID = g.GIG_ID
                       JOIN user u ON ga.USER_ID = u.USER_ID
                       WHERE g.USER_ID = '$userID'
-                      AND ga.proof IS NOT NULL
-                      AND ga.app_status = 'completed";
+                      AND ga.proof != ''";
 
     $result = $conn->query($query);
     
@@ -103,8 +102,7 @@
               JOIN gig g ON ga.GIG_ID = g.GIG_ID
               JOIN user u ON g.USER_ID = u.USER_ID
               WHERE ga.USER_ID = '$userID'
-              AND ga.payment_proof IS NOT NULL
-              AND ga.app_status = 'completed'";
+              AND ga.payment_proof != ''";
 
     $result = $conn->query($query);
     
