@@ -98,7 +98,7 @@
         $current_time = date('Y-m-d H:i:s');
 
         if ($current_time > $due_date): ?>
-            <p style="color: red; font-weight: bold;"> You have exceeded the due date. Your submission will be marked as late.</p>
+            <p style="color: red; font-weight: bold; text-align: center;"> You have exceeded the due date. Your submission will be marked as late.</p>
         <?php endif; ?>
 
         <form method="POST" enctype="multipart/form-data">
