@@ -125,20 +125,23 @@ session_start();
 
     
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['delete_comment_id'])) {
-    $delete_comment_id = intval($_POST['delete_comment_id']);
+        $delete_comment_id = intval($_POST['delete_comment_id']);
 
-    // Only allow deleting if the comment belongs to the logged-in user
-    $check_owner = $conn->query("SELECT USER_ID FROM comment WHERE COMMENT_ID = $delete_comment_id");
-    $owner_row = $check_owner ? $check_owner->fetch_assoc() : null;
+        // Allow deleting if the comment belongs to the logged-in user, OR if the user is admin
+        $check_owner = $conn->query("SELECT USER_ID FROM comment WHERE COMMENT_ID = $delete_comment_id");
+        $owner_row = $check_owner ? $check_owner->fetch_assoc() : null;
 
-    if ($owner_row && intval($owner_row['USER_ID']) === intval($user_id)) {
-        $conn->query("DELETE FROM comment WHERE COMMENT_ID = $delete_comment_id");
-        header("Location: job-details.php?id=$gig_id&deleted=1");
-        exit();
-    } else {
-        echo "<script>alert('You can only delete your own comments.');</script>";
+        $is_owner = $owner_row && intval($owner_row['USER_ID']) === intval($user_id);
+        $is_admin = ($role === 'admin');
+
+        if ($owner_row && ($is_owner || $is_admin)) {
+            $conn->query("DELETE FROM comment WHERE COMMENT_ID = $delete_comment_id");
+            header("Location: job-details.php?id=$gig_id&deleted=1");
+            exit();
+        } else {
+            echo "<script>alert('You are not allowed to delete this comment.');</script>";
+        }
     }
-}
 
     
     $sql = "SELECT g.GIG_ID, g.gig_name, g.description, g.visibility, c.category_name, gd.location, gd.salary, gd.status, gd.gig_date, gd.due 
@@ -348,7 +351,7 @@ session_start();
                                 <?php echo nl2br(htmlspecialchars($comment['content'])); ?>
                             </p>
                             <button class="reply-btn" onclick="replyTo('<?php echo htmlspecialchars($comment['username'], ENT_QUOTES); ?>')">Reply</button>
-                            <?php if (intval($comment['USER_ID']) === intval($user_id)): ?>
+                                <?php if (intval($comment['USER_ID']) === intval($user_id) || $role === 'admin'): ?>
                                 <form method="POST" style="display: inline;" onsubmit="return confirm('Delete this comment?');">
                                     <input type="hidden" name="delete_comment_id" value="<?php echo $comment['COMMENT_ID']; ?>">
                                     <button type="submit" class="delete-btn">Delete</button>
