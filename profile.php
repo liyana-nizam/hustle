@@ -54,7 +54,10 @@ if ($result_user && $result_user->num_rows > 0) {
     $average_rating = 0;
 
     if ($role === 'worker' || $role === 'gig worker') {
-        $sql_all_stars = "SELECT star FROM gig_application WHERE USER_ID = '$user_id' AND app_status = 'approved'";
+       $sql_all_stars = "SELECT star FROM gig_application 
+                   WHERE USER_ID = '$user_id' 
+                   AND app_status = 'approved' 
+                   AND star IS NOT NULL AND star > 0";
         $result_stars = $conn->query($sql_all_stars);
 
         if ($result_stars && $result_stars->num_rows > 0) {
@@ -135,7 +138,7 @@ include('head.php');
                         <a href="list-user-rating.php?id=<?php echo $user_id; ?>" class="rating-stars-link" style="text-decoration: none; display: inline-block;">
                         <div class="rating-stars-box">
                             <?php
-                            //gambar star ikut average
+                    
                             for ($i = 1; $i <= 5; $i++) {
                                 if ($i <= $average_rating) {
                                     echo '<img src="images/star.png" alt="Star" class="star-icon">';

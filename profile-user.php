@@ -18,7 +18,10 @@ if (isset($_SESSION['username'])) {
         $role_check = strtolower(trim($row['role']));
 
         if ($role_check === 'worker' || $role_check === 'gig worker') {
-            $sql_all_stars = "SELECT star FROM gig_application WHERE USER_ID = '$user_id' AND app_status = 'approved'";
+            $sql_all_stars = "SELECT star FROM gig_application 
+                   WHERE USER_ID = '$user_id' 
+                   AND app_status = 'approved' 
+                   AND star IS NOT NULL AND star > 0";
             $result_stars = $conn->query($sql_all_stars);
 
             if ($result_stars && $result_stars->num_rows > 0) {
