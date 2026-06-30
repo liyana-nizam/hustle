@@ -39,10 +39,9 @@ if (isset($_FILES['profileInput']) && $_FILES['profileInput']['error'] == 0)
 
     }
     
-// Hash password sebelum simpan
+
 $hashedPassword = password_hash($pass, PASSWORD_DEFAULT);
 
-// Masukkan ke dalam database
 $sql = "INSERT INTO user (username, password, phone_number, role, birthday, address, gender, name, bank_account, user_image)
         VALUES ('$username', '$hashedPassword', '$phone', '$role', '$birthday', '$address', '$gender', '$name', '$bankAccount', '$profilePic')";
 

@@ -261,7 +261,12 @@
                             $badge = '<span class="hidden-badge no-longer-badge">No Longer Needed</span>';
                         }
                 ?>
-                        <div class="<?php echo $card_class; ?>">
+                       <?php 
+                        $current_time = date('Y-m-d H:i:s');
+                        $is_overdue = $current_time > $row['due'];
+                        $card_overdue_class = $is_overdue ? ' overdue-card' : '';
+                        ?>
+                        <div class="<?php echo $card_class . $card_overdue_class; ?>">
                             <a href="job-details.php?id=<?php echo $row['GIG_ID']; ?>" class="card-clickable-overlay"></a>
                             <?php echo $badge; ?>
                             <div class="card-header">
@@ -276,12 +281,7 @@
                                 </div>
                             </div>
 
-                            <?php 
-                            $current_time = date('Y-m-d H:i:s');
-                            $is_overdue = $current_time > $row['due'];
-                            $card_overdue_class = $is_overdue ? ' overdue-card' : '';
-                            ?>
-                            <div class="card-tags<?php echo $card_overdue_class; ?>">
+                            <div class="card-tags">
                                 <span class="tag"><?php echo htmlspecialchars($row['category_name'] ?? ''); ?></span>
                                 <span class="tag"><?php $address_parts = explode(',', $row['location']); echo htmlspecialchars(trim(end($address_parts))); ?></span>
 
