@@ -28,9 +28,13 @@ session_start();
 
     
     $already_applied = false;
-    $check_applied = $conn->query("SELECT USER_ID FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id");
-    if ($check_applied && $check_applied->num_rows > 0) {
+    $applied_status = '';
+    $check_applied = $conn->query("SELECT USER_ID, app_status FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id");
+    if ($check_applied && $check_applied->num_rows > 0) 
+    {
         $already_applied = true;
+        $applied_row = $check_applied->fetch_assoc();
+        $applied_status = strtolower($applied_row['app_status']);
     }
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['apply_gig_id'])) {
@@ -38,9 +42,12 @@ session_start();
 
         $check = $conn->query("SELECT USER_ID FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id_apply");
 
-        if ($check && $check->num_rows > 0) {
+        if ($check && $check->num_rows > 0) 
+        {
             echo "<script>alert('You already applied for this gig.');</script>";
-        } else {
+        } 
+        else 
+        {
             
             $current_gig_query = $conn->query("SELECT gig_date FROM gig_detail WHERE GIG_ID = $gig_id_apply");
             $current_gig_row = $current_gig_query->fetch_assoc();
@@ -248,7 +255,6 @@ session_start();
             <div class="apply-section">
                 <button onclick="window.location.href='list-applicant.php?id=<?php echo $gig_id; ?>'">View Applicants</button>
                 <button id="editBtn" onclick="editGig(<?php echo $gig_id; ?>)">Edit Details</button>
-
                 <form method="POST" style="display: inline;">
                     <input type="hidden" name="toggle_hide" value="1">
                     <input type="hidden" name="current_visibility" value="<?php echo $row['visibility']; ?>">
@@ -259,14 +265,20 @@ session_start();
             </div>
         <?php endif; ?>
 
+
         <?php if ($role == 'gig worker'): ?>
             <div class="apply-section">
-                <form method="POST">
-                    <input type="hidden" name="apply_gig_id" value="<?php echo $gig_id; ?>">
-                    <button type="submit" id="applyBtn" <?php echo $already_applied ? 'disabled' : ''; ?>>
-                        <?php echo $already_applied ? 'Applied' : 'Apply'; ?>
-                    </button>
-                </form>
+                <?php if ($already_applied): ?>
+                    <form method="POST" onsubmit="return confirm('Are you sure you want to unapply from this gig?');">
+                        <input type="hidden" name="unapply_gig_id" value="<?php echo $gig_id; ?>">
+                        <button type="submit" id="applyBtn">Unapply</button>
+                    </form>
+                <?php else: ?>
+                    <form method="POST" onsubmit="return confirm('Are you sure you want to apply for this gig?');">
+                        <input type="hidden" name="apply_gig_id" value="<?php echo $gig_id; ?>">
+                        <button type="submit" id="applyBtn">Apply</button>
+                    </form>
+                <?php endif; ?>
             </div>
         <?php endif; ?>
 
@@ -308,6 +320,7 @@ session_start();
                                     style="width: 40px; height: 40px; border-radius: 50%; object-fit: cover;">
                             </div>
                         </a>
+
                         <div class="comment-body">
                             <span class="comment-username" style="font-weight: bold; display: block;">
                                 <?php echo htmlspecialchars($comment['username'] ?? 'Unknown'); ?>
