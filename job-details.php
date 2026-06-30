@@ -79,6 +79,25 @@ session_start();
         }
     }
 
+    if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['unapply_gig_id'])) 
+    {
+        $gig_id_unapply = intval($_POST['unapply_gig_id']);
+        $check_status = $conn->query("SELECT app_status FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id_unapply");
+        $status_row = $check_status->fetch_assoc();
+        $current_status = strtolower($status_row['app_status'] ?? '');
+
+        if ($current_status === 'approved' || $current_status === 'completed') 
+        {
+            echo "<script>alert('You cannot unapply because your application has already been approved.');</script>";
+        } 
+        else 
+        {
+            $conn->query("DELETE FROM gig_application WHERE USER_ID = $user_id AND GIG_ID = $gig_id_unapply");
+            echo "<script>alert('You have unapplied from this gig.');</script>";
+            echo "<script>window.location.href='job-details.php?id=$gig_id_unapply';</script>";
+        }
+    }
+
   
     $comment_error   = '';
     $comment_success = '';
