@@ -52,23 +52,19 @@ if (isset($_SESSION['username'])) {
         <body>
             <?php include('head.php'); ?>
             <div class="profile-main-container">
-
                 <h1 class="profile-page-title"><?php echo htmlspecialchars($row['username']); ?>'s Profile</h1>
-
                 <div class="profile-content-layout">
-
                     <div class="profile-avatar-column">
-    <div class="profile-icon-circle">
-        <?php
-            $user_pic = (!empty($row['user_image']) && file_exists($row['user_image'])) ?
-            $row['user_image'] : 'images/iconuser.png';
-        ?>
-        <img src="<?php echo htmlspecialchars($user_pic); ?>" alt="Profile Picture">
-    </div>
-</div>
+                        <div class="profile-icon-circle">
+                            <?php
+                                $user_pic = (!empty($row['user_image']) && file_exists($row['user_image'])) ?
+                                $row['user_image'] : 'images/iconuser.png';
+                            ?>
+                            <img src="<?php echo htmlspecialchars($user_pic); ?>" alt="Profile Picture">
+                        </div>
+                    </div>
 
                     <div class="profile-info-column">
-
                         <div class="profile-details-box">
                             <p><strong>Name:</strong> <?php echo htmlspecialchars($row['name']); ?></p>
                             <p><strong>Birthday:</strong> <?php echo htmlspecialchars($row['birthday']); ?></p>

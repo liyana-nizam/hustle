@@ -130,7 +130,7 @@
         <?php } ?>
     </div>
 
-    <script>
+    <script> //ni guna DOM manipulate
         document.getElementById('profileInput').addEventListener('change', function()
         {
             var file = this.files[0];

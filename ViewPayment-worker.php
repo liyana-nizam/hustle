@@ -197,10 +197,10 @@
                 var file = this.files[0];
                 if (file)
                 {
-                    var url = URL.createObjectURL(file);
+                    var url = URL.createObjectURL(file); // utk create url sementara untuk user tgk balik file 
                     document.getElementById('viewBtn').onclick = function() 
                     {
-                        window.open(url, '_blank');
+                        window.open(url, '_blank'); //bukak dkt tab baru 
                     };
                 }
             });
