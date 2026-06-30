@@ -287,16 +287,21 @@ session_start();
 
         <?php if ($role == 'gig worker'): ?>
             <div class="apply-section">
-                <?php if ($already_applied): ?>
+                <?php if ($already_applied && ($applied_status === 'approved' || $applied_status === 'completed')): ?>
+                    <button type="button" id="applyBtn" disabled>Applied</button>
+                    <?php elseif ($already_applied): ?>
                     <form method="POST" onsubmit="return confirm('Are you sure you want to unapply from this gig?');">
                         <input type="hidden" name="unapply_gig_id" value="<?php echo $gig_id; ?>">
                         <button type="submit" id="applyBtn">Unapply</button>
                     </form>
-                <?php else: ?>
+
+                    <?php else: ?>
+
                     <form method="POST" onsubmit="return confirm('Are you sure you want to apply for this gig?');">
                         <input type="hidden" name="apply_gig_id" value="<?php echo $gig_id; ?>">
                         <button type="submit" id="applyBtn">Apply</button>
                     </form>
+                    
                 <?php endif; ?>
             </div>
         <?php endif; ?>
