@@ -33,7 +33,7 @@
     if ($role == 'gig owner'){
 
     $query = "SELECT 'Application' AS noti_type, ga.GIG_ID,
-                      CONCAT(u.username, ' applied to your gig.') AS message
+                      CONCAT(u.username, ' applied to your gig ', g.gig_name, '.') AS message
               FROM gig_application ga
               JOIN gig g ON ga.GIG_ID = g.GIG_ID
               JOIN user u ON ga.USER_ID = u.USER_ID
@@ -96,7 +96,7 @@
               
               UNION ALL
               
-              SELECT 'Payment' AS noti_type, ga.GIG_ID,
+              SELECT 'Gig Completion' AS noti_type, ga.GIG_ID,
                       CONCAT(u.username, ' has confirmed your payment and leave rating for the gig ', g.gig_name, '.') AS message
               FROM gig_application ga
               JOIN gig g ON ga.GIG_ID = g.GIG_ID
