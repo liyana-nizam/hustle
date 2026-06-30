@@ -133,7 +133,7 @@
 
     ?>
 
-    <div class="admin-comtainer">
+    <div class="content-container">
         <div class="notifications-wrapper">
             <div class="notifications-header">
                 <h1 class="notications-title">Notifications</h1>

@@ -76,7 +76,7 @@ nav a:hover, nav a.current{
 .content-container{
     background-color: white;
     padding: 20px 30px;
-    
+    min-height: calc(100vh - 360px);
 }
 
 footer{

@@ -98,10 +98,15 @@ footer
     margin-top: 40px;
 }
 
-h2 
+h2
 {
     margin-top: 30px;
     color: #000000;
+    margin-left: 25px;
+    margin-bottom: 10px;
+}
+
+p{
     margin-left: 25px;
     margin-bottom: 10px;
 }
