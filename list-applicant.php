@@ -12,7 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         if ($row_check['cnt'] == 0) {
             $approve_user = intval($_POST['approve_user_id']);
 
-            
             $conn->query("UPDATE gig_application SET app_status = 'approved' WHERE USER_ID = $approve_user AND GIG_ID = $gig_id");
 
             $conn->query("UPDATE gig_application SET app_status = 'rejected' WHERE GIG_ID = $gig_id AND USER_ID != $approve_user AND app_status = 'pending'");
@@ -20,9 +19,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $conn->query("UPDATE gig_detail SET status = 'ongoing' WHERE GIG_ID = $gig_id");
         }
     }
+
     if (isset($_POST['reject_user_id'])) {
         $reject_user = intval($_POST['reject_user_id']);
         $conn->query("UPDATE gig_application SET app_status = 'rejected' WHERE USER_ID = $reject_user AND GIG_ID = $gig_id");
+    }
+
+    if (isset($_POST['cancel_user_id'])) {
+        $cancel_user = intval($_POST['cancel_user_id']);
+
+        // worker yang di-cancel tu jadi 'cancelled'
+        $conn->query("UPDATE gig_application SET app_status = 'cancelled' WHERE USER_ID = $cancel_user AND GIG_ID = $gig_id AND app_status = 'approved'");
+
+        // worker-worker lain yang sebelum ni kena reject untuk gig ni, reset balik ke pending
+        $conn->query("UPDATE gig_application SET app_status = 'pending' WHERE GIG_ID = $gig_id AND USER_ID != $cancel_user AND app_status = 'rejected'");
+
+        // gig tu sendiri kena reset balik ke pending, supaya hilang dari Ongoing worker yang di-cancel
+        $conn->query("UPDATE gig_detail SET status = 'Pending' WHERE GIG_ID = $gig_id");
     }
 }
 
@@ -36,6 +49,7 @@ $result = $conn->query($sql);
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -45,70 +59,78 @@ $result = $conn->query($sql);
 </head>
 
 <body>
-    <?php include('head.php')?>
+    <?php include('head.php') ?>
     <div class="content-container">
-    <?php if($result->num_rows > 0): ?>
-        <div class="list-container">
-            <ul class="user-list">
-                <?php while($row = $result->fetch_assoc()): ?>
-                    <li class="item-container">
-                        <a href="profile-user.php?id=<?php echo $row['user_id']; ?>">
-                            
-                            <div class="user-left">
-                                <div class="user-img">
-                                    <?php
+        <?php if ($result->num_rows > 0): ?>
+            <div class="list-container">
+                <ul class="user-list">
+                    <?php while ($row = $result->fetch_assoc()): ?>
+                        <li class="item-container">
+                            <a href="profile-user.php?id=<?php echo $row['user_id']; ?>">
+
+                                <div class="user-left">
+                                    <div class="user-img">
+                                        <?php
                                         $user_pic = (!empty($row['user_image']) && file_exists($row['user_image'])) ?
-                                        $row['user_image'] : 'images/iconuser.png';
-                                    ?>
-                                    <img src="<?php echo htmlspecialchars($user_pic); ?>" alt="Icon User">
+                                            $row['user_image'] : 'images/iconuser.png';
+                                        ?>
+                                        <img src="<?php echo htmlspecialchars($user_pic); ?>" alt="Icon User">
+                                    </div>
+
+                                    <div class="user-info">
+                                        <p class="user-name"><?php echo htmlspecialchars($row['username']); ?></p>
+                                    </div>
                                 </div>
 
-                                <div class="user-info">
-                                    <p class="user-name"><?php echo htmlspecialchars($row['username']); ?></p>
+                                <div class="user-right">
+                                    <?php if ($row['app_status'] == 'pending'): ?>
+                                        <form method="POST" style="display: contents;" onsubmit="event.stopPropagation(); return confirm('Are you sure you want to approve this gig worker?');">
+                                            <input type="hidden" name="approve_user_id" value="<?php echo $row['user_id']; ?>">
+                                            <button type="submit" onclick="event.stopPropagation();">Approve</button>
+                                        </form>
+
+                                        <form method="POST" style="display: contents;" onsubmit="event.stopPropagation(); return confirm('Are you sure you want to reject this gig worker?');">
+                                            <input type="hidden" name="reject_user_id" value="<?php echo $row['user_id']; ?>">
+                                            <button type="submit" onclick="event.stopPropagation();">Reject</button>
+                                        </form>
+
+                                    <?php elseif ($row['app_status'] == 'approved'): ?>
+                                        <form method="POST" style="display: contents;" onsubmit="event.stopPropagation(); return confirm('Are you sure you want to cancel this gig worker?');">
+                                            <input type="hidden" name="cancel_user_id" value="<?php echo $row['user_id']; ?>">
+                                            <button type="submit" onclick="event.stopPropagation();">Cancel</button>
+                                        </form>
+                                        <p class="user-filter">Approved</p>
+
+                                    <?php elseif ($row['app_status'] == 'rejected'): ?>
+                                        <p class="user-filter">Rejected</p>
+
+                                    <?php elseif ($row['app_status'] == 'cancelled'): ?>
+                                        <p class="user-filter">Cancelled</p>
+
+                                    <?php endif; ?>
                                 </div>
+
+                            </a>
+                        </li>
+                    <?php endwhile; ?>
+
+                </ul>
+            </div>
+        <?php else: ?>
+            <div class="list-container">
+                <ul class="user-list">
+                    <li class="item-container">
+                        <a>
+                            <div class="user-left">
+                                <p>No applicants yet.</p>
                             </div>
-
-                            <div class="user-right">
-                                <?php if($row['app_status'] == 'pending'): ?>
-                                    <form method="POST" style="display: contents;" onsubmit="return confirm('Are you sure you want to approve this gig worker?');">
-                                        <input type="hidden" name="approve_user_id" value="<?php echo $row['user_id']; ?>">
-                                        <button type="submit">Approve</button>
-                                    </form>
-
-                                    <form method="POST" style="display: contents;" onsubmit="return confirm('Are you sure you want to reject this gig worker?');">
-                                        <input type="hidden" name="reject_user_id" value="<?php echo $row['user_id']; ?>">
-                                        <button type="submit">Reject</button>
-                                    </form>
-
-                                <?php elseif($row['app_status'] == 'approved'): ?>
-                                    <p class="user-filter">Approved</p>
-
-                                <?php elseif($row['app_status'] == 'rejected'): ?>
-                                    <p class="user-filter">Rejected</p>
-
-                                <?php endif; ?>
-                            </div>
-
                         </a>
                     </li>
-                <?php endwhile; ?>
-
-            </ul>
-        </div>
-    <?php else: ?>
-        <div class="list-container">
-            <ul class="user-list">
-                <li class="item-container">
-                    <a>
-                        <div class="user-left">
-                            <p>No applicants yet.</p>
-                        </div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-    <?php endif; ?>
-</div>
+                </ul>
+            </div>
+        <?php endif; ?>
+    </div>
     <?php include('footer.php') ?>
 </body>
+
 </html>

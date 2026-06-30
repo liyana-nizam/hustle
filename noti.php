@@ -83,7 +83,7 @@
               FROM gig_application ga
               JOIN gig g ON ga.GIG_ID = g.GIG_ID
               JOIN user u ON g.USER_ID = u.USER_ID
-              WHERE ga.USER_ID = '$userID' AND ga.app_status = 'rejected'
+              WHERE ga.USER_ID = '$userID' AND (ga.app_status = 'rejected' OR ga.app_status = 'cancelled')
               
               UNION ALL
               
