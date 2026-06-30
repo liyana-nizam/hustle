@@ -1,7 +1,7 @@
 .gigworkerRate-container {
-    max-width: 1100px;/* besarkan drpd 900px supaya layout luas */
-    margin: 30px auto 100px auto;/* Tambah jarak atas daan bawah untuk ruang header footer */
-    padding: 20px;/* Padding sisi kiri kanan untuk space pada skrin kecil mcm phone */
+    max-width: 1100px;
+    margin: 30px auto 100px auto;
+    padding: 20px;
     font-family: sans-serif;
 }
 .back-btn{
@@ -20,8 +20,6 @@
     cursor:pointer;
 }
 
-
-/*untuk gig job section*/
 .item-container 
 {
     background-color: #fff;
@@ -56,8 +54,6 @@
 {
     color: #a00046;
 }
-
-/* gap antara category dengan district */
 
 .gig-right 
 {
@@ -187,11 +183,11 @@ h2
 #rateInput
 {
     width: 100%;
-    border: none;            /*ni untuk buang border asal untuk input*/
+    border: none;     
     text-align: center;       
     font-size: 1.1em;
     background: transparent;
-    outline: none;      /*ni untuk buang outline kotak input bila kita type ha*/
+    outline: none;     
 }
 
 .choose-btn 
@@ -228,8 +224,8 @@ h2
   }
 
   .item-container {
-    margin: 20px auto;   /* center */
-    width: 90%;          /* rapat sikit supaya muat */
+    margin: 20px auto;   
+    width: 90%;          
   }
 
   .file-upload-container {
